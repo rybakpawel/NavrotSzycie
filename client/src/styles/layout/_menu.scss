@@ -19,7 +19,12 @@
         background-color: #fff;
         border: 1px solid $base-font;
         list-style: none;
+        transition: 0.3s;
         z-index: 1;
+
+        &--active {
+            right: 0;
+        }
 
         @media (min-width: 768px) {
             position: static;

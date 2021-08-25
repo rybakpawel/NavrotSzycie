@@ -1,5 +1,5 @@
 import React from 'react';
-import loupe from '../../assets/loupe.svg'
+import loupe from '../../assets/icons/loupe.svg'
 
 const Search = () => {
     return (
