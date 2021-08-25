@@ -10,7 +10,6 @@ function App() {
                 <Route path='/' component={HomePage} />
             </Switch>
         </BrowserRouter>
-        
     );
 }
 export default App;

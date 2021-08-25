@@ -1,10 +1,15 @@
-.logo-link {
-    flex-basis: 50%;
-    flex-grow: 1;
-}
-
 .logo {
     font-family: 'Amatic SC', sans-serif;
     font-weight: normal;
     font-size: 4rem;
+
+    // &--wrapper {
+    //     flex-basis: 50%;
+    //     flex-grow: 1;
+    // }
+
+    // &--link {
+    //     display: block;
+    //     width: auto;
+    // }
 }

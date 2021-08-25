@@ -1,9 +1,64 @@
 .menu {
-    flex-basis: 10%;
+    @media (min-width: 768px) {
+        flex-grow: 1;
+    }
 
-    img {
+    &__bars-icon {
         display: block;
         width: 2.5rem;
         height: 2.5rem;
+    }
+
+    &__list {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid $base-font;
+        list-style: none;
+        z-index: 1;
+
+        @media (min-width: 768px) {
+            position: static;
+            flex-direction: row;
+            justify-content: center;
+            border: none;
+        }
+
+        &__close {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 3%;
+            width: 2.5rem;
+            height: 2.5rem;
+
+            @media (min-width: 576px) {
+                margin: 2%;
+            }
+        }
+
+        &__item {
+            padding: 3% 6% 3% 3%;
+            font-size: 2.5rem;
+            text-align: right;
+
+            @media (min-width: 576px) {
+                padding: 2% 6% 2% 2%;
+            }
+
+            @media (min-width: 768px) {
+                font-size: 0.9rem;
+                padding: 0 2%;
+            }
+
+            @media (min-width: 992px) {
+                font-size: 1.2rem;
+                padding: 0 2%;
+            }
+        }
     }
 }

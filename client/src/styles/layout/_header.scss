@@ -3,4 +3,22 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 0 5%;
+
+    @media (min-width: 480px) {
+        justify-content: space-between;
+    }
+
+    @media (min-width: 768px) {
+        justify-content: none;
+    }
+
+    &__cart-menu-icons {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+
+        @media (min-width: 480px) {
+            flex-grow: 0;
+        }
+    }
 }

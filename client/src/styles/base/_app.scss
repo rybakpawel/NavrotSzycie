@@ -9,13 +9,26 @@
 
 html {
     font-size: 10px;
+
+    @media (min-width: 768px) {
+        font-size: 11px;
+    }
+
+    @media (min-width: 992px) {
+        font-size: 12px;
+    }
+
+    @media (min-width: 1200px) {
+        font-size: 13px;
+    }
 }
 
 body {
     font-family: 'Questrial', sans-serif;
+    color: $base-font;
 }
 
 a {
     text-decoration: none;
-    color: #000;
+    color: $base-font;
 }
