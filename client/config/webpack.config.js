@@ -37,5 +37,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
-    ]
+    ],
+    resolve: {
+        // you can now require('file') instead of require('file.coffee')
+        extensions: ['', '.js', '.jsx']
+      }
 }

@@ -1,0 +1,22 @@
+.section-title {
+    &__text {
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: normal;
+    }
+
+    &__line {
+        width: 10%;
+        margin: 0 auto;
+        border-bottom: 1px solid $base-font;
+
+        @media (min-width: 576px) {
+            width: 5%;
+        }
+
+        @media (min-width: 992px) {
+            width: 3%;
+        }
+    }
+}

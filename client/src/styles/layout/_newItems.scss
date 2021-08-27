@@ -1,0 +1,17 @@
+.new-items {
+    padding: 5% 3%;
+
+    @media (min-width: 1200px) {
+        padding: 5% 10%;
+    }
+
+    &__items-list {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10%;
+
+        @media (min-width: 576px) {
+            padding-top: 5%;
+        }
+    }
+}

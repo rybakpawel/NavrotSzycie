@@ -1,9 +1,9 @@
 import React from 'react';
 import { isMobileOnly, withOrientationChange } from 'react-device-detect';
-import Logo from './Logo.jsx';
-import Search from './Search.jsx';
-import Cart from './Cart.jsx';
-import Menu from './Menu.jsx';
+import Logo from './Logo';
+import Search from './Search';
+import Cart from './Cart';
+import Menu from './Menu';
 
 const getSmallView = (isPortrait) => {
     return (

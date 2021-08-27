@@ -1,0 +1,12 @@
+.arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 3%;
+    max-height: 2.5rem;
+
+    &__left,
+    &__right {
+        max-width: 2.5rem;
+    }
+}

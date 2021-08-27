@@ -1,0 +1,47 @@
+.small-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1%;
+    background-color: $base-background;
+
+    &__product-image {
+        width: 100%;
+    }
+
+    &__name-price {
+        padding: 10% 0 15% 0;
+
+        @media(min-width: 768px) {
+            padding: 5% 0 10% 0;
+        }
+
+        &__name {
+            font-size: 2rem;
+            font-weight: normal;
+            padding-bottom: 1rem;
+        }
+
+        &__price {
+            font-size: 1.5rem;
+            font-weight: normal;
+            text-align: center;
+        }
+    }
+
+    &__buttons-wrapper {
+        position: relative;
+        padding: 10% 0;
+
+        &__add-to-cart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(300%, -50%);
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+
+}

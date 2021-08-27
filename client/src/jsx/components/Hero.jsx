@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 import heroImage from '../../assets/images/hero.jpg';
 import facebook from '../../assets/icons/facebook.svg';
@@ -10,8 +11,12 @@ const Hero = () => {
             {isMobileOnly ?
                 null :
                 <div className='hero__social-media'>
-                    <img src={facebook} alt='facebook' />
-                    <img src={instagram} alt='instagram' />
+                    <Link to={{ pathname: 'https://www.facebook.com/navrot.szycie' }} target='_blank'>
+                        <img src={facebook} alt='facebook' />
+                    </Link>
+                    <Link to={{ pathname: 'https://www.instagram.com/navrot_szycie' }} target='_blank'>
+                        <img src={instagram} alt='instagram' />
+                    </Link>
                 </div>
             }
             <img

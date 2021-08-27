@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import bars from '../../assets/icons/menu-bars.svg';
 import close from '../../assets/icons/close.svg';
 
@@ -22,11 +23,21 @@ const Menu = ({ largeView }) => {
                         alt='zamknij'
                         className='menu__list__close'
                         onClick={handleMenuBars} />
-                    <li className='menu__list__item'><a href="">Strona główna</a></li>
-                    <li className='menu__list__item'><a href="">Produkty</a></li>
-                    <li className='menu__list__item'><a href="">Kreator</a></li>
-                    <li className='menu__list__item'><a href="">O mnie</a></li>
-                    <li className='menu__list__item'><a href="">Kontakt</a></li>
+                    <li className='menu__list__item'>
+                        <Link to='/'>Strona główna</Link>
+                    </li>
+                    <li className='menu__list__item'>
+                        <Link to='products'>Produkty</Link>
+                    </li>
+                    <li className='menu__list__item'>
+                        <Link to='creator'>Kreator</Link>
+                    </li>
+                    <li className='menu__list__item'>
+                        <Link to='aboutme'>O mnie</Link>
+                    </li>
+                    <li className='menu__list__item'>
+                        <Link to='contact'>Kontakt</Link>
+                    </li>
                 </ul>
             </nav>
         )
@@ -35,11 +46,21 @@ const Menu = ({ largeView }) => {
     return (
         <nav className='menu menu--large'>
             <ul className='menu__list'>
-                <li className='menu__list__item'><a href="">Strona główna</a></li>
-                <li className='menu__list__item'><a href="">Produkty</a></li>
-                <li className='menu__list__item'><a href="">Kreator</a></li>
-                <li className='menu__list__item'><a href="">O mnie</a></li>
-                <li className='menu__list__item'><a href="">Kontakt</a></li>
+                <li className='menu__list__item'>
+                    <Link to='/'>Strona główna</Link>
+                </li>
+                <li className='menu__list__item'>
+                    <Link to='products'>Produkty</Link>
+                </li>
+                <li className='menu__list__item'>
+                    <Link to='creator'>Kreator</Link>
+                </li>
+                <li className='menu__list__item'>
+                    <Link to='aboutme'>O mnie</Link>
+                </li>
+                <li className='menu__list__item'>
+                    <Link to='contact'>Kontakt</Link>
+                </li>
             </ul>
         </nav>
     )
