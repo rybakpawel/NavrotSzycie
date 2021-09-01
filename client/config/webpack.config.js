@@ -1,13 +1,16 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, '../', 'dist'),
-        filename: 'index_bundle.js'
+        filename: '[name]-[contenthash].js',
+        assetModuleFilename: 'assets/[name]-[contenthash][ext]'
     },
-    mode: 'development',
     devServer: {
         open: true,
         port: 3000
@@ -21,25 +24,33 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                use:[
-                  'style-loader',
-                  'css-loader',
-                  'sass-loader'
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: ''
+                        }
+                    },
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
             {
                 test: /\.(png|jpg|svg)$/,
-                use: 'file-loader'
+                type: 'asset/resource'
             },
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name]-[contenthash].css'
         })
     ],
     resolve: {
-        // you can now require('file') instead of require('file.coffee')
         extensions: ['', '.js', '.jsx']
       }
 }

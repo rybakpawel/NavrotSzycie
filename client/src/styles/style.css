@@ -57,15 +57,23 @@ a {
 }
 
 .button {
-  padding: 0.5rem 1.5rem;
   font-size: 1.5rem;
   color: #555;
   border: solid 1px #555;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .button--small {
+  padding: 0.5rem 1.5rem;
   background-color: #fff;
+}
+
+.button--design-ad {
+  padding: 1rem 4rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000;
+  border-color: transparent;
 }
 
 .cart {
@@ -217,6 +225,74 @@ a {
           transform: translate(300%, -50%);
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.design-ad {
+  position: relative;
+  height: 50vh;
+  background-image: url("../assets/images/design-ad-background.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 480px) {
+  .design-ad {
+    height: 60vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .design-ad {
+    height: 25vh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .design-ad {
+    height: 60vh;
+  }
+}
+
+@media (min-width: 992px) {
+  .design-ad {
+    height: 40vh;
+  }
+}
+
+.design-ad__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 2rem 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+@media (min-width: 992px) {
+  .design-ad__text {
+    padding: 1.5rem 0;
+  }
+}
+
+.design-ad__button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  width: 100%;
+  bottom: 10%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
 }
 
 .header {

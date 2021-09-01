@@ -1,11 +1,19 @@
 .button {
-    padding: 0.5rem 1.5rem;
     font-size: 1.5rem;
     color: $base-font;
     border: solid 1px $base-font;
     border-radius: 8px;
+    cursor: pointer;
 
     &--small {
+        padding: 0.5rem 1.5rem;
         background-color: #fff;
+    }
+
+    &--design-ad {
+        padding: 1rem 4rem;
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        color: #000;
+        border-color: transparent;
     }
 }

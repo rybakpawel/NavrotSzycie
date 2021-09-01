@@ -15,7 +15,9 @@ const SmallCard = () => {
                 <h5 className='small-card__name-price__price'>Cena</h5>
             </div>
             <div className='small-card__buttons-wrapper'>
-                <Button variant='small' title='Zobacz' />
+                <Button
+                    variant='small'
+                    title='Zobacz' />
                 <img
                     src={addToCart}
                     alt='dodaj'

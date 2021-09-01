@@ -1,0 +1,51 @@
+.design-ad {
+    position: relative;
+    height: 50vh;
+    background-image: url('../assets/images/design-ad-background.jpg');
+    background-size: cover;
+    background-position: center;
+
+    @media (min-width: 480px) {
+        height: 60vh;
+    }
+
+    @media (min-width: 768px) {
+        height: 25vh;
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+        height: 60vh;
+    }
+
+    @media (min-width: 992px) {
+        height: 40vh;
+    }
+
+    &__text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 2rem 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 2rem;
+        font-weight: normal;
+
+        @media (min-width: 992px) {
+            padding: 1.5rem 0;
+        }
+    }
+
+    &__button-wrapper {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+}
