@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 import facebook from '../../assets/icons/facebook-footer.svg';
 import instagram from '../../assets/icons/instagram-footer.svg';
 
@@ -7,10 +8,30 @@ const Footer = () => {
     return (
         <footer className='footer'>
             <div className='footer__column footer__column--left'>
-                <button className='footer__column__button footer__column__button--left'>Regulamin</button>
-                <button className='footer__column__button footer__column__button--left'>Polityka prywatności</button>
-                <button className='footer__column__button footer__column__button--left'>Reklamacje</button>
-                <button className='footer__column__button footer__column__button--left'>Zwroty</button>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Regulamin' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Polityka prywatności' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Reklamacje' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Zwroty' />
+                </div>
             </div>
             <div className='footer__column footer__column--middle'>
                 <h3 className='footer__column__logo'>Navrot Szycie</h3>
@@ -25,10 +46,30 @@ const Footer = () => {
                 <h4 className='footer__column__copywrite'>2021@ Navrot Szycie</h4>
             </div>
             <div className='footer__column footer__column--right'>
-                <button className='footer__column__button footer__column__button--right'>Produkty</button>
-                <button className='footer__column__button footer__column__button--right'>Kreator</button>
-                <button className='footer__column__button footer__column__button--right'>O mnie</button>
-                <button className='footer__column__button footer__column__button--right'>Kontakt</button>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Produkty' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Kreator' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='O mnie' />
+                </div>
+                <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
+                    <Button
+                        link='/'
+                        variant='footer'
+                        title='Kontakt' />
+                </div>
             </div>
         </footer>
     )

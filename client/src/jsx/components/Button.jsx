@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Button = ({ variant, title }) => {
+const Button = ({ link, variant, title }) => {
     return (
-        <button className={`button button--${variant}`}>{title}</button>
+        <>
+            {link ?
+                <Link to={link} className={`button button--${variant}`}>{title}</Link> :
+                <button className={`button button--${variant}`}>{title}</button>}
+        </>
     )
 }
 

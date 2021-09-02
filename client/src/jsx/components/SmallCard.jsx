@@ -16,6 +16,7 @@ const SmallCard = () => {
             </div>
             <div className='small-card__buttons-wrapper'>
                 <Button
+                    link='product'
                     variant='small'
                     title='Zobacz' />
                 <img
