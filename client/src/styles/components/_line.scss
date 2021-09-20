@@ -1,0 +1,21 @@
+.line {
+    margin: 0 auto;
+    border-bottom: 2px solid $base-font;
+    opacity: .5;
+
+    &--short {
+        width: 10%;
+
+        @media (min-width: 576px) {
+            width: 5%;
+        }
+
+        @media (min-width: 992px) {
+            width: 3%;
+        }
+    }
+
+    &--long {
+        width: 90%;
+    }
+}

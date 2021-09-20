@@ -1,0 +1,41 @@
+.products-list {
+    padding: 0 5%;
+
+    &__title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 3%;
+
+        &__names {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        &__sort {
+            display: flex;
+            flex-grow: 2;
+            justify-content: flex-end;
+
+            &__icon {
+                max-width: 1rem;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5%;
+
+        @media (min-width: 1200px) {
+            gap: 3.33%;
+        }
+    }
+}

@@ -21,4 +21,9 @@
         font-size: 1.2rem;
         border: none;
     }
+
+    &--empty {
+        background-color: transparent;
+        border: none;
+    }
 }

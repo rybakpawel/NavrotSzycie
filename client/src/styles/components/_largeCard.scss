@@ -1,0 +1,42 @@
+.large-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 47.5%;
+    margin: 3% 0;
+    background-color: $base-background;
+
+    @media (min-width: 576px) {
+        max-width: 30%;
+        margin: 1.5% 0;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 22.5%;
+    }
+
+    &__product-image {
+        width: 100%;
+    }
+
+    &__informations {
+        position: relative;
+        padding: 1rem 0 1rem 0.5rem;
+
+        &__name {
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        &__price {
+            font-size: 1.8rem;
+        }
+
+        &__add-to-cart {
+            position: absolute;
+            right: 5%;
+            bottom: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}

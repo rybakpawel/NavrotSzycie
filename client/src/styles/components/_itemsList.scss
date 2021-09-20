@@ -1,0 +1,9 @@
+.items-list {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10%;
+
+    @media (min-width: 576px) {
+        padding-top: 5%;
+    }
+}
