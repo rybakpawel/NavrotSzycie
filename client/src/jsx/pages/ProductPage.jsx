@@ -1,20 +1,20 @@
 import React from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
+import Line from '../components/Line';
+import Product from '../components/Product';
 import NewProducts from '../components/NewProducts';
-import DesignAd from '../components/DesignAd';
 import Footer from '../components/Footer';
 
-const HomePage = () => {
+const ProductsListPage = () => {
     return (
         <>
             <Header />
-            <Hero />
-            <NewProducts title='Najnowsze' />
-            <DesignAd />
+            <Line variant='long' />
+            <Product />
+            <NewProducts title='Podobne' />
             <Footer />
         </>
     )
 };
 
-export default HomePage;
+export default ProductsListPage;

@@ -1,7 +1,6 @@
 import React from 'react';
 import LargeCard from './LargeCard';
 import Button from './Button';
-import ItemsList from './ItemsList';
 import arrow from '../../assets/icons/down-arrow.svg'
 
 const ProductsList = ({ type }) => {

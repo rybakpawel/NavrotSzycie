@@ -3,6 +3,7 @@ import '../styles/style.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import ProductsListPage from './pages/ProductsListPage';
+import ProductPage from './pages/ProductPage';
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                     <Route path='/purses' render={(props) => (<ProductsListPage {...props} productName={'Torby'} />)}/>
                     <Route path='/bags' render={(props) => (<ProductsListPage {...props} productName={'Worki'} />)}/>
                     <Route path='/neckwarmers' render={(props) => (<ProductsListPage {...props} productName={'Kominy'} />)}/>
-                    {/* <Route path='/purses' component={ProductsListPage} /> */}
+                    <Route path='/product' component={ProductPage} />
                 </Switch>
             </BrowserRouter>
         </>

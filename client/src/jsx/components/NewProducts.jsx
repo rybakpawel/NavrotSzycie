@@ -3,10 +3,10 @@ import SectionTitle from './SectionTitle';
 import ItemsList from './ItemsList';
 import Arrows from './Arrows';
 
-let NewProducts = () => {
+let NewProducts = ({ title }) => {
     return (
         <section className='new-products'>
-            <SectionTitle title='Najnowsze' />
+            <SectionTitle title={title} />
             <ItemsList cardsVariant='small' />
             <Arrows />
         </section>
