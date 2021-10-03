@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
+import MenuDropDown from './MenuDropDown';
 import bars from '../../assets/icons/menu-bars.svg';
 import close from '../../assets/icons/close.svg';
 
 const Menu = ({ largeView }) => {
     const [isActiveMenu, setIsActiveMenu] = useState(false);
+    const [isActiveProducts, setIsActiveProducts] = useState(false);
+
     const handleMenuBars = () => {
         setIsActiveMenu(!isActiveMenu);
     };
+
+    const handleProductsButton = () => {
+        setIsActiveProducts(!isActiveProducts);
+    }
 
     if (!largeView) {
         return (
@@ -17,28 +25,59 @@ const Menu = ({ largeView }) => {
                     alt='menu'
                     className='menu__bars-icon'
                     onClick={handleMenuBars} />
-                <ul className={`menu__list ${isActiveMenu ? 'menu__list--active' : ''}`}>
-                    <img
-                        src={close}
-                        alt='zamknij'
-                        className='menu__list__close'
-                        onClick={handleMenuBars} />
-                    <li className='menu__list__item'>
-                        <Link to='/'>Strona główna</Link>
-                    </li>
-                    <li className='menu__list__item'>
-                        <Link to='products'>Produkty</Link>
-                    </li>
-                    <li className='menu__list__item'>
-                        <Link to='creator'>Kreator</Link>
-                    </li>
-                    <li className='menu__list__item'>
-                        <Link to='aboutme'>O mnie</Link>
-                    </li>
-                    <li className='menu__list__item'>
-                        <Link to='contact'>Kontakt</Link>
-                    </li>
-                </ul>
+                {isActiveProducts === false ?
+                    <ul className={`menu__list ${isActiveMenu ? 'menu__list--active' : ''}`}>
+                        <img
+                            src={close}
+                            alt='zamknij'
+                            className='menu__list__close'
+                            onClick={handleMenuBars} />
+                        <li className='menu__list__item'>
+                            <Link to='/'>Strona główna</Link>
+                        </li>
+                        <li className='menu__list__item'
+                            onClick={handleProductsButton}>
+                            <Button
+                                variant='menu'
+                                title='Produkty'
+                            />
+                        </li>
+                        <li className='menu__list__item'>
+                            <Link to='creator'>Kreator</Link>
+                        </li>
+                        <li className='menu__list__item'>
+                            <Link to='aboutme'>O mnie</Link>
+                        </li>
+                        <li className='menu__list__item'>
+                            <Link to='contact'>Kontakt</Link>
+                        </li>
+                    </ul>
+                    :
+                    <ul className={`menu__list ${isActiveMenu ? 'menu__list--active' : ''}`}>
+                        <img
+                            src={close}
+                            alt='zamknij'
+                            className='menu__list__close'
+                            onClick={() => {
+                                handleMenuBars();
+                                handleProductsButton();
+                            }} />
+                        <li className='menu__list__item'>
+                            <Button
+                                variant='menu'
+                                title='Produkty' />
+                        </li>
+                        <li className='menu__list__item'>
+                            <Button
+                                variant='menu'
+                                title='Produkty' />
+                        </li>
+                        <li className='menu__list__item'>
+                            <Button
+                                variant='menu'
+                                title='Produkty' />
+                        </li>
+                    </ul>}
             </nav>
         )
     };
@@ -49,8 +88,16 @@ const Menu = ({ largeView }) => {
                 <li className='menu__list__item'>
                     <Link to='/'>Strona główna</Link>
                 </li>
-                <li className='menu__list__item'>
-                    <Link to='products'>Produkty</Link>
+                <li className='menu__list__item'
+                    onMouseEnter={handleProductsButton}
+                    onMouseLeave={handleProductsButton}>
+                    <Button
+                        variant='menu'
+                        title='Produkty'
+                    />
+                    {isActiveProducts === false ?
+                        null :
+                        <MenuDropDown />}
                 </li>
                 <li className='menu__list__item'>
                     <Link to='creator'>Kreator</Link>

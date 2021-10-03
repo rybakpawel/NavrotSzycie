@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const dotenv = require('dotenv');
 
 const home = require('./routes/home');
@@ -21,8 +22,12 @@ mongoose.connect(DB_CONNECT,
         useUnifiedTopology: true, 
         useNewUrlParser: true 
     }, 
-    () => console.log('Connected with mongoose'));
+    () => console.log('Connected with mongoose')
+);
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
-app.use('/', home)
-app.use('/product', product)
+app.use('/', home);
+app.use('/product', product);

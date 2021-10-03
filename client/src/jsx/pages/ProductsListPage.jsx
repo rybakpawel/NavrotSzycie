@@ -9,7 +9,7 @@ const ProductsListPage = ({ productName }) => {
         <>
             <Header />
             <Line variant='long' />
-            <ProductsList type={productName} />
+            <ProductsList category={productName} />
             <Footer />
         </>
     )

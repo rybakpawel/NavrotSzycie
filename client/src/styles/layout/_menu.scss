@@ -47,6 +47,7 @@
         }
 
         &__item {
+            position: relative;
             padding: 3% 6% 3% 3%;
             font-size: 2.5rem;
             text-align: right;
@@ -62,7 +63,6 @@
 
             @media (min-width: 992px) {
                 font-size: 1.2rem;
-                padding: 0 2%;
             }
         }
     }
