@@ -20,6 +20,6 @@ function App() {
                 </Switch>
             </BrowserRouter>
         </>
-    );
+    )
 }
 export default App;

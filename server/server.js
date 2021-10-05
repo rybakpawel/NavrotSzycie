@@ -29,5 +29,4 @@ app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
-app.use('/', home);
-app.use('/product', product);
+app.use('/', product);

@@ -1,23 +1,17 @@
 import React from 'react';
-import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const MenuDropDown = () => {
     return (
         <ul className='menu-drop-down'>
             <li className='menu-drop-down__item'>
-                <Button
-                    variant='menu'
-                    title='Torby' />
+                <Link to='torby'>Torby</Link>
             </li>
             <li className='menu-drop-down__item'>
-                <Button
-                    variant='menu'
-                    title='Plecaki' />
+                <Link to='plecaki'>Plecaki</Link>
             </li>
             <li className='menu-drop-down__item'>
-                <Button
-                    variant='menu'
-                    title='Kominy' />
+                <Link to='kominy'>Kominy</Link>
             </li>
         </ul>
     )

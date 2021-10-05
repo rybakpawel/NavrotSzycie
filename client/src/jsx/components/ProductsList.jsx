@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import getProductList from '../redux/actions/productActions';
+import { getCategoryProducts, getCategoriesList } from '../redux/actions/productActions';
+import Loading from './Loading';
 import LargeCard from './LargeCard';
 import Button from './Button';
 import arrow from '../../assets/icons/down-arrow.svg'
@@ -9,49 +10,47 @@ import arrow from '../../assets/icons/down-arrow.svg'
 const ProductsList = () => {
     const { category } = useParams();
     const dispatch = useDispatch();
-    const productList = useSelector(state => state.productReducer.productsList);
+    const categoryProducts = useSelector(state => state.productReducer.categoryProducts);
+    const categoryList = useSelector(state => state.productReducer.categoryList);
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [category, dispatch]);
 
-    const getData = () => {
-        dispatch(getProductList());
+    const getData = async () => {
+        dispatch(getCategoryProducts(category))
+        dispatch(getCategoriesList())
     };
 
-    if (productList) {
-        console.log(productList)
-        console.log('zaladowane')
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     return (
-        <section className='products-list'>
-            <div className='products-list__title-row'>
-                <div className='products-list__title-row__names'>
-                    <h2>{category}</h2>
-                    <Button variant='empty' title={category} />
-                    <Button variant='empty' title={category} />
+        categoryList && categoryProducts ?
+            <section className='products-list'>
+                <div className='products-list__title-row'>
+                    <div className='products-list__title-row__names'>
+                        <h2>{capitalizeFirstLetter(category)}</h2>
+                        {categoryList.map(categoryFromArray => {
+                            if (categoryFromArray !== category) {
+                                return <Button variant='empty' title={categoryFromArray} />
+                            }
+                        })}
+                    </div>
+                    <div className='products-list__title-row__sort'>
+                        <Button variant='empty' title='sortuj wg' />
+                        <img src={arrow} alt='arrow' className='products-list__title-row__sort__icon' />
+                    </div>
                 </div>
-                <div className='products-list__title-row__sort'>
-                    <Button variant='empty' title='sortuj wg' />
-                    <img src={arrow} alt='arrow' className='products-list__title-row__sort__icon' />
+                <div className='products-list__cards'>
+                    {categoryProducts.map(product => {
+                        const { name, price } = product;
+                        return <LargeCard name={name} price={price} />
+                    })}
                 </div>
-            </div>
-
-            <div className='products-list__cards'>
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-                <LargeCard />
-            </div>
-
-        </section>
+            </section>
+            : <Loading />
     )
 };
 

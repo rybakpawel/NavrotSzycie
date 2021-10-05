@@ -1,17 +1,18 @@
 .menu-drop-down {
     position: absolute;
-    top: 0;
+    top: 1rem;
     left: 6%;
     display: flex;
+    padding: 0 10% 10% 10%;
     flex-direction: column;
     background-color: #fff;
-    border: 1px solid $base-font;
+    // border: 1px solid $base-font;
     list-style: none;
     transition: 0.3s;
     z-index: 1;
 
     &__item {
-        padding: 10%;
-        // text-align: left;
+        padding-top: 30%;
+        text-align: left;
     }
 }
