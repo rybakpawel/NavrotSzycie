@@ -21,7 +21,15 @@ router.get('/categories', async (req,res) => {
     }
 });
 
-module.exports = router;
+router.get('/new', async (req,res) => {
+    try {
+        const newProducts = await Product.find().sort({_id: -1}).limit(5);
+        res.send(newProducts);
+     
+    } catch(err) {
+        console.log('blad')
+    }
+});
 
 router.get('/:category/:name', async (req,res) => {
     const name = req.params.name;
@@ -46,3 +54,5 @@ router.get('/:category', async (req,res) => {
         console.log('blad')
     }
 });
+
+module.exports = router;

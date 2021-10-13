@@ -30,7 +30,7 @@ export const getCategoriesList = () => async dispatch => {
     }
 };
 
-export const getCategoryProducts = (category) => async dispatch => {
+export const getProductsFromCategory = (category) => async dispatch => {
     try {
         const res = await fetch(`http://localhost:5000/${category}`);
         const data = await res.json();
@@ -45,3 +45,19 @@ export const getCategoryProducts = (category) => async dispatch => {
         console.log('blad')
     }
 };
+
+export const getNewProducts = () => async dispatch => {
+    try {
+        const res = await fetch('http://localhost:5000/new');
+        const data = await res.json();
+
+        dispatch({
+            type: 'GET_NEW_PRODUCTS',
+            payload: {
+                data
+            }
+        });
+    } catch {
+        console.log('blad')
+    }
+}

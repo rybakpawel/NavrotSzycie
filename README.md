@@ -1,0 +1,12 @@
+# Navrot-Szycie
+
+(In progress)
+
+E-commerce application.
+
+### Technologies
+React
+Redux
+SASS
+Express
+Webpack

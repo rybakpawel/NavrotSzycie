@@ -11,10 +11,7 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route path='/' exact component={HomePage} />
-                    {/* <Route path='/purses' render={(props) => (<ProductsListPage {...props} productName={'Torby'} />)}/>
-                    <Route path='/bags' render={(props) => (<ProductsListPage {...props} productName={'Worki'} />)}/>
-                    <Route path='/neckwarmers' render={(props) => (<ProductsListPage {...props} productName={'Kominy'} />)}/> */}
-                    <Route path='/:category' component={ProductsListPage} />
+                    <Route path='/:category' exact component={ProductsListPage} />
                     <Route path='/product/:name' component={ProductPage} />
                     <Redirect to='/' />
                 </Switch>

@@ -23,6 +23,12 @@ const productReducer = (state = defaultState, action) => {
                 categoryProducts: action.payload.data
             }
 
+        case 'GET_NEW_PRODUCTS':
+            return {
+                ...state,
+                newProducts: action.payload.data
+            }
+
         default:
             return state;
     }

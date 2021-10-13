@@ -489,6 +489,16 @@ h4 {
   }
 }
 
+.slider {
+  padding: 5% 3%;
+}
+
+@media (min-width: 1200px) {
+  .slider {
+    padding: 5% 10%;
+  }
+}
+
 .small-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -521,6 +531,7 @@ h4 {
 .small-card__name-price__name {
   font-size: 2rem;
   padding-bottom: 1rem;
+  text-align: center;
 }
 
 .small-card__name-price__price {
@@ -921,16 +932,6 @@ h4 {
 @media (min-width: 992px) {
   .menu__list__item {
     font-size: 1.2rem;
-  }
-}
-
-.new-products {
-  padding: 5% 3%;
-}
-
-@media (min-width: 1200px) {
-  .new-products {
-    padding: 5% 10%;
   }
 }
 

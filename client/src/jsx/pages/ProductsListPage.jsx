@@ -4,12 +4,12 @@ import Line from '../components/Line';
 import ProductsList from '../components/ProductsList';
 import Footer from '../components/Footer';
 
-const ProductsListPage = ({ productName }) => {
+const ProductsListPage = () => {
     return (
         <>
             <Header />
             <Line variant='long' />
-            <ProductsList category={productName} />
+            <ProductsList />
             <Footer />
         </>
     )

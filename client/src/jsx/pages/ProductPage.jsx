@@ -2,19 +2,21 @@ import React from 'react';
 import Header from '../components/Header';
 import Line from '../components/Line';
 import Product from '../components/Product';
-import NewProducts from '../components/NewProducts';
+import Slider from '../components/Slider';
 import Footer from '../components/Footer';
 
-const ProductsListPage = () => {
+const ProductPage = () => {
     return (
         <>
             <Header />
             <Line variant='long' />
             <Product />
-            <NewProducts title='Podobne' />
+            <Slider
+                title='Podobne'
+                products='similar' />
             <Footer />
         </>
     )
 };
 
-export default ProductsListPage;
+export default ProductPage;

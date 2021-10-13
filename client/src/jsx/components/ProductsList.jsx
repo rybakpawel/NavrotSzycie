@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoryProducts, getCategoriesList } from '../redux/actions/productActions';
+import { getProductsFromCategory, getCategoriesList } from '../redux/actions/productActions';
 import Loading from './Loading';
 import LargeCard from './LargeCard';
 import Button from './Button';
@@ -18,7 +18,7 @@ const ProductsList = () => {
     }, [category, dispatch]);
 
     const getData = async () => {
-        dispatch(getCategoryProducts(category))
+        dispatch(getProductsFromCategory(category))
         dispatch(getCategoriesList())
     };
 
@@ -34,7 +34,7 @@ const ProductsList = () => {
                         <h2>{capitalizeFirstLetter(category)}</h2>
                         {categoryList.map(categoryFromArray => {
                             if (categoryFromArray !== category) {
-                                return <Button variant='empty' title={categoryFromArray} />
+                                return <Link to={`${categoryFromArray}`}>{categoryFromArray}</Link>
                             }
                         })}
                     </div>

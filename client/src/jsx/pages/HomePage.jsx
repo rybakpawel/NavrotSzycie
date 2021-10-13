@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import NewProducts from '../components/NewProducts';
+import Slider from '../components/Slider';
 import DesignAd from '../components/DesignAd';
 import Footer from '../components/Footer';
 
@@ -10,7 +10,9 @@ const HomePage = () => {
         <>
             <Header />
             <Hero />
-            <NewProducts title='Najnowsze' />
+            <Slider
+                title='Najnowsze'
+                products='new' />
             <DesignAd />
             <Footer />
         </>
