@@ -64,7 +64,7 @@ const Menu = ({ largeView }) => {
                                     handleProductsButton();
                                 }} />
                             <li className='menu__list__item'>
-                                <Link to='torby'
+                                <Link to='/torby'
                                     onClick={() => {
                                         handleMenuBars();
                                         handleProductsButton();
@@ -73,7 +73,7 @@ const Menu = ({ largeView }) => {
                                 </Link>
                             </li>
                             <li className='menu__list__item'>
-                                <Link to='plecaki'
+                                <Link to='/plecaki'
                                     onClick={() => {
                                         handleMenuBars();
                                         handleProductsButton();
@@ -82,7 +82,7 @@ const Menu = ({ largeView }) => {
                                 </Link>
                             </li>
                             <li className='menu__list__item'>
-                                <Link to='kominy'
+                                <Link to='/kominy'
                                     onClick={() => {
                                         handleMenuBars();
                                         handleProductsButton();

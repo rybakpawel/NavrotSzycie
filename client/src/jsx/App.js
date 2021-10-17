@@ -12,7 +12,7 @@ function App() {
                 <Switch>
                     <Route path='/' exact component={HomePage} />
                     <Route path='/:category' exact component={ProductsListPage} />
-                    <Route path='/product/:name' component={ProductPage} />
+                    <Route path='/:category/:name' component={ProductPage} />
                     <Redirect to='/' />
                 </Switch>
             </BrowserRouter>

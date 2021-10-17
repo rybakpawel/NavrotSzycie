@@ -3,7 +3,7 @@ import Button from './Button';
 import example from '../../assets/images/example-bag.jpg';
 import addToCart from '../../assets/icons/add-to-cart.svg';
 
-const SmallCard = ({ name, price }) => {
+const SmallCard = ({ name, price, link }) => {
     return (
         <div className='small-card'>
             <img
@@ -12,11 +12,11 @@ const SmallCard = ({ name, price }) => {
                 className='small-card__product-image' />
             <div className='small-card__name-price'>
                 <h3 className='small-card__name-price__name'>{name}</h3>
-                <h4 className='small-card__name-price__price'>{price}</h4>
+                <h4 className='small-card__name-price__price'>{price}zł</h4>
             </div>
             <div className='small-card__buttons-wrapper'>
                 <Button
-                    link='product'
+                    link={link}
                     variant='small'
                     title='Zobacz' />
                 <img

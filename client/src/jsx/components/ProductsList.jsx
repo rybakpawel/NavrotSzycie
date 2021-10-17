@@ -46,7 +46,7 @@ const ProductsList = () => {
                 <div className='products-list__cards'>
                     {categoryProducts.map(product => {
                         const { name, price } = product;
-                        return <LargeCard name={name} price={price} />
+                        return <LargeCard name={name} price={price} link={`/${category}/${name}`} />
                     })}
                 </div>
             </section>

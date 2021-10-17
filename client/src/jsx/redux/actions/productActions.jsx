@@ -10,7 +10,7 @@ export const getProductsList = () => async dispatch => {
             }
         });
     } catch {
-        console.log('blad')
+        console.log('blad');
     }
 };
 
@@ -26,9 +26,25 @@ export const getCategoriesList = () => async dispatch => {
             }
         });
     } catch {
-        console.log('blad')
+        console.log('blad');
     }
 };
+
+export const getProduct = (category, name) => async dispatch => {
+    try {
+        const res = await fetch(`http://localhost:5000/${category}/${name}`);
+        const data = await res.json();
+
+        dispatch({
+            type: 'GET_PRODUCT',
+            payload: {
+                data
+            }
+        });
+    } catch {
+        console.log('błąd');
+    }
+}
 
 export const getProductsFromCategory = (category) => async dispatch => {
     try {
@@ -42,7 +58,7 @@ export const getProductsFromCategory = (category) => async dispatch => {
             }
         });
     } catch {
-        console.log('blad')
+        console.log('blad');
     }
 };
 
@@ -58,6 +74,22 @@ export const getNewProducts = () => async dispatch => {
             }
         });
     } catch {
-        console.log('blad')
+        console.log('blad');
+    }
+}
+
+export const getSimilarProducts = (category) => async dispatch => {
+    try {
+        const res = await fetch(`http://localhost:5000/${category}/similar`);
+        const data = await res.json();
+
+        dispatch({
+            type: 'GET_SIMILAR_PRODUCTS',
+            payload: {
+                data
+            }
+        });
+    } catch {
+        console.log('blad');
     }
 }

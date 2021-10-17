@@ -31,6 +31,18 @@ router.get('/new', async (req,res) => {
     }
 });
 
+router.get('/:category/similar', async (req,res) => {
+    const category = req.params.category;
+ 
+    try {
+        const similarProducts = await Product.find({ category }).limit(5);
+        res.send(similarProducts);
+
+    } catch(err) {
+        console.log('blad')
+    }
+});
+
 router.get('/:category/:name', async (req,res) => {
     const name = req.params.name;
  

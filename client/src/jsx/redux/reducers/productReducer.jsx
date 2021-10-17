@@ -17,6 +17,12 @@ const productReducer = (state = defaultState, action) => {
                 categoryList: action.payload.data
             };
 
+        case 'GET_PRODUCT':
+            return {
+                ...state,
+                product: action.payload.data
+            };
+
         case 'GET_CATEGORY_PRODUCTS':
             return {
                 ...state,
@@ -27,6 +33,12 @@ const productReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 newProducts: action.payload.data
+            }
+
+        case 'GET_SIMILAR_PRODUCTS':
+            return {
+                ...state,
+                similarProducts: action.payload.data
             }
 
         default:
