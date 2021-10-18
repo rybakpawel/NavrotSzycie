@@ -44,13 +44,13 @@ const Menu = ({ largeView }) => {
                                 />
                             </li>
                             <li className='menu__list__item'>
-                                <Link to='creator'>Kreator</Link>
+                                <Link to='/creator'>Kreator</Link>
                             </li>
                             <li className='menu__list__item'>
-                                <Link to='aboutme'>O mnie</Link>
+                                <Link to='/aboutme'>O mnie</Link>
                             </li>
                             <li className='menu__list__item'>
-                                <Link to='contact'>Kontakt</Link>
+                                <Link to='/contact'>Kontakt</Link>
                             </li>
                         </ul>
                         :
@@ -115,13 +115,13 @@ const Menu = ({ largeView }) => {
                         <MenuDropDown />}
                 </li>
                 <li className='menu__list__item'>
-                    <Link to='creator'>Kreator</Link>
+                    <Link to='/creator'>Kreator</Link>
                 </li>
                 <li className='menu__list__item'>
-                    <Link to='aboutme'>O mnie</Link>
+                    <Link to='/aboutme'>O mnie</Link>
                 </li>
                 <li className='menu__list__item'>
-                    <Link to='contact'>Kontakt</Link>
+                    <Link to='/contact'>Kontakt</Link>
                 </li>
             </ul>
         </nav>

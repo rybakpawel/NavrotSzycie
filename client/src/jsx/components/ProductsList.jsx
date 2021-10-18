@@ -34,7 +34,7 @@ const ProductsList = () => {
                         <h2>{capitalizeFirstLetter(category)}</h2>
                         {categoryList.map(categoryFromArray => {
                             if (categoryFromArray !== category) {
-                                return <Link to={`${categoryFromArray}`}>{categoryFromArray}</Link>
+                                return <Link to={`${categoryFromArray}`}>{capitalizeFirstLetter(categoryFromArray)}</Link>
                             }
                         })}
                     </div>
