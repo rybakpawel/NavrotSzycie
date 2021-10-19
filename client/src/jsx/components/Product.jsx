@@ -118,7 +118,7 @@ const Product = () => {
                     <p className='product__informations__description'>{product[0].description}</p>
                     {width < 992 ?
                         <div className='product__informations__button-wrapper'>
-                            <Button variant='add-to-cart' title='Dodaj do koszyka' />
+                            <Button variant='submit' title='Dodaj do koszyka' />
                         </div>
                         : null
                     }
@@ -200,7 +200,7 @@ const Product = () => {
                     {width < 992 ?
                         null
                         : <div className='product__informations__button-wrapper'>
-                            <Button variant='add-to-cart' title='Dodaj do koszyka' />
+                            <Button variant='submit' title='Dodaj do koszyka' />
                         </div>
                     }
                 </div>

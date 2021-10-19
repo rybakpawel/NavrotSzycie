@@ -97,7 +97,7 @@ h4 {
   border: none;
 }
 
-.button--add-to-cart {
+.button--submit {
   padding: 1rem 4rem;
   background-color: #f5f5f5;
 }
@@ -135,6 +135,39 @@ h4 {
   display: block;
   width: 2.5rem;
   height: 2.5rem;
+}
+
+.contact-form {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-form__label {
+  padding: 1rem 0;
+  font-size: 2rem;
+}
+
+.contact-form__form {
+  padding: 0.5rem 5% 2rem 5%;
+}
+
+.contact-form__form__email {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #f5f5f5;
+  border: 1px solid #555;
+  font-family: 'Questrial', sans-serif;
+}
+
+.contact-form__form__message {
+  width: 100%;
+  height: 20rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border: 1px solid #555;
+  border-top: none;
+  font-family: 'Questrial', sans-serif;
 }
 
 .items-list {
@@ -603,6 +636,17 @@ h4 {
   font-size: 1.8rem;
   letter-spacing: 1px;
   line-height: 2.2rem;
+}
+
+.contact {
+  margin-top: 2rem;
+}
+
+.contact__company-data {
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 3rem;
 }
 
 .design-ad {
