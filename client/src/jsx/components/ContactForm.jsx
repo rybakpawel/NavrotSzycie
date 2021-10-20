@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './Button';
 
 const ContactForm = () => {
+    const [statusMessage, setStatusMessage] = useState(null);
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = async () => {
+        const response = await fetch('/contact');
+        const data = await response.json();
+        setStatusMessage(data);
+    }
+
+    if (statusMessage) console.log(statusMessage);
+
     return (
         <section className='contact-form'>
             <h2 className='contact-form__label'>Kontakt</h2>

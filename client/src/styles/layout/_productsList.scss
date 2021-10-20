@@ -18,9 +18,23 @@
         }
 
         &__sort {
+            position: relative;
             display: flex;
-            flex-grow: 2;
+            flex-basis: 25%;
             justify-content: flex-end;
+            cursor: pointer;
+
+            @media (min-width: 480px) {
+                flex-basis: 20%;
+            }
+
+            @media (min-width: 576px) {
+                flex-basis: 15%;
+            }
+
+            @media (min-width: 992px) {
+                flex-basis: 10%;
+            }
 
             &__icon {
                 max-width: 1rem;
@@ -36,6 +50,42 @@
 
         @media (min-width: 1200px) {
             gap: 3.33%;
+        }
+    }
+}
+
+.sort-drop-down {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    width: 90vw;
+    border: 1px solid $base-font;
+    background-color: #fff;
+    z-index: 1;
+
+    @media (min-width: 768px) {
+        width: 30vw;
+    }
+
+    @media (min-width: 992px) {
+        width: auto;
+        padding-right: 1rem;
+    }
+
+    &__item {
+        display: block;
+        width: 100%;
+        padding: 3% 6% 3% 3%;
+        font-size: 2.5rem;
+        color: $base-font;
+        background-color: transparent;
+        text-align: left;
+        border: none;
+        white-space: pre;
+
+        @media (min-width: 992px) {
+            padding: 5% 10% 5% 5%;
+            font-size: 1.5rem;
         }
     }
 }

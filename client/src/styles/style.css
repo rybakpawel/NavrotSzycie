@@ -1062,15 +1062,37 @@ h4 {
 }
 
 .products-list__title-row__sort {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  cursor: pointer;
+}
+
+@media (min-width: 480px) {
+  .products-list__title-row__sort {
+    -ms-flex-preferred-size: 20%;
+        flex-basis: 20%;
+  }
+}
+
+@media (min-width: 576px) {
+  .products-list__title-row__sort {
+    -ms-flex-preferred-size: 15%;
+        flex-basis: 15%;
+  }
+}
+
+@media (min-width: 992px) {
+  .products-list__title-row__sort {
+    -ms-flex-preferred-size: 10%;
+        flex-basis: 10%;
+  }
 }
 
 .products-list__title-row__sort__icon {
@@ -1090,6 +1112,48 @@ h4 {
 @media (min-width: 1200px) {
   .products-list__cards {
     gap: 3.33%;
+  }
+}
+
+.sort-drop-down {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  width: 90vw;
+  border: 1px solid #555;
+  background-color: #fff;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .sort-drop-down {
+    width: 30vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .sort-drop-down {
+    width: auto;
+    padding-right: 1rem;
+  }
+}
+
+.sort-drop-down__item {
+  display: block;
+  width: 100%;
+  padding: 3% 6% 3% 3%;
+  font-size: 2.5rem;
+  color: #555;
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  white-space: pre;
+}
+
+@media (min-width: 992px) {
+  .sort-drop-down__item {
+    padding: 5% 10% 5% 5%;
+    font-size: 1.5rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
