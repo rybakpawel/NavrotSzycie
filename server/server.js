@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const home = require('./routes/home');
 const product = require('./routes/product');
+const contact = require('./routes/contact');
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -25,8 +25,11 @@ mongoose.connect(DB_CONNECT,
     () => console.log('Connected with mongoose')
 );
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
 
 app.use('/', product);
+app.use('/', contact);

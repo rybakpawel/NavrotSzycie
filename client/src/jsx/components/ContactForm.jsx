@@ -5,11 +5,11 @@ const ContactForm = () => {
     return (
         <section className='contact-form'>
             <h2 className='contact-form__label'>Kontakt</h2>
-            <form className='contact-form__form' action="" >
-                <input className='contact-form__form__email' type='email' placeholder='Twój e-mail' />
-                <textarea className='contact-form__form__message' name='message' id="" placeholder='Treść wiadomości'></textarea>
+            <form className='contact-form__form' action='http://localhost:5000/contact' method='POST' id='contactForm' >
+                <input className='contact-form__form__email' type='email' name='email' placeholder='Twój e-mail' />
+                <textarea className='contact-form__form__message' name='message' placeholder='Treść wiadomości'></textarea>
             </form>
-            <Button variant='submit' title='Wyślij wiadomość' />
+            <Button variant='submit' title='Wyślij wiadomość' type='submit' form='contactForm' />
         </section>
     )
 };
