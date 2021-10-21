@@ -2,8 +2,9 @@ import React from 'react';
 import { isMobileOnly, withOrientationChange } from 'react-device-detect';
 import Logo from './Logo';
 import Search from './Search';
-import Cart from './Cart';
 import Menu from './Menu';
+import SmallCart from './SmallCart';
+import cart from '../../assets/icons/shopping-cart.svg';
 
 const getSmallView = (isPortrait) => {
     return (
@@ -11,7 +12,12 @@ const getSmallView = (isPortrait) => {
             <Logo />
             {isPortrait ? null : <Search />}
             <div className='header__cart-menu-icons'>
-                <Cart />
+                <div className='header__cart'>
+                    <img
+                        src={cart}
+                        alt='koszyk'
+                        className='cart-icon' />
+                </div>
                 <Menu />
             </div>
             {isPortrait ? <Search /> : null}
@@ -25,7 +31,13 @@ const getLargeView = () => {
             <Logo />
             <Menu largeView={true} />
             <Search />
-            <Cart />
+            <div className='header__cart'>
+                <img
+                    src={cart}
+                    alt='koszyk'
+                    className='cart-icon' />
+                <SmallCart />
+            </div>
         </header>
     )
 }

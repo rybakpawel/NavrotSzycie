@@ -27,23 +27,23 @@ const productReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 categoryProducts: action.payload.data
-            }
+            };
 
         case 'GET_NEW_PRODUCTS':
             return {
                 ...state,
                 newProducts: action.payload.data
-            }
+            };
 
         case 'GET_SIMILAR_PRODUCTS':
             return {
                 ...state,
                 similarProducts: action.payload.data
-            }
+            };
 
         default:
             return state;
-    }
+    };
 };
 
 export default productReducer;

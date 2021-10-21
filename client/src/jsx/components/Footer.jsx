@@ -54,19 +54,19 @@ const Footer = () => {
                 </div>
                 <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                     <Button
-                        link='/'
+                        link='/creator'
                         variant='footer'
                         title='Kreator' />
                 </div>
                 <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                     <Button
-                        link='/'
+                        link='/aboutme'
                         variant='footer'
                         title='O mnie' />
                 </div>
                 <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                     <Button
-                        link='/'
+                        link='/contact'
                         variant='footer'
                         title='Kontakt' />
                 </div>

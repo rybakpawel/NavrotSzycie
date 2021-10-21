@@ -27,4 +27,20 @@
             flex-grow: 0;
         }
     }
+
+    &__cart {
+        position: relative;
+        margin-right: 1.5rem;
+
+        @media (min-width: 768px) {
+            margin-right: 0;
+            margin-left: 1.5rem;
+        }
+
+        .cart-icon {
+            display: block;
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+    }
 }

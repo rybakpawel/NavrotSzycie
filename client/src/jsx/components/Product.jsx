@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../redux/actions/productActions';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,13 +19,15 @@ SwiperCore.use([Pagination, Navigation, Thumbs]);
 
 const Product = () => {
     const { name, category } = useParams();
+    const location = useLocation();
     const dispatch = useDispatch();
 
     const product = useSelector(state => state.productReducer.product);
 
     useEffect(() => {
         getData();
-    }, [dispatch]);
+        window.scrollTo(0, 0)
+    }, [location, dispatch]);
 
     const getData = async () => {
         dispatch(getProduct(category, name))

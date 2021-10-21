@@ -3,12 +3,9 @@ import cart from '../../assets/icons/shopping-cart.svg'
 
 const Cart = () => {
     return (
-        <div className='cart'>
-            <img
-                src={cart}
-                alt='koszyk'
-                className='cart-icon' />
-        </div>
+        <section className='cart'>
+
+        </section>
     )
 };
 

@@ -24,8 +24,8 @@ let ItemsList = ({ isLandscape, cardsVariant }) => {
     const { width } = useWindowDimensions();
 
     let productsAmount;
-    if (isTablet && width < 1200) productsAmount = 3;
-    else if (isDesktop || (isTablet && isLandscape && width > 1200)) productsAmount = 5;
+    if (isTablet && width < 1200 || width < 1200 && width > 576) productsAmount = 3;
+    else if (isDesktop && width > 1200 || (isTablet && isLandscape && width > 1200)) productsAmount = 5;
     else productsAmount = 2;
 
     return (

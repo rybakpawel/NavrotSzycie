@@ -3,9 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import productReducer from "./reducers/productReducer";
+import cartReducer from "./reducers/cartReducer";
 
 const allReducers = combineReducers({
-    productReducer
+    productReducer,
+    cartReducer
 });
 
 const store = createStore(
