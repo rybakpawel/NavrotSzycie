@@ -1,11 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/actions/cartActions';
 import example from '../../assets/images/example-bag.jpg';
-import addToCart from '../../assets/icons/add-to-cart.svg';
+import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 
-const LargeCard = ({ name, price, link }) => {
+const LargeCard = ({ name, category, price }) => {
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart(category, name))
+    };
+
     return (
         <div className='large-card'>
-            <a href={link}>
+            <Link to={`/${category}/${name}`}>
                 <img
                     src={example}
                     alt='produkt'
@@ -13,12 +21,13 @@ const LargeCard = ({ name, price, link }) => {
                 <div className='large-card__informations'>
                     <h3 className='large-card__informations__name'>{name}</h3>
                     <h4 className='large-card__informations__price'>{price}zł</h4>
-                    <img
-                        src={addToCart}
-                        alt='dodaj'
-                        className='large-card__informations__add-to-cart' />
                 </div>
-            </a>
+            </Link>
+            <img
+                src={addToCartIcon}
+                alt='dodaj'
+                className='large-card__add-to-cart'
+                onClick={handleAddToCart} />
         </div>
     )
 };

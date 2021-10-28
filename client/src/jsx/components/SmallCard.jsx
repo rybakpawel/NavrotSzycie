@@ -1,9 +1,16 @@
 import React from 'react';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/actions/cartActions';
 import example from '../../assets/images/example-bag.jpg';
-import addToCart from '../../assets/icons/add-to-cart.svg';
+import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 
-const SmallCard = ({ name, price, link }) => {
+const SmallCard = ({ name, category, price }) => {
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart(category, name))
+    };
+
     return (
         <div className='small-card'>
             <img
@@ -16,13 +23,14 @@ const SmallCard = ({ name, price, link }) => {
             </div>
             <div className='small-card__buttons-wrapper'>
                 <Button
-                    link={link}
+                    link={`/${category}/${name}`}
                     variant='small'
                     title='Zobacz' />
                 <img
-                    src={addToCart}
+                    src={addToCartIcon}
                     alt='dodaj'
-                    className='small-card__buttons-wrapper__add-to-cart' />
+                    className='small-card__buttons-wrapper__add-to-cart'
+                    onClick={handleAddToCart} />
             </div>
         </div>
     )

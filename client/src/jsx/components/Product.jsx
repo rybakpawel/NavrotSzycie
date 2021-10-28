@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../redux/actions/productActions';
+import { addToCart } from '../redux/actions/cartActions';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -24,6 +25,9 @@ const Product = () => {
 
     const product = useSelector(state => state.productReducer.product);
 
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [activeDetail, setActiveDetail] = useState([]);
+
     useEffect(() => {
         getData();
         window.scrollTo(0, 0)
@@ -33,18 +37,19 @@ const Product = () => {
         dispatch(getProduct(category, name))
     };
 
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const [activeDetail, setActiveDetail] = useState([]);
+    const handleAddToCart = () => {
+        dispatch(addToCart(category, name))
+    };
 
     const handleDropdown = (e) => {
         if (!activeDetail.includes(e.currentTarget.id)) setActiveDetail([...activeDetail, e.currentTarget.id]);
         else setActiveDetail(activeDetail.filter((detail) => detail !== e.currentTarget.id));
-    }
+    };
 
     const checkActive = (id) => {
         if (!activeDetail.includes(id)) return false
         else return true;
-    }
+    };
 
     const { width } = useWindowDimensions();
 
@@ -115,11 +120,11 @@ const Product = () => {
                         </div>}
                 </div>
                 <div className='product__informations'>
-                    <h2 className='product__informations__title'>{product[0].name}</h2>
-                    <h3 className='product__informations__price'>{product[0].price}zł</h3>
-                    <p className='product__informations__description'>{product[0].description}</p>
+                    <h2 className='product__informations__title'>{product.name}</h2>
+                    <h3 className='product__informations__price'>{product.price}zł</h3>
+                    <p className='product__informations__description'>{product.description}</p>
                     {width < 992 ?
-                        <div className='product__informations__button-wrapper'>
+                        <div className='product__informations__button-wrapper' onClick={handleAddToCart}>
                             <Button variant='submit' title='Dodaj do koszyka' />
                         </div>
                         : null
@@ -142,13 +147,13 @@ const Product = () => {
                                             alt='height'
                                             className='product-detail__second-row__image' />
                                     </div>
-                                    <p>{product[0].height}cm</p>
+                                    <p>{product.height}cm</p>
                                     <div className='product-detail__second-row__image-wrapper'>
                                         <img src={widthIcon}
                                             alt='width'
                                             className='product-detail__second-row__image' />
                                     </div>
-                                    <p>{product[0].width}cm</p>
+                                    <p>{product.width}cm</p>
                                 </div> :
                                 null
                             }
@@ -164,7 +169,7 @@ const Product = () => {
                             </div>
                             {checkActive('2') ?
                                 <p className='product-detail__product-care'>
-                                    {product[0].care}
+                                    {product.care}
                                 </p> :
                                 null
                             }
@@ -201,7 +206,7 @@ const Product = () => {
 
                     {width < 992 ?
                         null
-                        : <div className='product__informations__button-wrapper'>
+                        : <div className='product__informations__button-wrapper' onClick={handleAddToCart}>
                             <Button variant='submit' title='Dodaj do koszyka' />
                         </div>
                     }

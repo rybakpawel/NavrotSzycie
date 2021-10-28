@@ -34,8 +34,8 @@ let ItemsList = ({ isLandscape, cardsVariant }) => {
                 {newProducts.slice(0, productsAmount).map(product => {
                     const { name, price, category } = product;
                     let card;
-                    if (cardsVariant === 'small') card = <SmallCard name={name} price={price} link={`/${category}/${name}`} />;
-                    else if (cardsVariant === 'large') card = <LargeCard name={name} price={price} link={`/${category}/${name}`} />;
+                    if (cardsVariant === 'small') card = <SmallCard name={name} category={category} price={price} />;
+                    else if (cardsVariant === 'large') card = <LargeCard name={name} category={category} price={price} />;
                     return card;
                 })}
             </div>

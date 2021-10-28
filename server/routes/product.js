@@ -48,7 +48,7 @@ router.get('/:category/:name', async (req,res) => {
  
     try {
         const product = await Product.find({ name });
-        res.send(product);
+        res.send(product[0]);
 
     } catch(err) {
             console.log('blad')

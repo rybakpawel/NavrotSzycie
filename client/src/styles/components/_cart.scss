@@ -1,0 +1,190 @@
+.cart {
+    padding: 1.5rem 1% 0.5rem 1%;
+
+    @media (min-width: 768px) {
+        padding: 1.5rem 5% 0.5rem 5%;
+    }
+
+    &__title {
+        font-size: 3rem;
+        margin: 0 0 3rem 0.5rem;
+    }
+
+    &__product {
+        position: relative;
+        display: flex;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        background-color: $base-background;
+        border: 0.1px solid rgba($color: $base-font, $alpha: 0.2);
+
+        &__image {
+            width: 30%;
+
+            @media (min-width: 576px) {
+                width: 25%;
+            }
+
+            @media (min-width: 768px) {
+                width: 15%;
+            }
+        }
+
+        &__informations {
+            display: flex;
+            flex-direction: column;
+            margin: 0.5rem 0 0.5rem 1rem;
+
+            p {
+
+                &:nth-child(1) {
+                    font-size: 1.7rem;
+
+                    @media (min-width: 576px) {
+                        font-size: 2.2rem;
+                    }
+                }
+
+                &:nth-child(2) {
+                    flex-grow: 1;
+                    margin-top: 0.5rem;
+                    font-size: 1.4rem;
+                    opacity: .7;
+
+                    @media (min-width: 576px) {
+                        font-size: 1.9rem;
+                    }
+                }
+
+                &:nth-child(3) {
+                    font-size: 2rem;
+
+                    @media (min-width: 576px) {
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+
+            img {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                width: 2rem;
+                height: 2rem;
+
+                @media (min-width: 576px) {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+            }
+
+            &__amount-wrapper {
+                position: absolute;
+                bottom: 1rem;
+                right: 0.5rem;
+
+            }
+        }
+    }
+
+    &__table {
+        border: 1px solid $base-font;
+
+        &__row-titles {
+            display: flex;
+            font-size: 1.6rem;
+            background-color: $base-background;
+            border-bottom: 1px solid $base-font;
+
+            &__large-row {
+                width: 50%;
+                margin-left: 2rem;
+                padding: 1.5rem 0;
+            }
+
+            &__small-row {
+                width: calc(50% / 3);
+                padding: 1.5rem 0;
+                text-align: center;
+                border-left: 1px solid $base-font;
+            }
+        }
+
+        &__row-product {
+            display: flex;
+            font-size: 1.6rem;
+
+            &__large-row {
+                display: flex;
+                width: 50%;
+                margin-left: 2rem;
+                padding: 1.5rem 0;
+                line-height: 7rem;
+
+                &__product-image {
+                    &:nth-child(1) {
+                        width: 7rem;
+                        height: 7rem;
+                        object-fit: cover;
+                        border: 1px solid rgba($color: $base-font, $alpha: 0.5)
+                    }
+                }
+
+                p {
+                    flex-grow: 1;
+                    margin-left: 2rem;
+                }
+
+                div {
+                    img {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        margin-right: 3rem;
+                    }
+                }
+
+                ;
+            }
+
+            &__small-row {
+                width: calc(50% / 3);
+                padding: 1.5rem 0;
+                text-align: center;
+                border-left: 1px solid $base-font;
+                line-height: 7rem;
+            }
+        }
+    }
+
+    &__price-checkout-wrapper {
+        @media (min-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 70%;
+        }
+
+        @media (min-width: 1200px) {
+            border-top: 1px solid $base-font;
+        }
+    }
+
+    &__overall-price {
+        margin: 1.5rem 2rem 1.5rem 0;
+        font-size: 2rem;
+        text-align: right;
+
+        @media (min-width: 768px) {
+            margin-right: 0;
+        }
+    }
+
+    &__button {
+        text-align: center;
+        margin-bottom: 1.5rem;
+
+        @media (min-width: 768px) {
+            text-align: right;
+        }
+    }
+}

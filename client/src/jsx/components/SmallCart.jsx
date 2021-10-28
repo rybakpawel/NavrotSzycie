@@ -31,7 +31,9 @@ const SmallCart = () => {
                 </div>
             </div>
             <p className='small-cart__overall-price'>Razem: cena</p>
-            <Button variant='submit' title='Przejdź do koszyka' />
+            <a href='/cart'>
+                <Button variant='submit' title='Przejdź do koszyka' />
+            </a>
         </div>
     )
 };

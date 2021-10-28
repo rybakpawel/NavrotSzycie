@@ -10,8 +10,19 @@ const allReducers = combineReducers({
     cartReducer
 });
 
+const cartItemsInLocalStorage = localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
+    : [];
+
+const DEFAULT_STATE = {
+    cart: {
+        cartProducts: cartItemsInLocalStorage,
+    },
+};
+
 const store = createStore(
     allReducers,
+    DEFAULT_STATE,
     composeWithDevTools(
         applyMiddleware(thunk)
     )

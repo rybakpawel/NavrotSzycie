@@ -46,4 +46,10 @@
             font-size: 1.2rem;
         }
     }
+
+    &--checkout {
+        padding: 1rem 4rem;
+        background-color: $checkout-button;
+        color: #fff;
+    }
 }
