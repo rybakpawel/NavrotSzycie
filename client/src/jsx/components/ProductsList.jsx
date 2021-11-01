@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsFromCategory, getCategoriesList } from '../redux/actions/productActions';
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import Loading from './Loading';
 import LargeCard from './LargeCard';
 import Button from './Button';
@@ -23,10 +24,6 @@ const ProductsList = () => {
         dispatch(getProductsFromCategory(category))
         dispatch(getCategoriesList())
     };
-
-    const capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     const handleSort = () => {
         setIsActiveSort(!isActiveSort);

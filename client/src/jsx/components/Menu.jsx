@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoriesList } from '../redux/actions/productActions';
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import Button from '../components/Button';
 import MenuDropDown from './MenuDropDown';
 import bars from '../../assets/icons/menu-bars.svg';
 import close from '../../assets/icons/close.svg';
 
 const Menu = ({ largeView }) => {
+    const dispatch = useDispatch();
+
+    const categoryList = useSelector(state => state.productReducer.categoryList);
+
     const [isActiveMenu, setIsActiveMenu] = useState(false);
     const [isActiveProducts, setIsActiveProducts] = useState(false);
+
+    useEffect(() => {
+        getData();
+    }, [dispatch]);
+
+    const getData = async () => {
+        dispatch(getCategoriesList())
+    };
 
     const handleMenuBars = () => {
         setIsActiveMenu(!isActiveMenu);
@@ -63,33 +78,19 @@ const Menu = ({ largeView }) => {
                                     handleMenuBars();
                                     handleProductsButton();
                                 }} />
-                            <li className='menu__list__item'>
-                                <Link to='/torby'
-                                    onClick={() => {
-                                        handleMenuBars();
-                                        handleProductsButton();
-                                    }}>
-                                    Torby
-                                </Link>
-                            </li>
-                            <li className='menu__list__item'>
-                                <Link to='/plecaki'
-                                    onClick={() => {
-                                        handleMenuBars();
-                                        handleProductsButton();
-                                    }}>
-                                    Plecaki
-                                </Link>
-                            </li>
-                            <li className='menu__list__item'>
-                                <Link to='/kominy'
-                                    onClick={() => {
-                                        handleMenuBars();
-                                        handleProductsButton();
-                                    }}>
-                                    Kominy
-                                </Link>
-                            </li>
+                            {categoryList ? categoryList.map(category => {
+                                return (
+                                    <li className='menu__list__item'>
+                                        <Link to={`/${category}`}
+                                            onClick={() => {
+                                                handleMenuBars();
+                                                handleProductsButton();
+                                            }}>
+                                            {capitalizeFirstLetter(category)}
+                                        </Link>
+                                    </li>
+                                )
+                            }) : null}
                         </ul>
                 }
             </nav>

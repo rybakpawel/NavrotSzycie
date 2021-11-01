@@ -9,17 +9,14 @@ import Loading from './Loading';
 
 let ItemsList = ({ isLandscape, cardsVariant }) => {
     const dispatch = useDispatch();
+
     const newProducts = useSelector(state => state.productReducer.newProducts);
     const similarProducts = useSelector(state => state.productReducer.similarProducts);
 
     useEffect(() => {
-        getData();
-    }, [dispatch]);
-
-    const getData = async () => {
         dispatch(getNewProducts())
         dispatch(getSimilarProducts('plecaki'))
-    };
+    }, [dispatch]);
 
     const { width } = useWindowDimensions();
 

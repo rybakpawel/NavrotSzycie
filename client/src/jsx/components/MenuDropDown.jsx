@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoriesList } from '../redux/actions/productActions';
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 
 const MenuDropDown = () => {
+    const dispatch = useDispatch();
+
+    const categoryList = useSelector(state => state.productReducer.categoryList);
+
+    useEffect(() => {
+        getData();
+    }, [dispatch]);
+
+    const getData = async () => {
+        dispatch(getCategoriesList())
+    };
+
     return (
         <ul className='menu-drop-down'>
-            <li className='menu-drop-down__item'>
-                <Link to='/torby'>Torby</Link>
-            </li>
-            <li className='menu-drop-down__item'>
-                <Link to='/plecaki'>Plecaki</Link>
-            </li>
-            <li className='menu-drop-down__item'>
-                <Link to='/kominy'>Kominy</Link>
-            </li>
+            {categoryList ? categoryList.map(category => {
+                return (
+                    <li className='menu-drop-down__item'>
+                        <Link to={`/${category}`}>
+                            {capitalizeFirstLetter(category)}
+                        </Link>
+                    </li>
+                )
+            }) : null}
         </ul>
     )
 };

@@ -713,6 +713,7 @@ h4 {
   width: 25px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .section-title__text {
@@ -869,6 +870,13 @@ h4 {
   position: absolute;
   bottom: 1rem;
   right: 0.5rem;
+}
+
+.small-cart__empty-cart {
+  margin: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  white-space: pre;
 }
 
 .small-cart__overall-price {
@@ -1171,6 +1179,7 @@ h4 {
 .header__cart {
   position: relative;
   margin-right: 1.5rem;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/actions/cartActions';
 import example from '../../assets/images/example-bag.jpg';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
+import okIcon from '../../assets/icons/ok.png';
 
 const LargeCard = ({ name, category, price }) => {
     const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cartReducer.cartProducts);
+
     const handleAddToCart = () => {
         dispatch(addToCart(category, name))
     };
+
+    const isProductInCart = cart.some(product => product['name'] === name);
 
     return (
         <div className='large-card'>
@@ -24,7 +29,7 @@ const LargeCard = ({ name, category, price }) => {
                 </div>
             </Link>
             <img
-                src={addToCartIcon}
+                src={isProductInCart ? okIcon : addToCartIcon}
                 alt='dodaj'
                 className='large-card__add-to-cart'
                 onClick={handleAddToCart} />

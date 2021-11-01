@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { isMobileOnly, withOrientationChange } from 'react-device-detect';
 import Logo from './Logo';
 import Search from './Search';
@@ -26,17 +26,26 @@ const getSmallView = (isPortrait) => {
 }
 
 const getLargeView = () => {
+    const [isActiveSmallCart, setIsActiveSmallCart] = useState(false);
+
+    const handleSmallCart = () => {
+        setIsActiveSmallCart(!isActiveSmallCart);
+    }
+
     return (
         <header className='header'>
             <Logo />
             <Menu largeView={true} />
             <Search />
-            <div className='header__cart'>
+            <div className='header__cart'
+                onMouseEnter={handleSmallCart}
+                onMouseLeave={handleSmallCart}>
                 <img
                     src={cart}
                     alt='koszyk'
                     className='cart-icon' />
-                <SmallCart />
+                {isActiveSmallCart ? <SmallCart /> : null}
+                {/* <SmallCart /> */}
             </div>
         </header>
     )

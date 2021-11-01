@@ -31,6 +31,7 @@
     &__cart {
         position: relative;
         margin-right: 1.5rem;
+        cursor: pointer;
 
         @media (min-width: 768px) {
             margin-right: 0;

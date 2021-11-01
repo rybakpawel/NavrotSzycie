@@ -29,13 +29,9 @@ const Product = () => {
     const [activeDetail, setActiveDetail] = useState([]);
 
     useEffect(() => {
-        getData();
+        dispatch(getProduct(category, name))
         window.scrollTo(0, 0)
     }, [location, dispatch]);
-
-    const getData = async () => {
-        dispatch(getProduct(category, name))
-    };
 
     const handleAddToCart = () => {
         dispatch(addToCart(category, name))
