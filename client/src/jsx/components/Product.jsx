@@ -24,6 +24,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     const product = useSelector(state => state.productReducer.product);
+    const cart = useSelector((state) => state.cartReducer.cartProducts);
 
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeDetail, setActiveDetail] = useState([]);
@@ -46,6 +47,8 @@ const Product = () => {
         if (!activeDetail.includes(id)) return false
         else return true;
     };
+
+    const isProductInCart = cart.some(product => product['name'] === name);
 
     const { width } = useWindowDimensions();
 
@@ -120,8 +123,8 @@ const Product = () => {
                     <h3 className='product__informations__price'>{product.price}zł</h3>
                     <p className='product__informations__description'>{product.description}</p>
                     {width < 992 ?
-                        <div className='product__informations__button-wrapper' onClick={handleAddToCart}>
-                            <Button variant='submit' title='Dodaj do koszyka' />
+                        <div className='product__informations__button-wrapper' onClick={isProductInCart ? null : handleAddToCart}>
+                            <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} />
                         </div>
                         : null
                     }
@@ -202,8 +205,8 @@ const Product = () => {
 
                     {width < 992 ?
                         null
-                        : <div className='product__informations__button-wrapper' onClick={handleAddToCart}>
-                            <Button variant='submit' title='Dodaj do koszyka' />
+                        : <div className='product__informations__button-wrapper' onClick={isProductInCart ? null : handleAddToCart}>
+                            <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} />
                         </div>
                     }
                 </div>

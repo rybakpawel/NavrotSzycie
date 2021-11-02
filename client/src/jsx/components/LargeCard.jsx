@@ -25,14 +25,14 @@ const LargeCard = ({ name, category, price }) => {
                     className='large-card__product-image' />
                 <div className='large-card__informations'>
                     <h3 className='large-card__informations__name'>{name}</h3>
-                    <h4 className='large-card__informations__price'>{price}zł</h4>
+                    <h4 className='large-card__informations__price'>{price.toFixed(2)}zł</h4>
                 </div>
             </Link>
             <img
                 src={isProductInCart ? okIcon : addToCartIcon}
                 alt='dodaj'
                 className='large-card__add-to-cart'
-                onClick={handleAddToCart} />
+                onClick={isProductInCart ? null : handleAddToCart} />
         </div>
     )
 };

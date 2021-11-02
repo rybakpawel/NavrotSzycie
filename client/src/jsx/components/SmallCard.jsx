@@ -24,7 +24,7 @@ const SmallCard = ({ name, category, price }) => {
                 className='small-card__product-image' />
             <div className='small-card__name-price'>
                 <h3 className='small-card__name-price__name'>{name}</h3>
-                <h4 className='small-card__name-price__price'>{price}zł</h4>
+                <h4 className='small-card__name-price__price'>{price.toFixed(2)}zł</h4>
             </div>
             <div className='small-card__buttons-wrapper'>
                 <Button
@@ -35,7 +35,7 @@ const SmallCard = ({ name, category, price }) => {
                     src={isProductInCart ? okIcon : addToCartIcon}
                     alt='dodaj'
                     className='small-card__buttons-wrapper__add-to-cart'
-                    onClick={handleAddToCart} />
+                    onClick={isProductInCart ? null : handleAddToCart} />
             </div>
         </div>
     )

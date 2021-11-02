@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { isMobileOnly, withOrientationChange } from 'react-device-detect';
 import Logo from './Logo';
 import Search from './Search';
@@ -12,12 +13,14 @@ const getSmallView = (isPortrait) => {
             <Logo />
             {isPortrait ? null : <Search />}
             <div className='header__cart-menu-icons'>
-                <div className='header__cart'>
-                    <img
-                        src={cart}
-                        alt='koszyk'
-                        className='cart-icon' />
-                </div>
+                <Link to='/cart'>
+                    <div className='header__cart'>
+                        <img
+                            src={cart}
+                            alt='koszyk'
+                            className='cart-icon' />
+                    </div>
+                </Link>
                 <Menu />
             </div>
             {isPortrait ? <Search /> : null}
@@ -45,7 +48,6 @@ const getLargeView = () => {
                     alt='koszyk'
                     className='cart-icon' />
                 {isActiveSmallCart ? <SmallCart /> : null}
-                {/* <SmallCart /> */}
             </div>
         </header>
     )
