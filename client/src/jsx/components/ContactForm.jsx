@@ -1,27 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 
 const ContactForm = () => {
-    const [statusMessage, setStatusMessage] = useState(null);
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [responseMessage, setResponseMessage] = useState(null);
 
-    useEffect(() => {
-        getData();
-    }, []);
+    const handleSubmitForm = e => {
+        e.preventDefault();
+        const form = { email, message };
+        setEmail('');
+        setMessage('');
 
-    const getData = async () => {
-        const response = await fetch('/contact');
-        const data = await response.json();
-        setStatusMessage(data);
-    }
-
-    if (statusMessage) console.log(statusMessage);
+        fetch('http://localhost:5000/contact', {
+            method: 'POST',
+            body: JSON.stringify(form),
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(data => setResponseMessage(data.message))
+    };
 
     return (
         <section className='contact-form'>
             <h2 className='contact-form__label'>Kontakt</h2>
-            <form className='contact-form__form' action='http://localhost:5000/contact' method='POST' id='contactForm' >
-                <input className='contact-form__form__email' type='email' name='email' placeholder='Twój e-mail' />
-                <textarea className='contact-form__form__message' name='message' placeholder='Treść wiadomości'></textarea>
+            <p className='contact-form__response-message'>{responseMessage}</p>
+            <form className='contact-form__form' id='contactForm' onSubmit={handleSubmitForm}>
+                <input
+                    className='contact-form__form__email'
+                    type='email'
+                    name='email'
+                    value={email}
+                    placeholder='Twój e-mail'
+                    onChange={e => setEmail(e.target.value)} />
+                <textarea
+                    className='contact-form__form__message'
+                    name='message'
+                    value={message}
+                    placeholder='Treść wiadomości'
+                    onChange={e => setMessage(e.target.value)}>
+                </textarea>
             </form>
             <Button variant='submit' title='Wyślij wiadomość' type='submit' form='contactForm' />
         </section>

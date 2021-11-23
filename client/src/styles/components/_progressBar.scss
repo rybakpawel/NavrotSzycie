@@ -1,0 +1,56 @@
+.progress-bar {
+    display: flex;
+    width: 80%;
+    margin: 5% 10%;
+    font-size: 1.5rem;
+    border: 1px solid $base-font;
+
+    &__part {
+        width: 33%;
+        padding-left: 1.5rem;
+
+        &--one {
+            position: relative;
+            background-color: $base-background;
+
+            &::after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 37px;
+                content: '';
+                border-left: $base-font 1px solid;
+                transform: skew(-45deg) translate(calc(35px / 2), -1px);
+            }
+        }
+
+        &--two {
+            position: relative;
+
+            &::after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 37px;
+                content: '';
+                border-left: $base-font 1px solid;
+                transform: skew(-45deg) translate(calc(35px / 2), -1px);
+            }
+        }
+
+        &--three {}
+
+        &__text {
+            line-height: 35px;
+        }
+    }
+
+    &__upper-triangle {
+        border-top: 35px solid $base-background;
+        border-right: 35px solid transparent;
+
+        &--second {
+            border-color: transparent;
+        }
+    }
+}

@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
-import useWindowDimensions from '../utils/useWindowDimenstions';
+import useWindowDimensions from '../utils/useWindowDimensions';
 import Button from './Button';
 import Loading from './Loading';
 import example from '../../assets/images/example-bag.jpg';

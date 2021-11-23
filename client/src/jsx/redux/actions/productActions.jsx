@@ -1,6 +1,6 @@
 export const getProductsList = () => async dispatch => {
     try {
-        const res = await fetch('http://localhost:5000/products');
+        const res = await fetch('http://localhost:5000/products/all');
         const data = await res.json();
 
         dispatch({
@@ -16,7 +16,7 @@ export const getProductsList = () => async dispatch => {
 
 export const getCategoriesList = () => async dispatch => {
     try {
-        const res = await fetch('http://localhost:5000/categories');
+        const res = await fetch('http://localhost:5000/products/categories');
         const data = await res.json();
 
         dispatch({
@@ -32,7 +32,7 @@ export const getCategoriesList = () => async dispatch => {
 
 export const getProduct = (category, name) => async dispatch => {
     try {
-        const res = await fetch(`http://localhost:5000/${category}/${name}`);
+        const res = await fetch(`http://localhost:5000/products/${category}/${name}`);
         const data = await res.json();
 
         dispatch({
@@ -48,7 +48,7 @@ export const getProduct = (category, name) => async dispatch => {
 
 export const getProductsFromCategory = (category) => async dispatch => {
     try {
-        const res = await fetch(`http://localhost:5000/${category}`);
+        const res = await fetch(`http://localhost:5000/products/${category}`);
         const data = await res.json();
 
         dispatch({
@@ -64,7 +64,7 @@ export const getProductsFromCategory = (category) => async dispatch => {
 
 export const getNewProducts = () => async dispatch => {
     try {
-        const res = await fetch('http://localhost:5000/new');
+        const res = await fetch('http://localhost:5000/products/new');
         const data = await res.json();
 
         dispatch({
@@ -80,7 +80,7 @@ export const getNewProducts = () => async dispatch => {
 
 export const getSimilarProducts = (category) => async dispatch => {
     try {
-        const res = await fetch(`http://localhost:5000/${category}/similar`);
+        const res = await fetch(`http://localhost:5000/products/${category}/similar`);
         const data = await res.json();
 
         dispatch({

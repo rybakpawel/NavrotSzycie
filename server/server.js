@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 
 const product = require('./routes/product');
 const contact = require('./routes/contact');
+const delivery = require('./routes/delivery');
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -27,9 +28,11 @@ mongoose.connect(DB_CONNECT,
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+// app.use(cors({
+//     origin: 'http://localhost:3000'
+// }));
+app.use(cors());
 
-app.use('/', product);
-app.use('/', contact);
+app.use('/products', product)
+app.use('/contact', contact);
+app.use('/delivery', delivery);

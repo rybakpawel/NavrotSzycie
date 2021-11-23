@@ -1,6 +1,6 @@
 export const addToCart = (category, name) => async (dispatch, getState) => {
     try {
-        const res = await fetch(`http://localhost:5000/${category}/${name}`);
+        const res = await fetch(`http://localhost:5000/products/${category}/${name}`);
         const data = await res.json();
 
         dispatch({

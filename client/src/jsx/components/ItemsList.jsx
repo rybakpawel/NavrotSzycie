@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isDesktop, isTablet, withOrientationChange } from 'react-device-detect';
 import { getNewProducts, getSimilarProducts } from '../redux/actions/productActions';
-import useWindowDimensions from '../utils/useWindowDimenstions';
+import useWindowDimensions from '../utils/useWindowDimensions';
 import SmallCard from './SmallCard';
 import LargeCard from './LargeCard';
 import Loading from './Loading';

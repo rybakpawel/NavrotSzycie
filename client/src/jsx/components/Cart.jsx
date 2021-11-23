@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isDesktop, withOrientationChange } from 'react-device-detect';
 import { removeFromCart } from '../redux/actions/cartActions';
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import { calculateTotalPrice } from '../utils/calculateTotalPrice';
+import SectionTitle from './SectionTitle';
 import Button from './Button';
 import example from '../../assets/images/example-bag.jpg';
 import remove from '../../assets/icons/remove-from-cart.svg';
@@ -18,10 +20,10 @@ const getSmallView = () => {
 
     return (
         <section className='cart'>
+            <SectionTitle title='Koszyk' />
             {cart.length === 0 ?
                 <p className='cart__empty-announcement'>Koszyk jest pusty!</p> :
                 <>
-                    <h1 className='cart__title'>Koszyk</h1>
                     {cart.map(product => {
                         return (
                             <div className='cart__product'>
@@ -41,9 +43,9 @@ const getSmallView = () => {
                     <div className='cart__price-checkout-wrapper'>
                         <p className='cart__overall-price'>Razem: {calculateTotalPrice(cart)}zł</p>
                         <div className='cart__button'>
-                            <a href='/cart'>
+                            <Link to='/checkout/delivery'>
                                 <Button variant='checkout' title='Przejdź do kasy' />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </>
@@ -62,10 +64,10 @@ const getLargeView = () => {
 
     return (
         <section className='cart'>
+            <SectionTitle title='Koszyk' />
             {cart.length === 0 ?
                 <p className='cart__empty-announcement'>Koszyk jest pusty!</p> :
                 <>
-                    <h1 className='cart__title'>Koszyk</h1>
                     <div className='cart__table'>
                         <div className='cart__table__row-titles'>
                             <div className='cart__table__row-titles__large-row'>Produkty</div>
@@ -98,9 +100,9 @@ const getLargeView = () => {
                         <div className='cart__price-checkout-wrapper'>
                             <p className='cart__overall-price'>Razem: {calculateTotalPrice(cart)}zł</p>
                             <div className='cart__button'>
-                                <a href='/cart'>
+                                <Link to='/checkout/delivery'>
                                     <Button variant='checkout' title='Przejdź do kasy' />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

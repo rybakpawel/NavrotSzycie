@@ -1,0 +1,102 @@
+.delivery-form {
+    margin: 3rem 5%;
+    text-align: center;
+
+    @media (min-width: 992px) {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__title {
+        text-align: left;
+        font-size: 2.5rem;
+
+        @media (min-width: 992px) {
+            font-size: 2rem;
+        }
+    }
+
+    &__customer-data {
+        font-size: 1.8rem;
+
+        @media (min-width: 992px) {
+            font-size: 1.5rem;
+        }
+
+        &__title-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        &__response-message {
+            margin: 1rem 0;
+            color: red;
+        }
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            border: 1px solid $base-font;
+
+            &--short {
+                width: 45%;
+            }
+        }
+
+        &__collection {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__label {
+            text-align: left;
+            padding: 0.5rem 0 0.5rem 1rem;
+            background-color: $base-background;
+        }
+
+        &__input {
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-family: 'Questrial', sans-serif;
+            border: none;
+            border-top: 1px solid $base-font;
+
+            @media (min-width: 992px) {
+                padding: 0.5rem 1rem;
+                padding-left: 1rem;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &__provider {
+        margin: 2rem 0;
+        font-size: 2rem;
+        text-align: left;
+
+        @media (min-width: 992px) {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        &__pocztex {
+            padding: 1rem;
+            border-bottom: 1px solid $base-font;
+        }
+
+        &__inpost {
+            padding: 1rem;
+        }
+
+        &__button {
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        label {
+            padding-left: 1rem;
+        }
+    }
+}

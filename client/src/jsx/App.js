@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import ProductsListPage from './pages/ProductsListPage';
 import ProductPage from './pages/ProductPage';
 
@@ -17,6 +18,7 @@ function App() {
                     <Route path='/aboutme' exact component={AboutMePage} />
                     <Route path='/contact' exact component={ContactPage} />
                     <Route path='/cart' exact component={CartPage} />
+                    <Route path='/checkout/delivery' exact component={CheckoutPage} />
                     <Route path='/:category' exact component={ProductsListPage} />
                     <Route path='/:category/:name' component={ProductPage} />
                     <Redirect to='/' />

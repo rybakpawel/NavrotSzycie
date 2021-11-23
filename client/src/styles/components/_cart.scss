@@ -11,15 +11,10 @@
         text-align: center;
     }
 
-    &__title {
-        font-size: 3rem;
-        margin: 0 0 3rem 0.5rem;
-    }
-
     &__product {
         position: relative;
         display: flex;
-        margin-bottom: 0.5rem;
+        margin: 1.5rem 0 0.5rem 0;
         padding: 0.5rem;
         background-color: $base-background;
         border: 0.1px solid rgba($color: $base-font, $alpha: 0.2);
@@ -94,6 +89,7 @@
     }
 
     &__table {
+        margin-top: 1.5rem;
         border: 1px solid $base-font;
 
         &__row-titles {

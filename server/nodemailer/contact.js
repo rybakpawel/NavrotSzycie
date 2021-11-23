@@ -11,7 +11,7 @@ const sendContactEmail = (email, message) => {
 
         const options = {
         from: 'betterapp.euro2021@gmail.com',
-        to: 'betterapp.euro2021@gmail.com',
+        to: 'rybakpawel92@gmail.com',
         subject: 'Nowa wiadomość na Navrot Szycie',
         text: `Wiadomość wysłana z adresu: ${email}.\n\n ${message}`
     }
