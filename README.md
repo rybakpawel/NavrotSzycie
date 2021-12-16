@@ -9,4 +9,6 @@ React
 Redux
 SASS
 Express
+MongoDB
+Stripe
 Webpack

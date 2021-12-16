@@ -4,7 +4,7 @@ import Button from './Button';
 import SectionTitle from './SectionTitle';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const DeliveryForm = () => {
+const DeliveryForm = ({ promotion }) => {
     const history = useHistory();
     const { width } = useWindowDimensions();
     const [formInputs, setFormInputs] = useState({
@@ -40,7 +40,7 @@ const DeliveryForm = () => {
             flatNumber: '',
             zipCode: '',
             city: '',
-            provider: ''
+            provider: 'pocztex'
         })
 
         fetch('http://localhost:5000/delivery', {
@@ -51,7 +51,14 @@ const DeliveryForm = () => {
             },
         })
             .then(res => {
-                if (res.ok) history.push('/payment');
+                if (res.ok) history.push({
+                    pathname: '/checkout/payment',
+                    state: {
+                        fromApp: true,
+                        formInputs,
+                        promotion
+                    }
+                });
                 else return res.json();
             })
             .then(data => {
@@ -61,6 +68,7 @@ const DeliveryForm = () => {
 
     return (
         <form className='delivery-form' id='deliveryForm' onSubmit={handleSubmitForm}>
+
             <div className='delivery-form__customer-data'>
                 <div className='delivery-form__customer-data__title-wrapper'>
                     {width >= 992 ?
@@ -150,7 +158,7 @@ const DeliveryForm = () => {
             <div className='delivery-form__provider'>
                 <div className='delivery-form__customer-data__title-wrapper'>
                     {width >= 992 ?
-                        <h1 className='delivery-form__title'>Dane do wysyłki</h1>
+                        <h1 className='delivery-form__title'>Forma dostawy</h1>
                         :
                         <SectionTitle title='Sposób dostawy' />
                     }

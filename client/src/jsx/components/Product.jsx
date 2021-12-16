@@ -210,7 +210,8 @@ const Product = () => {
                         </div>
                     }
                 </div>
-            </section> : <Loading />
+            </section>
+            : <Loading allPage={true} />
     )
 }
 

@@ -2,15 +2,18 @@ const router = require('express').Router();
 const fetch = require('node-fetch');
 const { deliveryValidation } = require('../validation/deliveryValidation');
 
+let dane;
+
 router.post('/', async (req, res) => {
     try {
         const { error } = deliveryValidation(req.body);
+        dane = req.body;
 
         if (error) {
             const message = error.details[0].message;
             return res.status(400).send({ message });
         } else {
-            return res.status(200).send('Success');
+            return res.status(200).send({message: 'Success'});
         }
 
     } catch {

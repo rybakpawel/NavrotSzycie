@@ -38,19 +38,32 @@
             }
         }
 
-        &--three {}
+        &--active {
+            background-color: $base-background;
+        }
 
         &__text {
             line-height: 35px;
         }
     }
 
-    &__upper-triangle {
-        border-top: 35px solid $base-background;
-        border-right: 35px solid transparent;
+    &__triangle {
+        border-top: 35px solid;
+        border-right: 35px solid;
 
-        &--second {
-            border-color: transparent;
+        &--upper {
+            border-top-color: $base-background;
+            border-right-color: transparent;
+        }
+
+        &--both {
+            border-top-color: $base-background;
+            border-right-color: $base-background;
+        }
+
+        &--none {
+            border-top-color: transparent;
+            border-right-color: transparent;
         }
     }
 }

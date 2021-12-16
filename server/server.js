@@ -6,11 +6,12 @@ const dotenv = require('dotenv');
 const product = require('./routes/product');
 const contact = require('./routes/contact');
 const delivery = require('./routes/delivery');
+const payment = require('./routes/payment');
+const promotion = require('./routes/promotion');
 
 dotenv.config();
 const PORT = process.env.PORT;
 const DB_CONNECT = process.env.DB_CONNECT;
-
 
 const app = express();
 
@@ -21,18 +22,17 @@ app.listen(PORT, () => {
 mongoose.connect(DB_CONNECT, 
     { 
         useUnifiedTopology: true, 
-        useNewUrlParser: true 
+        useNewUrlParser: true
     }, 
     () => console.log('Connected with mongoose')
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-// app.use(cors({
-//     origin: 'http://localhost:3000'
-// }));
 app.use(cors());
 
-app.use('/products', product)
+app.use('/products', product);
 app.use('/contact', contact);
 app.use('/delivery', delivery);
+app.use('/payment', payment);
+app.use('/promotion', promotion);

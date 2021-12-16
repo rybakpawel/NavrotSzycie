@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isDesktop, withOrientationChange } from 'react-device-detect';
@@ -13,6 +13,27 @@ import remove from '../../assets/icons/remove-from-cart.svg';
 const getSmallView = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
+
+    const [promotionCode, setPromotionCode] = useState(null);
+    const [promotionSize, setPromotionSize] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/promotion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                promotionCode
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => setPromotionSize(data.discount));
+    }, [promotionCode]);
+
+    const handlePromotionCodeInput = (e) => {
+        setPromotionCode(e.target.value);
+    }
 
     const handleRemoveFromCart = (id) => {
         dispatch(removeFromCart(id))
@@ -41,9 +62,24 @@ const getSmallView = () => {
                         )
                     })}
                     <div className='cart__price-checkout-wrapper'>
-                        <p className='cart__overall-price'>Razem: {calculateTotalPrice(cart)}zł</p>
+                        <form className='cart__promotion-code'>
+                            <label htmlFor="">Kod promocyjny: </label>
+                            <input className='cart__promotion-code__input'
+                                type='text'
+                                onChange={handlePromotionCodeInput}
+                                disabled={promotionSize ? true : false} />
+                        </form>
+                        <p className='cart__overall-price'>Razem:
+                            <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span>
+                        </p>
                         <div className='cart__button'>
-                            <Link to='/checkout/delivery'>
+                            <Link to={{
+                                pathname: '/checkout/delivery',
+                                state: {
+                                    fromApp: true,
+                                    promotion: promotionSize
+                                }
+                            }}>
                                 <Button variant='checkout' title='Przejdź do kasy' />
                             </Link>
                         </div>
@@ -57,6 +93,27 @@ const getSmallView = () => {
 const getLargeView = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
+
+    const [promotionCode, setPromotionCode] = useState(null);
+    const [promotionSize, setPromotionSize] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/promotion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                promotionCode
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => setPromotionSize(data.discount));
+    }, [promotionCode]);
+
+    const handlePromotionCodeInput = (e) => {
+        setPromotionCode(e.target.value);
+    }
 
     const handleRemoveFromCart = (id) => {
         dispatch(removeFromCart(id))
@@ -98,9 +155,25 @@ const getLargeView = () => {
                             )
                         })}
                         <div className='cart__price-checkout-wrapper'>
-                            <p className='cart__overall-price'>Razem: {calculateTotalPrice(cart)}zł</p>
+                            <form className='cart__promotion-code cart__promotion-code--desktop'>
+                                <label htmlFor="">Kod promocyjny: </label>
+                                <input className='cart__promotion-code__input'
+                                    type='text'
+                                    onChange={handlePromotionCodeInput}
+                                    disabled={promotionSize ? true : false} />
+                                {promotionSize ? <p className='cart__promotion-code__promotion-size'>Zastosowano kod promocyjny w wysokości {promotionSize}% na wszystkie nieprzecenione produkty.</p> : null}
+                            </form>
+                            <p className='cart__overall-price'>Razem:
+                                <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span>
+                            </p>
                             <div className='cart__button'>
-                                <Link to='/checkout/delivery'>
+                                <Link to={{
+                                    pathname: '/checkout/delivery',
+                                    state: {
+                                        fromApp: true,
+                                        promotion: promotionSize
+                                    }
+                                }}>
                                     <Button variant='checkout' title='Przejdź do kasy' />
                                 </Link>
                             </div>

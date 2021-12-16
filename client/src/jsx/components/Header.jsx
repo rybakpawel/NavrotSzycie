@@ -56,7 +56,7 @@ const getLargeView = () => {
 let Header = ({ isPortrait }) => {
     return (
         <>
-            {isMobileOnly ? getSmallView(isPortrait) : getLargeView()};
+            {isMobileOnly ? getSmallView(isPortrait) : getLargeView()}
         </>
     )
 };

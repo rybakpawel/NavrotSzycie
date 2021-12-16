@@ -1,9 +1,21 @@
 import React from 'react';
 
-const Loading = () => {
+const Loading = ({ allPage }) => {
     return (
-        <div>Ładuję...</div>
+        <div className={`loading-wrapper ${allPage ? 'loading-wrapper--all-page' : ''}`}>
+            <div class='loading'>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
     )
 }
 
-export default Loading
+export default Loading;

@@ -128,7 +128,7 @@
                         width: 7rem;
                         height: 7rem;
                         object-fit: cover;
-                        border: 1px solid rgba($color: $base-font, $alpha: 0.5)
+                        border: 1px solid $light-border;
                     }
                 }
 
@@ -160,6 +160,8 @@
     }
 
     &__price-checkout-wrapper {
+        position: relative;
+
         @media (min-width: 768px) {
             display: flex;
             flex-direction: column;
@@ -172,10 +174,46 @@
         }
     }
 
+    &__promotion-code {
+        position: relative;
+        margin: 1.5rem 2rem 0 0;
+        font-size: 1.4rem;
+        text-align: right;
+
+        @media (min-width: 768px) {
+            margin-right: 0;
+            text-align: center;
+        }
+
+        &--desktop {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &__input {
+            max-width: 30%;
+            padding: 0.5rem;
+            border: 1px solid $light-border;
+        }
+
+        &__promotion-size {
+            position: absolute;
+            bottom: -150%;
+            left: 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+    }
+
     &__overall-price {
         margin: 1.5rem 2rem 1.5rem 0;
         font-size: 2rem;
         text-align: right;
+
+        &--active-code {
+            color: $success;
+        }
 
         @media (min-width: 768px) {
             margin-right: 0;

@@ -4,12 +4,12 @@ import Line from '../components/Line';
 import Checkout from '../components/Checkout';
 import Footer from '../components/Footer';
 
-const CheckoutPage = () => {
+const CheckoutPage = ({ step }) => {
     return (
         <>
             <Header />
             <Line variant='long' />
-            <Checkout />
+            <Checkout step={step} />
             <Footer />
         </>
     )
