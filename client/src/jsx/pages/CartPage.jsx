@@ -7,9 +7,11 @@ import Footer from '../components/Footer';
 const CartPage = () => {
     return (
         <>
-            <Header />
-            <Line variant='long' />
-            <Cart />
+            <div className='page-wrapper'>
+                <Header />
+                <Line variant='long' />
+                <Cart />
+            </div>
             <Footer />
         </>
     )

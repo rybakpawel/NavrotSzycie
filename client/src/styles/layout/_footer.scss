@@ -1,7 +1,14 @@
+.footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 .footer {
     display: flex;
     justify-content: center;
-    max-height: 15rem;
+    height: 12rem;
     padding: 5% 3%;
     border-top: solid $base-font 1px;
 

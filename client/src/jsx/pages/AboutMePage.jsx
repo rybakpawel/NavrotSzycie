@@ -7,9 +7,11 @@ import Footer from '../components/Footer';
 const AboutMePage = () => {
     return (
         <>
-            <Header />
-            <Line variant='long' />
-            <AboutMe />
+            <div className='page-wrapper'>
+                <Header />
+                <Line variant='long' />
+                <AboutMe />
+            </div>
             <Footer />
         </>
     )

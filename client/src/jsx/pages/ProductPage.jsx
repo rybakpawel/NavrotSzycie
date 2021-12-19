@@ -8,12 +8,14 @@ import Footer from '../components/Footer';
 const ProductPage = () => {
     return (
         <>
-            <Header />
-            <Line variant='long' />
-            <Product />
-            <Slider
-                title='Podobne'
-                products='similar' />
+            <div className='page-wrapper'>
+                <Header />
+                <Line variant='long' />
+                <Product />
+                <Slider
+                    title='Podobne'
+                    products='similar' />
+            </div>
             <Footer />
         </>
     )

@@ -188,7 +188,7 @@ const getLargeView = () => {
 let Cart = () => {
     return (
         <>
-            {isDesktop ? getLargeView() : getSmallView()};
+            {isDesktop ? getLargeView() : getSmallView()}
         </>
     )
 };

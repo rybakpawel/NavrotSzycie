@@ -8,12 +8,14 @@ import Footer from '../components/Footer';
 const HomePage = () => {
     return (
         <>
-            <Header />
-            <Hero />
-            <Slider
-                title='Najnowsze'
-                products='new' />
-            <DesignAd />
+            <div className='page-wrapper'>
+                <Header />
+                <Hero />
+                <Slider
+                    title='Najnowsze'
+                    products='new' />
+                <DesignAd />
+            </div>
             <Footer />
         </>
     )

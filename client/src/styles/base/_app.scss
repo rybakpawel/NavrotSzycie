@@ -25,6 +25,8 @@ html {
 }
 
 body {
+    position: relative;
+    min-height: 100vh;
     font-family: 'Questrial', sans-serif;
     color: $base-font;
 }
@@ -43,4 +45,8 @@ h2,
 h3,
 h4 {
     font-weight: normal;
+}
+
+.page-wrapper {
+    padding-bottom: 12rem;
 }

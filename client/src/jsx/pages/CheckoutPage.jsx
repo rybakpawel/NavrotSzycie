@@ -7,9 +7,11 @@ import Footer from '../components/Footer';
 const CheckoutPage = ({ step }) => {
     return (
         <>
-            <Header />
-            <Line variant='long' />
-            <Checkout step={step} />
+            <div className='page-wrapper'>
+                <Header />
+                <Line variant='long' />
+                <Checkout step={step} />
+            </div>
             <Footer />
         </>
     )

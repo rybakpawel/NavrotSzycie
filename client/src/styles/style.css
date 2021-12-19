@@ -31,6 +31,8 @@ html {
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   font-family: 'Questrial', sans-serif;
   color: #555;
 }
@@ -49,6 +51,10 @@ h2,
 h3,
 h4 {
   font-weight: normal;
+}
+
+.page-wrapper {
+  padding-bottom: 12rem;
 }
 
 .arrows {
@@ -128,12 +134,12 @@ h4 {
 }
 
 .cart {
-  padding: 1.5rem 1% 0.5rem 1%;
+  padding: 1.5rem 1%;
 }
 
 @media (min-width: 768px) {
   .cart {
-    padding: 1.5rem 5% 0.5rem 5%;
+    padding: 1.5rem 5%;
   }
 }
 
@@ -1492,6 +1498,13 @@ h4 {
           transform: translate(-50%, 0);
 }
 
+.footer-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1499,7 +1512,7 @@ h4 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  max-height: 15rem;
+  height: 12rem;
   padding: 5% 3%;
   border-top: solid #555 1px;
 }

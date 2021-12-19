@@ -7,9 +7,11 @@ import Footer from '../components/Footer';
 const ContactPage = () => {
     return (
         <>
-            <Header />
-            <Line variant='long' />
-            <Contact />
+            <div className='page-wrapper'>
+                <Header />
+                <Line variant='long' />
+                <Contact />
+            </div>
             <Footer />
         </>
     )
