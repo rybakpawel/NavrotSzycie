@@ -2,7 +2,7 @@ export const calculateTotalPrice = (allProducts, promotion) => {
     let totalPrice = 0;
 
     allProducts.forEach(product => {
-        totalPrice += product.price;
+        totalPrice += product.price * product.quantity;
     });
 
     if (promotion > 0) {
@@ -13,7 +13,7 @@ export const calculateTotalPrice = (allProducts, promotion) => {
         let priceOfProductsWithoutPromotion = 0;
 
         productsWithoutPromotion.forEach(product => {
-            priceOfProductsWithoutPromotion += product.price;
+            priceOfProductsWithoutPromotion += product.price * product.quantity;
         });
 
         totalPrice = totalPrice - (priceOfProductsWithoutPromotion * (promotion / 100));

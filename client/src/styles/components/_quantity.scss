@@ -1,0 +1,20 @@
+.quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__change-quantity {
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+
+        &--grey {
+            opacity: 0.3;
+        }
+    }
+
+    &__number {
+        padding: 0 1rem;
+        font-size: 1.4rem;
+    }
+}

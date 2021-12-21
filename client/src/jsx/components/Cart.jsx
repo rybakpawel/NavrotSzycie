@@ -7,6 +7,7 @@ import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import { calculateTotalPrice } from '../utils/calculateTotalPrice';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
+import Quantity from './Quantity';
 import example from '../../assets/images/example-bag.jpg';
 import remove from '../../assets/icons/remove-from-cart.svg';
 
@@ -55,8 +56,10 @@ const getSmallView = () => {
                                     <p>{product.name}</p>
                                     <p>{capitalizeFirstLetter(product.category)}</p>
                                     <p>{product.price.toFixed(2)}zł</p>
-                                    <img src={remove} alt='Usuń produkt' onClick={() => handleRemoveFromCart(product._id)} />
-                                    <div className='cart__product__informations__amount-wrapper'>AMOUNT BAR</div>
+                                    <img src={remove} alt='Usuń produkt' className='cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
+                                    <div className='cart__product__informations__amount-wrapper'>
+                                        <Quantity id={product._id} quantity={product.quantity} />
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -119,6 +122,11 @@ const getLargeView = () => {
         dispatch(removeFromCart(id))
     }
 
+    const priceTimesQuantity = (price, quantity) => {
+        let overall = price * quantity;
+        return overall.toFixed(2)
+    }
+
     return (
         <section className='cart'>
             <SectionTitle title='Koszyk' />
@@ -146,10 +154,10 @@ const getLargeView = () => {
                                         {product.price.toFixed(2)}
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        AMOUNT
+                                        <Quantity id={product._id} quantity={product.quantity} />
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        OVERALL
+                                        {priceTimesQuantity(product.price, product.quantity)}
                                     </div>
                                 </div>
                             )

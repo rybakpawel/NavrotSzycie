@@ -5,13 +5,13 @@ const defaultState = {
 const cartReducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'ADD_TO_CART':
-            const product = action.payload.data;
+            const product = action.payload;
             const existProduct = state.cartProducts.find((item) => item._id === product._id);
 
             if (existProduct) {
                 return {
                     ...state,
-                    cartProducts: state.cartProducts.map((item) => item._id === existItem._id ? product : item),
+                    cartProducts: state.cartProducts.map((item) => item._id === existProduct._id ? product : item),
                 }
             } else {
                 return {
@@ -25,6 +25,31 @@ const cartReducer = (state = defaultState, action) => {
                 ...state,
                 cartProducts: state.cartProducts.filter((item) => item._id !== action.payload),
             };
+
+        case 'CHANGE_QUANTITY':
+            const { id, calculation } = action.payload;
+
+            const calculateQuantity = (item, calculation) => {
+                if (calculation === '-') {
+                    item.quantity > 1 ? item.quantity -= 1 : null
+                } else {
+                    item.quantity < 10 ? item.quantity += 1 : null
+                }
+            };
+
+            const productsAfterQuantityChange = state.cartProducts.map((item) => {
+                if (item._id === id) {
+                    calculateQuantity(item, calculation);
+                    return item;
+                } else {
+                    return item
+                }
+            });
+
+            return {
+                ...state,
+                cartProducts: productsAfterQuantityChange
+            }
 
         default:
             return state;
