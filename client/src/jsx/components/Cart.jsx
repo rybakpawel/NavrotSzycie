@@ -40,6 +40,11 @@ const getSmallView = () => {
         dispatch(removeFromCart(id))
     }
 
+    const priceTimesQuantity = (price, quantity) => {
+        let overall = price * quantity;
+        return overall.toFixed(2)
+    }
+
     return (
         <section className='cart'>
             <SectionTitle title='Koszyk' />
@@ -55,7 +60,7 @@ const getSmallView = () => {
                                 <div className='cart__product__informations'>
                                     <p>{product.name}</p>
                                     <p>{capitalizeFirstLetter(product.category)}</p>
-                                    <p>{product.price.toFixed(2)}zł</p>
+                                    <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>
                                     <img src={remove} alt='Usuń produkt' className='cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                                     <div className='cart__product__informations__amount-wrapper'>
                                         <Quantity id={product._id} quantity={product.quantity} />
@@ -151,13 +156,13 @@ const getLargeView = () => {
                                         </div>
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        {product.price.toFixed(2)}
+                                        {product.price.toFixed(2)}zł
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
                                         <Quantity id={product._id} quantity={product.quantity} />
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        {priceTimesQuantity(product.price, product.quantity)}
+                                        {priceTimesQuantity(product.price, product.quantity)}zł
                                     </div>
                                 </div>
                             )

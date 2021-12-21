@@ -5,6 +5,7 @@ import { removeFromCart } from '../redux/actions/cartActions';
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import { calculateTotalPrice } from '../utils/calculateTotalPrice';
 import Button from './Button';
+import Quantity from './Quantity';
 import example from '../../assets/images/example-bag.jpg';
 import close from '../../assets/icons/close.svg';
 
@@ -14,6 +15,11 @@ const SmallCart = () => {
 
     const handleRemoveFromCart = (id) => {
         dispatch(removeFromCart(id))
+    }
+
+    const priceTimesQuantity = (price, quantity) => {
+        let overall = price * quantity;
+        return overall.toFixed(2)
     }
 
     return (
@@ -27,9 +33,11 @@ const SmallCart = () => {
                         <div className='small-cart__product__informations'>
                             <p>{product.name}</p>
                             <p>{capitalizeFirstLetter(product.category)}</p>
-                            <p>{product.price.toFixed(2)}zł</p>
-                            <img src={close} alt='Usuń produkt' onClick={() => handleRemoveFromCart(product._id)} />
-                            <div className='small-cart__product__informations__amount-wrapper'>AMOUNT BAR</div>
+                            <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>
+                            <img src={close} alt='Usuń produkt' className='small-cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
+                            <div className='small-cart__product__informations__amount-wrapper'>
+                                <Quantity id={product._id} quantity={product.quantity} />
+                            </div>
                         </div>
                     </div>
                 )

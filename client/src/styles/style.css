@@ -1135,7 +1135,7 @@ h4 {
 }
 
 .quantity__number {
-  padding: 0 1rem;
+  padding: 0 0.8rem;
   font-size: 1.4rem;
 }
 
@@ -1336,7 +1336,7 @@ h4 {
   font-size: 1.5rem;
 }
 
-.small-cart__product__informations img {
+.small-cart__product__informations__delete {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
