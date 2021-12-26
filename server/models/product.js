@@ -4,6 +4,7 @@ const productSchema = new mongoose.Schema({
     name: String,
     category: String,
     price: Number,
+    images: [String],
     description: String,
     height: Number,
     width: Number,
@@ -11,6 +12,7 @@ const productSchema = new mongoose.Schema({
     care: String,
     promotion: Boolean,
     promotionSize: Number,
+    quantity: Number,
     addDate: Date,
 }, { collection: 'products' });
 

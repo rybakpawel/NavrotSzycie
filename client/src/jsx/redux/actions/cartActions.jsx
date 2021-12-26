@@ -3,7 +3,7 @@ export const addToCart = (category, name) => async (dispatch, getState) => {
         const res = await fetch(`http://localhost:5000/products/${category}/${name}`);
         const data = await res.json();
 
-        const { addDate, care, description, height, materials, price, promotion, promotionSize, width, _id } = data;
+        const { addDate, care, description, height, materials, price, promotion, promotionSize, quantity, width, _id } = data;
 
         const newProduct = {
             addDate,
@@ -17,6 +17,7 @@ export const addToCart = (category, name) => async (dispatch, getState) => {
             promotion,
             promotionSize,
             quantity: 1,
+            overallQuantity: quantity,
             width,
             _id
         }
@@ -41,11 +42,12 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     localStorage.setItem('cart', JSON.stringify(getState().cartReducer.cartProducts));
 };
 
-export const changeQuantity = (id, calculation) => (dispatch, getState) => {
+export const changeQuantity = (id, overallQuantity, calculation) => (dispatch, getState) => {
     dispatch({
         type: 'CHANGE_QUANTITY',
         payload: {
             id,
+            overallQuantity,
             calculation
         }
     });

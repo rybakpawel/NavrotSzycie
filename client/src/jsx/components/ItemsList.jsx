@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isDesktop, isTablet, withOrientationChange } from 'react-device-detect';
 import { getNewProducts, getSimilarProducts } from '../redux/actions/productActions';
@@ -7,15 +8,27 @@ import SmallCard from './SmallCard';
 import LargeCard from './LargeCard';
 import Loading from './Loading';
 
-let ItemsList = ({ isLandscape, cardsVariant }) => {
+let ItemsList = ({ isLandscape, cardsVariant, variant }) => {
+    const { category } = useParams();
     const dispatch = useDispatch();
 
-    const newProducts = useSelector(state => state.productReducer.newProducts);
-    const similarProducts = useSelector(state => state.productReducer.similarProducts);
+    let products;
+    switch (variant) {
+        case 'new':
+            products = useSelector(state => state.productReducer.newProducts);
+            break;
+
+        case 'similar':
+            products = useSelector(state => state.productReducer.similarProducts);
+            break;
+
+        default:
+            break;
+    }
 
     useEffect(() => {
         dispatch(getNewProducts())
-        dispatch(getSimilarProducts('plecaki'))
+        dispatch(getSimilarProducts(category))
     }, [dispatch]);
 
     const { width } = useWindowDimensions();
@@ -26,9 +39,9 @@ let ItemsList = ({ isLandscape, cardsVariant }) => {
     else productsAmount = 2;
 
     return (
-        newProducts ?
+        products ?
             <div className='items-list'>
-                {newProducts.slice(0, productsAmount).map(product => {
+                {products.slice(0, productsAmount).map(product => {
                     const { name, price, category } = product;
                     let card;
                     if (cardsVariant === 'small') card = <SmallCard name={name} category={category} price={price} />;

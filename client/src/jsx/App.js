@@ -3,6 +3,7 @@ import '../styles/style.css';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
+import AdminPage from './pages/AdminPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
@@ -16,6 +17,7 @@ function App() {
                 <Switch>
                     <Route path='/' exact component={HomePage} />
                     <Route path='/aboutme' exact component={AboutMePage} />
+                    <Route path='/admin' exact component={AdminPage} />
                     <Route path='/contact' exact component={ContactPage} />
                     <Route path='/cart' exact component={CartPage} />
                     <Route path='/checkout/delivery' exact render={(props) => (<CheckoutPage {...props} step='delivery' />)} />

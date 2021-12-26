@@ -36,7 +36,7 @@ const SmallCart = () => {
                             <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>
                             <img src={close} alt='Usuń produkt' className='small-cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                             <div className='small-cart__product__informations__amount-wrapper'>
-                                <Quantity id={product._id} quantity={product.quantity} />
+                                <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
                             </div>
                         </div>
                     </div>

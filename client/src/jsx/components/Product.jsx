@@ -10,7 +10,6 @@ import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import Button from './Button';
 import Loading from './Loading';
-import example from '../../assets/images/example-bag.jpg';
 import heightIcon from '../../assets/icons/height.svg';
 import widthIcon from '../../assets/icons/width.svg';
 import pocztaPolska from '../../assets/images/poczta-polska.png';
@@ -30,12 +29,12 @@ const Product = () => {
     const [activeDetail, setActiveDetail] = useState([]);
 
     useEffect(() => {
-        dispatch(getProduct(category, name))
-        window.scrollTo(0, 0)
+        dispatch(getProduct(category, name));
+        window.scrollTo(0, 0);
     }, [location, dispatch]);
 
     const handleAddToCart = () => {
-        dispatch(addToCart(category, name))
+        dispatch(addToCart(category, name));
     };
 
     const handleDropdown = (e) => {
@@ -44,7 +43,7 @@ const Product = () => {
     };
 
     const checkActive = (id) => {
-        if (!activeDetail.includes(id)) return false
+        if (!activeDetail.includes(id)) return false;
         else return true;
     };
 
@@ -64,26 +63,16 @@ const Product = () => {
                         navigation={true}
                         thumbs={{ swiper: thumbsSwiper }}
                         className="mySwiper2">
-                        <SwiperSlide>
-                            <img src={example}
-                                alt='image'
-                                className='product__slider__image' />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src={example}
-                                alt='image'
-                                className='product__slider__image' />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src={example}
-                                alt='image'
-                                className='product__slider__image' />
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <img src={example}
-                                alt='image'
-                                className='product__slider__image' />
-                        </SwiperSlide>
+
+                        {product.images.map(img => {
+                            return (
+                                <SwiperSlide>
+                                    <img src={`http://localhost:5000/products/image/${img}`}
+                                        alt='image'
+                                        className='product__slider__image' />
+                                </SwiperSlide>
+                            )
+                        })}
                     </Swiper>
                     {width < 992
                         ? null
@@ -95,36 +84,26 @@ const Product = () => {
                                 freeMode={true}
                                 watchSlidesProgress={true}
                                 className="mySwiper">
-                                <SwiperSlide>
-                                    <img src={example}
-                                        alt='image'
-                                        className='product__slider__small-image' />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={example}
-                                        alt='image'
-                                        className='product__slider__small-image' />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={example}
-                                        alt='image'
-                                        className='product__slider__small-image' />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <img src={example}
-                                        alt='image'
-                                        className='product__slider__small-image' />
-                                </SwiperSlide>
+
+                                {product.images.map(img => {
+                                    return (
+                                        <SwiperSlide>
+                                            <img src={`http://localhost:5000/products/image/${img}`}
+                                                alt='image'
+                                                className='product__slider__small-image' />
+                                        </SwiperSlide>
+                                    )
+                                })}
                             </Swiper>
                         </div>}
                 </div>
                 <div className='product__informations'>
                     <h2 className='product__informations__title'>{product.name}</h2>
-                    <h3 className='product__informations__price'>{product.price}zł</h3>
+                    <h3 className='product__informations__price'>{product.promotion ? <s>{product.price}</s> : product.price}zł</h3>
                     <p className='product__informations__description'>{product.description}</p>
                     {width < 992 ?
-                        <div className='product__informations__button-wrapper' onClick={isProductInCart ? null : handleAddToCart}>
-                            <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} />
+                        <div className='product__informations__button-wrapper' onClick={isProductInCart || !product.quantity ? null : handleAddToCart}>
+                            {product.quantity === false ? <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} /> : <p className='product__informations__lack'>Produkt niedostępny</p>}
                         </div>
                         : null
                     }
@@ -205,8 +184,8 @@ const Product = () => {
 
                     {width < 992 ?
                         null
-                        : <div className='product__informations__button-wrapper' onClick={isProductInCart ? null : handleAddToCart}>
-                            <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} />
+                        : <div className='product__informations__button-wrapper' onClick={isProductInCart || !product.quantity ? null : handleAddToCart}>
+                            {product.quantity ? <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} /> : <p className='product__informations__lack'>Produkt niedostępny</p>}
                         </div>
                     }
                 </div>

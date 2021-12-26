@@ -65,6 +65,11 @@
             }
         }
 
+        &__lack {
+            font-size: 2rem;
+            color: $error;
+        }
+
         &__list {
             display: flex;
             flex-direction: column;

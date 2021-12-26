@@ -4,6 +4,15 @@
     align-items: center;
     margin: 0 1%;
     background-color: $base-background;
+    max-width: 48%;
+
+    @media (min-width: 576px) {
+        max-width: 31%;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 18%;
+    }
 
     &__product-image {
         width: 100%;

@@ -27,19 +27,19 @@ const cartReducer = (state = defaultState, action) => {
             };
 
         case 'CHANGE_QUANTITY':
-            const { id, calculation } = action.payload;
+            const { id, overallQuantity, calculation } = action.payload;
 
-            const calculateQuantity = (item, calculation) => {
+            const calculateQuantity = (item, overallQuantity, calculation) => {
                 if (calculation === '-') {
                     item.quantity > 1 ? item.quantity -= 1 : null
                 } else {
-                    item.quantity < 10 ? item.quantity += 1 : null
+                    item.quantity < overallQuantity ? item.quantity += 1 : null
                 }
             };
 
             const productsAfterQuantityChange = state.cartProducts.map((item) => {
                 if (item._id === id) {
-                    calculateQuantity(item, calculation);
+                    calculateQuantity(item, overallQuantity, calculation);
                     return item;
                 } else {
                     return item

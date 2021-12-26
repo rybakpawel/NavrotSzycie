@@ -63,7 +63,7 @@ const getSmallView = () => {
                                     <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>
                                     <img src={remove} alt='Usuń produkt' className='cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                                     <div className='cart__product__informations__amount-wrapper'>
-                                        <Quantity id={product._id} quantity={product.quantity} />
+                                        <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@ const getLargeView = () => {
                                         {product.price.toFixed(2)}zł
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        <Quantity id={product._id} quantity={product.quantity} />
+                                        <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
                                         {priceTimesQuantity(product.price, product.quantity)}zł
