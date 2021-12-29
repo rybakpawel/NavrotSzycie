@@ -6,7 +6,7 @@ import example from '../../assets/images/example-bag.jpg';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
-const LargeCard = ({ name, category, price }) => {
+const LargeCard = ({ name, category, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -25,7 +25,11 @@ const LargeCard = ({ name, category, price }) => {
                     className='large-card__product-image' />
                 <div className='large-card__informations'>
                     <h3 className='large-card__informations__name'>{name}</h3>
-                    <h4 className='large-card__informations__price'>{price.toFixed(2)}zł</h4>
+
+                    {promotion ?
+                        <h4 className='large-card__informations__price'><s>{price.toFixed(2)}zł</s> {priceWithPromotion.toFixed(2)}zł</h4> :
+                        <h4 className='large-card__informations__price'>{price.toFixed(2)}zł</h4>
+                    }
                 </div>
             </Link>
             <img

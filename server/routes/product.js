@@ -58,6 +58,7 @@ router.post('/add', upload.any('image'), (req, res) => {
             name,
             category,
             price,
+            priceWithPromotion: promotion ? price - promotionSize : price,
             images,
             description,
             height,
@@ -135,7 +136,7 @@ router.get('/:category/similar', async (req,res) => {
         res.send(similarProducts);
 
     } catch(err) {
-        console.log('blad')
+        console.log('blad') 
     }
 });
 

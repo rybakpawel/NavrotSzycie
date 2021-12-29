@@ -3,7 +3,7 @@ export const addToCart = (category, name) => async (dispatch, getState) => {
         const res = await fetch(`http://localhost:5000/products/${category}/${name}`);
         const data = await res.json();
 
-        const { addDate, care, description, height, materials, price, promotion, promotionSize, quantity, width, _id } = data;
+        const { addDate, care, description, height, materials, price, priceWithPromotion, promotion, promotionSize, quantity, width, _id } = data;
 
         const newProduct = {
             addDate,
@@ -14,6 +14,7 @@ export const addToCart = (category, name) => async (dispatch, getState) => {
             materials,
             name: data.name,
             price,
+            priceWithPromotion,
             promotion,
             promotionSize,
             quantity: 1,

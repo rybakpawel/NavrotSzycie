@@ -6,7 +6,7 @@ let Slider = ({ title, products }) => {
     return (
         <section className='slider'>
             <SectionTitle title={title} />
-            <ItemsList cardsVariant='small' variant={products} />
+            <ItemsList variant={products} />
         </section>
     )
 }

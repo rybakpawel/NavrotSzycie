@@ -99,7 +99,10 @@ const Product = () => {
                 </div>
                 <div className='product__informations'>
                     <h2 className='product__informations__title'>{product.name}</h2>
-                    <h3 className='product__informations__price'>{product.promotion ? <s>{product.price}</s> : product.price}zł</h3>
+                    {product.promotion ?
+                        <h3 className='product__informations__price'><s>{product.price.toFixed(2)}zł</s> {product.priceWithPromotion.toFixed(2)}zł</h3> :
+                        <h3 className='product__informations__price'> {product.price.toFixed(2)}zł</h3>
+                    }
                     <p className='product__informations__description'>{product.description}</p>
                     {width < 992 ?
                         <div className='product__informations__button-wrapper' onClick={isProductInCart || !product.quantity ? null : handleAddToCart}>

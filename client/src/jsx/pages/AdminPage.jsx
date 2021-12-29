@@ -10,7 +10,7 @@ const AdminPage = () => {
                 <label htmlFor="">kategoria</label>
                 <input type='text' name='category' />
                 <label htmlFor="">cena</label>
-                <input type='number' name='price' />
+                <input type='number' step={0.01} name='price' />
                 <label htmlFor="">zdjecia</label>
                 <input type='file' name='image' multiple />
                 <label htmlFor="">opis</label>

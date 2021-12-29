@@ -4,7 +4,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const product = require('./routes/product');
-const image = require('./routes/image');
 const contact = require('./routes/contact');
 const delivery = require('./routes/delivery');
 const payment = require('./routes/payment');
@@ -33,7 +32,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors());
 
 app.use('/products', product);
-app.use('/images', image);
 app.use('/contact', contact);
 app.use('/delivery', delivery);
 app.use('/payment', payment);

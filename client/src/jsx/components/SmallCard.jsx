@@ -6,7 +6,7 @@ import example from '../../assets/images/example-bag.jpg';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
-const SmallCard = ({ name, category, price }) => {
+const SmallCard = ({ name, category, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -24,7 +24,10 @@ const SmallCard = ({ name, category, price }) => {
                 className='small-card__product-image' />
             <div className='small-card__name-price'>
                 <h3 className='small-card__name-price__name'>{name}</h3>
-                <h4 className='small-card__name-price__price'>{price.toFixed(2)}zł</h4>
+                {promotion ?
+                    <h4 className='small-card__name-price__price'><s>{price.toFixed(2)}zł</s> {priceWithPromotion.toFixed(2)}zł</h4> :
+                    <h4 className='small-card__name-price__price'>{price.toFixed(2)}zł</h4>
+                }
             </div>
             <div className='small-card__buttons-wrapper'>
                 <Button

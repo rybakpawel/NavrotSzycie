@@ -1,22 +1,26 @@
-export const calculateTotalPrice = (allProducts, promotion) => {
+export const calculateTotalPrice = (allProducts, promotionCode) => {
     let totalPrice = 0;
 
     allProducts.forEach(product => {
-        totalPrice += product.price * product.quantity;
+        if (product.promotion) {
+            totalPrice += product.priceWithPromotion * product.quantity;
+        } else {
+            totalPrice += product.price * product.quantity;
+        }
     });
 
-    if (promotion > 0) {
-        const productsWithoutPromotion = allProducts.filter((product) => {
+    if (promotionCode > 0) {
+        const productsWithoutPromotionCode = allProducts.filter((product) => {
             return product.promotion === false;
         });
 
-        let priceOfProductsWithoutPromotion = 0;
+        let priceOfProductsWithoutPromotionCode = 0;
 
-        productsWithoutPromotion.forEach(product => {
-            priceOfProductsWithoutPromotion += product.price * product.quantity;
+        productsWithoutPromotionCode.forEach(product => {
+            priceOfProductsWithoutPromotionCode += product.price * product.quantity;
         });
 
-        totalPrice = totalPrice - (priceOfProductsWithoutPromotion * (promotion / 100));
+        totalPrice = totalPrice - (priceOfProductsWithoutPromotionCode * (promotionCode / 100));
     }
 
     totalPrice = totalPrice.toFixed(2);

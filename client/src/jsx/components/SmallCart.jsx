@@ -33,7 +33,8 @@ const SmallCart = () => {
                         <div className='small-cart__product__informations'>
                             <p>{product.name}</p>
                             <p>{capitalizeFirstLetter(product.category)}</p>
-                            <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>
+                            {product.promotion ? <p>{priceTimesQuantity(product.priceWithPromotion, product.quantity)}zł</p> :
+                                <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>}
                             <img src={close} alt='Usuń produkt' className='small-cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                             <div className='small-cart__product__informations__amount-wrapper'>
                                 <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />

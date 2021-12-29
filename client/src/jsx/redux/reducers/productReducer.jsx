@@ -38,7 +38,7 @@ const productReducer = (state = defaultState, action) => {
         case 'GET_SIMILAR_PRODUCTS':
             return {
                 ...state,
-                similarProducts: action.payload.data
+                similarProducts: action.payload.similarProducts
             };
 
         default:

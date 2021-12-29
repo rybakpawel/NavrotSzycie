@@ -78,15 +78,19 @@ export const getNewProducts = () => async dispatch => {
     }
 }
 
-export const getSimilarProducts = (category) => async dispatch => {
+export const getSimilarProducts = (category, name) => async dispatch => {
     try {
         const res = await fetch(`http://localhost:5000/products/${category}/similar`);
         const data = await res.json();
 
+        const similarProducts = data.filter(product => {
+            return product.name !== name;
+        })
+
         dispatch({
             type: 'GET_SIMILAR_PRODUCTS',
             payload: {
-                data
+                similarProducts
             }
         });
     } catch {

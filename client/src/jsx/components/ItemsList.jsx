@@ -5,11 +5,10 @@ import { isDesktop, isTablet, withOrientationChange } from 'react-device-detect'
 import { getNewProducts, getSimilarProducts } from '../redux/actions/productActions';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import SmallCard from './SmallCard';
-import LargeCard from './LargeCard';
 import Loading from './Loading';
 
-let ItemsList = ({ isLandscape, cardsVariant, variant }) => {
-    const { category } = useParams();
+let ItemsList = ({ isLandscape, variant }) => {
+    const { category, name } = useParams();
     const dispatch = useDispatch();
 
     let products;
@@ -20,6 +19,7 @@ let ItemsList = ({ isLandscape, cardsVariant, variant }) => {
 
         case 'similar':
             products = useSelector(state => state.productReducer.similarProducts);
+            console.log(products)
             break;
 
         default:
@@ -28,7 +28,7 @@ let ItemsList = ({ isLandscape, cardsVariant, variant }) => {
 
     useEffect(() => {
         dispatch(getNewProducts())
-        dispatch(getSimilarProducts(category))
+        dispatch(getSimilarProducts(category, name))
     }, [dispatch]);
 
     const { width } = useWindowDimensions();
@@ -42,11 +42,8 @@ let ItemsList = ({ isLandscape, cardsVariant, variant }) => {
         products ?
             <div className='items-list'>
                 {products.slice(0, productsAmount).map(product => {
-                    const { name, price, category } = product;
-                    let card;
-                    if (cardsVariant === 'small') card = <SmallCard name={name} category={category} price={price} />;
-                    else if (cardsVariant === 'large') card = <LargeCard name={name} category={category} price={price} />;
-                    return card;
+                    const { name, category, price, priceWithPromotion, promotion } = product;
+                    return <SmallCard name={name} category={category} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                 })}
             </div>
             : <Loading />
