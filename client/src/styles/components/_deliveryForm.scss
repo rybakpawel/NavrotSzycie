@@ -33,9 +33,7 @@
         }
 
         &__wrapper {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 0.5rem;
+            @include post-form;
 
             &--short {
                 width: 45%;
@@ -45,29 +43,6 @@
         &__collection {
             display: flex;
             justify-content: space-between;
-        }
-
-        &__label {
-            text-align: left;
-            padding: 0.5rem 0;
-            font-size: 1.6rem;
-
-            @media (min-width: 992px) {
-                font-size: 1.3rem;
-            }
-        }
-
-        &__input {
-            padding: 1rem;
-            font-size: 1.8rem;
-            font-family: 'Questrial', sans-serif;
-            border: 1px solid $light-border;
-
-            @media (min-width: 992px) {
-                padding: 0.5rem 1rem;
-                padding-left: 1rem;
-                font-size: 1.4rem;
-            }
         }
     }
 

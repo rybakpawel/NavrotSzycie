@@ -19,7 +19,6 @@ let ItemsList = ({ isLandscape, variant }) => {
 
         case 'similar':
             products = useSelector(state => state.productReducer.similarProducts);
-            console.log(products)
             break;
 
         default:
@@ -42,8 +41,8 @@ let ItemsList = ({ isLandscape, variant }) => {
         products ?
             <div className='items-list'>
                 {products.slice(0, productsAmount).map(product => {
-                    const { name, category, price, priceWithPromotion, promotion } = product;
-                    return <SmallCard name={name} category={category} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
+                    const { name, category, quantity, price, priceWithPromotion, promotion } = product;
+                    return <SmallCard name={name} category={category} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                 })}
             </div>
             : <Loading />

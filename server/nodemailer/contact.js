@@ -1,11 +1,13 @@
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
 
 const sendContactEmail = (email, message) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: 'betterapp.euro2021@gmail.com',
-            pass: 'BETter2021'
+            pass: process.env.EMAIL_PASSWORD
         }
     })
 

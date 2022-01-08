@@ -1,0 +1,18 @@
+.add-product {
+    margin: 2rem 5%;
+
+    &__data-wrapper {
+        @include post-form;
+
+        &__select-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__button-wrapper {
+        margin-top: 3rem;
+        text-align: center;
+    }
+}

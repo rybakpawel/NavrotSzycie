@@ -1,0 +1,54 @@
+@mixin post-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+
+    &--checkbox {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__label {
+        text-align: left;
+        padding: 0.5rem 0;
+        font-size: 1.6rem;
+
+        &--checkbox {
+            padding-right: 0.5rem;
+        }
+
+        @media (min-width: 992px) {
+            font-size: 1.3rem;
+        }
+    }
+
+    input[type=file]::file-selector-button {
+        display: none;
+    }
+
+    &__input {
+        padding: 1rem;
+        font-size: 1.8rem;
+        font-family: 'Questrial', sans-serif;
+        border: 1px solid $light-border;
+        color: $base-font;
+
+        &--category {
+            width: 50%;
+        }
+
+        &--images {
+            cursor: pointer;
+        }
+
+        @media (min-width: 992px) {
+            padding: 0.5rem 1rem;
+            padding-left: 1rem;
+            font-size: 1.4rem;
+        }
+
+        &__plus {
+            width: 15px;
+        }
+    }
+}

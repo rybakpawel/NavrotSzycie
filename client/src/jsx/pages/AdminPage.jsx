@@ -1,37 +1,43 @@
 import React from 'react';
+import { useParams } from 'react-router';
+import Logo from '../components/Logo';
+import AdminMenu from '../components/AdminMenu';
+import AdminProduct from '../components/AdminProduct';
+import AdminSection from '../components/AdminSection';
+import AdminPromotion from '../components/AdminPromotion';
+import user from '../../assets/icons/user.svg';
 
 const AdminPage = () => {
+    const { item, action } = useParams();
+
+    const checkItem = item => {
+        switch (item) {
+            case 'product':
+                return <AdminProduct action={action} />
+
+            case 'section':
+                return <AdminSection action={action} />
+
+            case 'promotion':
+                return <AdminPromotion action={action} />
+
+            default:
+                return <AdminMenu />
+        }
+    }
+
     return (
-        <>
-            <h1>Dodaj zdjęcie</h1>
-            <form action='http://localhost:5000/products/add' method='POST' encType='multipart/form-data' >
-                <label htmlFor="">nazwa</label>
-                <input type='text' name='name' />
-                <label htmlFor="">kategoria</label>
-                <input type='text' name='category' />
-                <label htmlFor="">cena</label>
-                <input type='number' step={0.01} name='price' />
-                <label htmlFor="">zdjecia</label>
-                <input type='file' name='image' multiple />
-                <label htmlFor="">opis</label>
-                <input type='text' name='description' />
-                <label htmlFor="">wysokosc</label>
-                <input type='number' name='height' />
-                <label htmlFor="">szerokosc</label>
-                <input type='number' name='width' />
-                <label htmlFor="">materialy</label>
-                <input type='text' name='materials' />
-                <label htmlFor="">pielegnacja</label>
-                <input type='text' name='care' />
-                <label htmlFor="">promocja</label>
-                <input type='checkbox' name='promotion' />
-                <label htmlFor="">wielkosc promocji</label>
-                <input type='number' name='promotionSize' />
-                <label htmlFor="">dostepna ilosc</label>
-                <input type='number' name='quantity' />
-                <input type='submit' />
-            </form>
-        </>
+        <div className='admin'>
+            <header className='admin__header'>
+                <Logo admin={true} />
+                <p className='admin__header__text'>Admin</p>
+                <div className='admin__header__user'>
+                    <img src={user} alt='uzytkownik' />
+                    <p>Witaj, Patrycja</p>
+                </div>
+            </header>
+            {checkItem(item)}
+        </div>
     )
 };
 

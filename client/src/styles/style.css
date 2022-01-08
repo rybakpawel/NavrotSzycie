@@ -57,6 +57,96 @@ h4 {
   padding-bottom: 12rem;
 }
 
+.add-product {
+  margin: 2rem 5%;
+}
+
+.add-product__data-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.add-product__data-wrapper--checkbox {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add-product__data-wrapper__label {
+  text-align: left;
+  padding: 0.5rem 0;
+  font-size: 1.6rem;
+}
+
+.add-product__data-wrapper__label--checkbox {
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .add-product__data-wrapper__label {
+    font-size: 1.3rem;
+  }
+}
+
+.add-product__data-wrapper input[type=file]::file-selector-button {
+  display: none;
+}
+
+.add-product__data-wrapper__input {
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-family: 'Questrial', sans-serif;
+  border: 1px solid #e6e6e6;
+  color: #555;
+}
+
+.add-product__data-wrapper__input--category {
+  width: 50%;
+}
+
+.add-product__data-wrapper__input--images {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .add-product__data-wrapper__input {
+    padding: 0.5rem 1rem;
+    padding-left: 1rem;
+    font-size: 1.4rem;
+  }
+}
+
+.add-product__data-wrapper__input__plus {
+  width: 15px;
+}
+
+.add-product__data-wrapper__select-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add-product__button-wrapper {
+  margin-top: 3rem;
+  text-align: center;
+}
+
 .arrows {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -131,6 +221,10 @@ h4 {
   padding: 1rem 4rem;
   background-color: #da8c17;
   color: #fff;
+}
+
+.button--admin-add {
+  padding: 1rem;
 }
 
 .cart {
@@ -501,6 +595,64 @@ h4 {
   margin-bottom: 0.5rem;
 }
 
+.delivery-form__customer-data__wrapper--checkbox {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.delivery-form__customer-data__wrapper__label {
+  text-align: left;
+  padding: 0.5rem 0;
+  font-size: 1.6rem;
+}
+
+.delivery-form__customer-data__wrapper__label--checkbox {
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .delivery-form__customer-data__wrapper__label {
+    font-size: 1.3rem;
+  }
+}
+
+.delivery-form__customer-data__wrapper input[type=file]::file-selector-button {
+  display: none;
+}
+
+.delivery-form__customer-data__wrapper__input {
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-family: 'Questrial', sans-serif;
+  border: 1px solid #e6e6e6;
+  color: #555;
+}
+
+.delivery-form__customer-data__wrapper__input--category {
+  width: 50%;
+}
+
+.delivery-form__customer-data__wrapper__input--images {
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .delivery-form__customer-data__wrapper__input {
+    padding: 0.5rem 1rem;
+    padding-left: 1rem;
+    font-size: 1.4rem;
+  }
+}
+
+.delivery-form__customer-data__wrapper__input__plus {
+  width: 15px;
+}
+
 .delivery-form__customer-data__wrapper--short {
   width: 45%;
 }
@@ -512,33 +664,6 @@ h4 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-}
-
-.delivery-form__customer-data__label {
-  text-align: left;
-  padding: 0.5rem 0;
-  font-size: 1.6rem;
-}
-
-@media (min-width: 992px) {
-  .delivery-form__customer-data__label {
-    font-size: 1.3rem;
-  }
-}
-
-.delivery-form__customer-data__input {
-  padding: 1rem;
-  font-size: 1.8rem;
-  font-family: 'Questrial', sans-serif;
-  border: 1px solid #e6e6e6;
-}
-
-@media (min-width: 992px) {
-  .delivery-form__customer-data__input {
-    padding: 0.5rem 1rem;
-    padding-left: 1rem;
-    font-size: 1.4rem;
-  }
 }
 
 .delivery-form__provider {
@@ -820,6 +945,10 @@ h4 {
 .logo {
   font-family: 'Amatic SC', sans-serif;
   font-size: 4rem;
+}
+
+.logo--admin {
+  color: #fff;
 }
 
 .menu-drop-down {
@@ -1463,6 +1592,108 @@ h4 {
   font-size: 1.8rem;
   letter-spacing: 1px;
   line-height: 2.2rem;
+}
+
+.admin {
+  min-height: 100vh;
+}
+
+.admin__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 0 5% 0 5%;
+  background-color: #2d353c;
+}
+
+.admin__header__text {
+  color: #2d353c;
+  background-color: #fff;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem 1rem;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.admin__header__user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  color: #fff;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+}
+
+.admin__header__user img {
+  width: 25px;
+  margin-left: auto;
+}
+
+.admin__header__user p {
+  font-size: 1.2rem;
+}
+
+.admin__wrapper {
+  position: relative;
+  margin: 3%;
+}
+
+.admin__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+
+.admin__title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.admin-menu {
+  background-color: #3f505e;
+  color: #fff;
+  font-size: 2rem;
+}
+
+.admin-menu__list {
+  list-style: none;
+}
+
+.admin-menu__list__item {
+  padding: 1.5rem 2rem;
+  border-bottom: 0.5px solid #fff;
+}
+
+.admin-menu__list__item--active {
+  background-color: #2d353c;
+}
+
+.admin-menu__list__item--second {
+  font-size: 1.8rem;
+  border: none;
+}
+
+.admin-menu__list__item--second:nth-of-type(1) {
+  padding-top: 3rem;
+}
+
+.admin-menu__list__item--second:nth-last-of-type(1) {
+  padding-bottom: 0;
+}
+
+.admin-menu__list__item a {
+  color: #fff;
 }
 
 .contact {

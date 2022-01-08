@@ -106,7 +106,7 @@ const Product = () => {
                     <p className='product__informations__description'>{product.description}</p>
                     {width < 992 ?
                         <div className='product__informations__button-wrapper' onClick={isProductInCart || !product.quantity ? null : handleAddToCart}>
-                            {product.quantity === false ? <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} /> : <p className='product__informations__lack'>Produkt niedostępny</p>}
+                            {product.quantity ? <Button variant='submit' title={isProductInCart ? 'Produkt w koszyku!' : 'Dodaj do koszyka'} /> : <p className='product__informations__lack'>Produkt niedostępny</p>}
                         </div>
                         : null
                     }

@@ -45,7 +45,7 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-router.post('/add', upload.any('image'), (req, res) => {
+router.post('/add', upload.any('image'), async (req, res) => {
         const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
 
         const images = req.files.map((img) => {
@@ -66,10 +66,16 @@ router.post('/add', upload.any('image'), (req, res) => {
             materials,
             care,
             promotion: promotion ? true : false,
-            promotionSize,
+            promotionSize: promotion ? promotionSize : 0,
             quantity,
             addDate: now.getDate()
         })
+
+        const nameExist = await Product.find({ name });
+        
+        if (nameExist.length !== 0) {
+            return res.status(400).send('Istnieje już produkt o podanej nazwie');
+        }
 
         product.save((err) => {
             if (err) res.status(400).send('Wystąpił błąd. Produkt nie został dodany.');

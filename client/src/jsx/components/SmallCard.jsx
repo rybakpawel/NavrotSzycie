@@ -5,8 +5,9 @@ import { addToCart } from '../redux/actions/cartActions';
 import example from '../../assets/images/example-bag.jpg';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
+import { Link } from 'react-router-dom';
 
-const SmallCard = ({ name, category, price, priceWithPromotion, promotion }) => {
+const SmallCard = ({ name, category, quantity, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -18,10 +19,12 @@ const SmallCard = ({ name, category, price, priceWithPromotion, promotion }) => 
 
     return (
         <div className='small-card'>
-            <img
-                src={example}
-                alt='produkt'
-                className='small-card__product-image' />
+            <Link to={`/${category}/${name}`}>
+                <img
+                    src={example}
+                    alt='produkt'
+                    className='small-card__product-image' />
+            </Link>
             <div className='small-card__name-price'>
                 <h3 className='small-card__name-price__name'>{name}</h3>
                 {promotion ?
@@ -34,11 +37,12 @@ const SmallCard = ({ name, category, price, priceWithPromotion, promotion }) => 
                     link={`/${category}/${name}`}
                     variant='small'
                     title='Zobacz' />
-                <img
-                    src={isProductInCart ? okIcon : addToCartIcon}
-                    alt='dodaj'
-                    className='small-card__buttons-wrapper__add-to-cart'
-                    onClick={isProductInCart ? null : handleAddToCart} />
+                {quantity ?
+                    <img
+                        src={isProductInCart ? okIcon : addToCartIcon}
+                        alt='dodaj'
+                        className='small-card__buttons-wrapper__add-to-cart'
+                        onClick={isProductInCart ? null : handleAddToCart} /> : null}
             </div>
         </div>
     )

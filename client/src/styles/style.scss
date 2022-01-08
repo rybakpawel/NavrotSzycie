@@ -1,5 +1,7 @@
 @import './base/vars';
+@import './base/mixins';
 @import './base/app';
+@import './components/addProduct';
 @import './components/arrows';
 @import './components/button';
 @import './components/cart';
@@ -22,6 +24,8 @@
 @import './components/smallCart';
 @import './components/summary';
 @import './layout/aboutMe';
+@import './layout/admin';
+@import './layout/adminMenu';
 @import './layout/contact';
 @import './layout/designAd';
 @import './layout/footer';

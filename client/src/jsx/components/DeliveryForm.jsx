@@ -79,76 +79,76 @@ const DeliveryForm = ({ promotion }) => {
                 </div>
                 <p className='delivery-form__customer-data__response-message'>{responseMessage}</p>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>E-mail</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>E-mail</label>
                     <input
                         type='email'
                         name='email'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.email}
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>Imię</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Imię</label>
                     <input
                         type='text'
                         name='firstName'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.firstName}
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>Nazwisko</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Nazwisko</label>
                     <input
                         type='text'
                         name='lastName'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.lastName}
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>Ulica</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Ulica</label>
                     <input
                         type='text'
                         name='street'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.street}
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__collection'>
                     <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                        <label htmlFor="" className='delivery-form__customer-data__label'>Numer domu</label>
+                        <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Numer domu</label>
                         <input
                             type='text'
                             name='buildingNumber'
-                            className='delivery-form__customer-data__input'
+                            className='delivery-form__customer-data__wrapper__input'
                             value={formInputs.buildingNumber}
                             onChange={handleChange} />
                     </div>
                     <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                        <label htmlFor="" className='delivery-form__customer-data__label'>Numer lokalu</label>
+                        <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Numer lokalu</label>
                         <input
                             type='text'
                             name='flatNumber'
-                            className='delivery-form__customer-data__input'
+                            className='delivery-form__customer-data__wrapper__input'
                             value={formInputs.flatNumber}
                             onChange={handleChange} />
                     </div>
                 </div>
                 <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>Kod pocztowy</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Kod pocztowy</label>
                     <input
                         type='number'
                         name='zipCode'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.zipCode}
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__label'>Miejscowość</label>
+                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Miejscowość</label>
                     <input
                         type='text'
                         name='city'
-                        className='delivery-form__customer-data__input'
+                        className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.city}
                         onChange={handleChange} />
                 </div>
