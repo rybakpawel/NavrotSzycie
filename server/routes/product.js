@@ -47,7 +47,8 @@ const upload = multer({ storage });
 
 router.post('/add', upload.any('image'), async (req, res) => {
         const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
-
+        console.log(req.body)
+        console.log(req.files)
         const images = req.files.map((img) => {
             const { filename } = img;
             return filename;

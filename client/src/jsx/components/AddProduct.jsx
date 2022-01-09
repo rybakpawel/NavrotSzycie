@@ -5,9 +5,21 @@ import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import Button from './Button';
 
 const AddProduct = () => {
-    const [isActivePromotion, setIsActivePromotion] = useState(false);
+    const [form, setForm] = useState({
+        name: '',
+        category: '',
+        price: '',
+        description: '',
+        height: '',
+        width: '',
+        materials: '',
+        care: '',
+        promotion: false,
+        promotionSize: '',
+        quantity: ''
+    });
     const [newCategory, setNewCategory] = useState(false);
-    // const [responseMessage, setResponseMessage] = useState(null);
+    const [responseMessage, setResponseMessage] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -17,6 +29,13 @@ const AddProduct = () => {
         getData();
     }, [dispatch]);
 
+    useEffect(() => {
+        setForm(prevState => ({
+            ...prevState,
+            category: categoryList ? categoryList[0] : ''
+        }));
+    }, [categoryList, newCategory]);
+
     const getData = async () => {
         dispatch(getCategoriesList());
     };
@@ -25,44 +44,62 @@ const AddProduct = () => {
         setNewCategory(!newCategory);
     }
 
-    const handleCheckbox = () => {
-        setIsActivePromotion(!isActivePromotion);
+    const handleCheckbox = e => {
+        setForm(prevState => ({
+            ...prevState,
+            promotion: e.target.checked
+        }));
     };
 
-    // const handleSubmitForm = e => {
-    //     e.preventDefault();
+    const handleChangeInput = e => {
+        const { name, value } = e.target;
 
-    //     fetch('http://localhost:5000/products/add', {
-    //         method: 'POST',
-    //         body: JSON.stringify('elko'),
-    //         headers: { 'Content-Type': 'multipart/form-data' },
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => setResponseMessage(data))
-    // };
+        setForm(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+
+    const handleSubmitForm = e => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        for (const value in form) {
+            formData.append(value, form[value]);
+        }
+
+        for (let i = 0; i < e.target.image.files.length; i++) {
+            formData.append("image", e.target.image.files[i]);
+        }
+
+        fetch('http://localhost:5000/products/add', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(data => setResponseMessage(data))
+    };
 
     return (
         <form className='add-product'
             id='addProductForm'
-            action='http://localhost:5000/products/add'
-            method='POST'
-            encType='multipart/form-data'
-        // onSubmit={handleSubmitForm} 
+            onSubmit={handleSubmitForm}
         >
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Nazwa</label>
-                <input className='add-product__data-wrapper__input' type='text' name='name' />
+                <input className='add-product__data-wrapper__input' type='text' name='name' value={form.name} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Kategoria</label>
                 <div className='add-product__data-wrapper__select-wrapper' >
                     {!newCategory ?
-                        <select className='add-product__data-wrapper__input add-product__data-wrapper__input--category' name='category' form='addProductForm'>
+                        <select className='add-product__data-wrapper__input add-product__data-wrapper__input--category' name='category' form='addProductForm' onChange={handleChangeInput}>
                             {categoryList ? categoryList.map(category => {
                                 return <option value={category}>{capitalizeFirstLetter(category)}</option>
                             }) : null}
                         </select>
-                        : <input className='add-product__data-wrapper__input' type='text' name='category' />}
+                        : <input className='add-product__data-wrapper__input' type='text' name='category' value={form.category} onChange={handleChangeInput} />}
                     <div className='add-product__data-wrapper__button' onClick={handleNewCategory}>
                         <Button variant='admin-add' title={!newCategory ? 'Nowa kategoria' : 'Lista kategorii'} type='button' />
                     </div>
@@ -70,7 +107,7 @@ const AddProduct = () => {
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Cena</label>
-                <input className='add-product__data-wrapper__input' type='number' step={0.01} name='price' />
+                <input className='add-product__data-wrapper__input' type='number' step={0.01} name='price' value={form.price} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label add-product__data-wrapper__label--images'>Wczytaj zdjęcia</label>
@@ -78,35 +115,35 @@ const AddProduct = () => {
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Opis</label>
-                <input className='add-product__data-wrapper__input' type='text' name='description' />
+                <input className='add-product__data-wrapper__input' type='text' name='description' value={form.description} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Wysokość</label>
-                <input className='add-product__data-wrapper__input' type='number' name='height' />
+                <input className='add-product__data-wrapper__input' type='number' name='height' value={form.height} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Szerokość</label>
-                <input className='add-product__data-wrapper__input' type='number' name='width' />
+                <input className='add-product__data-wrapper__input' type='number' name='width' value={form.width} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Materiały</label>
-                <input className='add-product__data-wrapper__input' type='text' name='materials' />
+                <input className='add-product__data-wrapper__input' type='text' name='materials' value={form.materials} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Pielęgnacja</label>
-                <input className='add-product__data-wrapper__input' type='text' name='care' />
+                <input className='add-product__data-wrapper__input' type='text' name='care' value={form.care} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper add-product__data-wrapper--checkbox'>
                 <label className='add-product__data-wrapper__label add-product__data-wrapper__label--checkbox'>Promocja</label>
-                <input className='add-product__data-wrapper__input' type='checkbox' name='promotion' onChange={handleCheckbox} />
+                <input className='add-product__data-wrapper__input' type='checkbox' name='promotion' checked={form.promotion} onChange={handleCheckbox} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Wielkość promocji</label>
-                <input className='add-product__data-wrapper__input' type='number' name='promotionSize' disabled={isActivePromotion ? false : true} />
+                <input className='add-product__data-wrapper__input' type='number' name='promotionSize' value={form.promotionSize} onChange={handleChangeInput} disabled={form.promotion ? false : true} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Dostępna ilość</label>
-                <input className='add-product__data-wrapper__input' type='number' name='quantity' />
+                <input className='add-product__data-wrapper__input' type='number' name='quantity' value={form.quantity} onChange={handleChangeInput} />
             </div>
             <div className='add-product__button-wrapper'>
                 <Button variant='submit' title='Dodaj produkt' type='submit' form='addProductForm' />

@@ -1062,6 +1062,9 @@ h4 {
 }
 
 .product__informations {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
   padding-top: 1rem;
 }
 
@@ -1072,11 +1075,11 @@ h4 {
 }
 
 .product__informations__title {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .product__informations__price {
-  font-size: 2.2rem;
+  font-size: 2rem;
   padding: 0.5rem 0 1rem 0;
 }
 
@@ -1133,6 +1136,12 @@ h4 {
   padding: 2% 2% 2% 0;
   font-size: 2rem;
   border-bottom: solid 0.5px #555;
+}
+
+@media (min-width: 1200px) {
+  .product__informations__list .product-detail__first-row {
+    font-size: 1.6rem;
+  }
 }
 
 .product__informations__list .product-detail__product-care {
@@ -1409,6 +1418,12 @@ h4 {
   font-size: 2rem;
   padding-bottom: 1rem;
   text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .small-card__name-price__name {
+    font-size: 1.8rem;
+  }
 }
 
 .small-card__name-price__price {
@@ -2143,6 +2158,12 @@ h4 {
 
 .products-list__title-row__names h2 {
   font-size: 2.5rem;
+}
+
+@media (min-width: 1200px) {
+  .products-list__title-row__names h2 {
+    font-size: 2rem;
+  }
 }
 
 .products-list__title-row__sort {
