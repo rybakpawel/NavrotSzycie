@@ -20,6 +20,7 @@
 
     &__name-price {
         padding: 10% 0 15% 0;
+        margin-bottom: auto;
 
         @media(min-width: 768px) {
             padding: 5% 0 10% 0;
@@ -31,7 +32,7 @@
             text-align: center;
 
             @media (min-width: 1200px) {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
         }
 

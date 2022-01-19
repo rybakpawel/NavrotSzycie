@@ -7,7 +7,7 @@ import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 import { Link } from 'react-router-dom';
 
-const SmallCard = ({ name, category, quantity, price, priceWithPromotion, promotion }) => {
+const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -21,7 +21,7 @@ const SmallCard = ({ name, category, quantity, price, priceWithPromotion, promot
         <div className='small-card'>
             <Link to={`/${category}/${name}`}>
                 <img
-                    src={example}
+                    src={`http://localhost:5000/products/image/${image}`}
                     alt='produkt'
                     className='small-card__product-image' />
             </Link>

@@ -41,6 +41,10 @@
             cursor: pointer;
         }
 
+        &--with-button {
+            width: 50%;
+        }
+
         @media (min-width: 992px) {
             padding: 0.5rem 1rem;
             padding-left: 1rem;

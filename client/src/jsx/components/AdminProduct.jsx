@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { isDesktop } from 'react-device-detect';
+import AdminMenu from './AdminMenu';
 import AddProduct from './AddProduct';
+import EditProduct from './EditProduct';
 import leftArrow from '../../assets/icons/left-arrow.svg';
 
 const AdminProduct = ({ action }) => {
@@ -8,21 +11,13 @@ const AdminProduct = ({ action }) => {
 
     const checkAction = action => {
         switch (action) {
-            case 'list':
-                if (!title) setTitle('Lista produktów');
-                return
-
             case 'add':
                 if (!title) setTitle('Dodaj produkt');
                 return <AddProduct />
 
             case 'edit':
                 if (!title) setTitle('Edytuj produkt');
-                return
-
-            case 'delete':
-                if (!title) setTitle('Usuń produkt');
-                return
+                return <EditProduct />
 
             default:
                 break;
@@ -30,15 +25,21 @@ const AdminProduct = ({ action }) => {
     };
 
     return (
-        <>
-            <div className='admin__wrapper'>
-                <Link to='/admin'>
-                    <img src={leftArrow} alt='wróć' className='admin__back' />
-                </Link>
-                <h1 className='admin__title'>{title}</h1>
+        isDesktop ?
+            <div className='admin__overall-wrapper'>
+                <AdminMenu />
+                {checkAction(action)}
             </div>
-            {checkAction(action)}
-        </>
+            :
+            <>
+                <div className='admin__back-wrapper'>
+                    <Link to='/admin'>
+                        <img src={leftArrow} alt='wróć' className='admin__back' />
+                    </Link>
+                    <h1 className='admin__title'>{title}</h1>
+                </div>
+                {checkAction(action)}
+            </>
     )
 };
 

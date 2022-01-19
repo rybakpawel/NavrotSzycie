@@ -1,5 +1,4 @@
 .admin {
-    // background-color: $admin-lighter;
     min-height: 100vh;
 
     &__header {
@@ -36,9 +35,17 @@
         }
     }
 
-    &__wrapper {
+    &__overall-wrapper {
+        display: flex;
+    }
+
+    &__back-wrapper {
         position: relative;
         margin: 3%;
+
+        @media (min-width: 768px) {
+            margin: 3% 20%;
+        }
     }
 
     &__back {
@@ -50,6 +57,13 @@
 
     &__title {
         font-size: 2.5rem;
+        text-align: center;
+    }
+
+    &__welcome-text {
+        flex-grow: 2;
+        margin-top: 5rem;
+        font-size: 2rem;
         text-align: center;
     }
 }

@@ -6,7 +6,7 @@ import example from '../../assets/images/example-bag.jpg';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
-const LargeCard = ({ name, category, price, priceWithPromotion, promotion }) => {
+const LargeCard = ({ name, category, image, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -20,7 +20,7 @@ const LargeCard = ({ name, category, price, priceWithPromotion, promotion }) => 
         <div className='large-card'>
             <Link to={`/${category}/${name}`}>
                 <img
-                    src={example}
+                    src={`http://localhost:5000/products/image/${image}`}
                     alt='produkt'
                     className='large-card__product-image' />
                 <div className='large-card__informations'>

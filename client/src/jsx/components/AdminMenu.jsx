@@ -24,16 +24,10 @@ const AdminMenu = () => {
                     {checkActive('1') ?
                         <ul className='admin-menu__list'>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/product/list'>Lista produktów</Link>
-                            </li>
-                            <li className='admin-menu__list__item admin-menu__list__item--second'>
                                 <Link to='/admin/product/add'>Dodaj produkt</Link>
                             </li>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
                                 <Link to='/admin/product/edit'>Edytuj produkt</Link>
-                            </li>
-                            <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/product/delete'>Usuń produkt</Link>
                             </li>
                         </ul> : null}
                 </li>
@@ -58,16 +52,10 @@ const AdminMenu = () => {
                     {checkActive('3') ?
                         <ul className='admin-menu__list'>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/promotion/list'>Lista promocji</Link>
-                            </li>
-                            <li className='admin-menu__list__item admin-menu__list__item--second'>
                                 <Link to='/admin/promotion/add'>Dodaj promocję</Link>
                             </li>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
                                 <Link to='/admin/promotion/edit'>Edytuj promocję</Link>
-                            </li>
-                            <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/promotion/delete'>Usuń promocję</Link>
                             </li>
                         </ul> : null}
                 </li>

@@ -8,6 +8,7 @@ const Grid = require('gridfs-stream');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 const Product = require('../models/product');
+const { addProductValidation } = require('../validation/addProductValidation');
 
 const DB_CONNECT = process.env.DB_CONNECT;
 const conn = mongoose.createConnection(DB_CONNECT);
@@ -46,9 +47,18 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 router.post('/add', upload.any('image'), async (req, res) => {
+        const { error } = addProductValidation(req.body);
+        
+        if (error) {
+            const message = error.details[0].message;
+            return res.status(400).send({ message });
+        }
+
         const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
-        console.log(req.body)
-        console.log(req.files)
+
+        const nameExist = await Product.find({ name });
+        if (nameExist.length !== 0) return res.status(400).send({ message: 'Istnieje już produkt o podanej nazwie.'});
+      
         const images = req.files.map((img) => {
             const { filename } = img;
             return filename;
@@ -66,51 +76,58 @@ router.post('/add', upload.any('image'), async (req, res) => {
             width,
             materials,
             care,
-            promotion: promotion ? true : false,
+            promotion,
             promotionSize: promotion ? promotionSize : 0,
             quantity,
             addDate: now.getDate()
         })
 
-        const nameExist = await Product.find({ name });
-        
-        if (nameExist.length !== 0) {
-            return res.status(400).send('Istnieje już produkt o podanej nazwie');
-        }
-
         product.save((err) => {
-            if (err) res.status(400).send('Wystąpił błąd. Produkt nie został dodany.');
-            else return res.status(200).send('Dodano produkt');
+            if (err) res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został dodany.'});
+            else return res.status(200).send({ message: 'Dodano produkt', clear: true});
         });
 });
+
+router.delete('/delete/:id', (req, res) => {
+  const id = req.params.id;
+
+  Product.deleteOne({ _id: id }, (err) => {
+    if (err) {
+      return res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został usunięty.'});
+    }
+    else {
+      return res.status(200);
+    }
+  });
+})
 
 router.get('/all', async (req,res) => {
     try {
         const allProducts = await Product.find({ });
-        res.send(allProducts);
+        res.status(200).send(allProducts);
      
     } catch(err) {
-        console.log('blad')
+        res.status(400).send({message: 'Wystąpił błąd. Produkty nie zostały znalezione.'});
     }
 });
 
 router.get('/categories', async (req,res) => {
     try {
         const allCategories = await Product.distinct('category');
-        res.send(allCategories);
+        res.status(200).send(allCategories);
      
     } catch(err) {
-        console.log('blad')
+        res.status(400).send({message: 'Wystąpił błąd. Kategorie nie zostały znalezione.'});
     }
 });
 
 router.get('/new', async (req,res) => {
     try {
         const newProducts = await Product.find().sort({_id: -1}).limit(5);
-        res.send(newProducts);
+        res.status(200).send(newProducts);
      
     } catch(err) {
-        console.log('blad')
+        res.status(400).send({message: 'Wystąpił błąd. Nowe produkty nie zostały znalezione.'});
     }
 });
 
@@ -120,7 +137,7 @@ router.get('/image/:filename', (req, res) => {
     gfs.files.findOne({ filename }, (err, file) => {
         if (!file || file.length === 0) {
           return res.status(404).json({
-            err: 'No file exists'
+            err: 'Plik nie istnieje'
           });
         }
     
@@ -129,7 +146,7 @@ router.get('/image/:filename', (req, res) => {
           readStream.pipe(res);
         } else {
           res.status(404).json({
-            err: 'Not an image'
+            err: 'Plik nie jest obrazem'
           });
         }
       });
@@ -140,10 +157,10 @@ router.get('/:category/similar', async (req,res) => {
  
     try {
         const similarProducts = await Product.find({ category }).limit(5);
-        res.send(similarProducts);
+        res.status(200).send(similarProducts);
 
     } catch(err) {
-        console.log('blad') 
+        res.status(400).send({message: 'Wystąpił błąd. Kategoria nie została znaleziona.'}); 
     }
 });
 
@@ -152,10 +169,10 @@ router.get('/:category/:name', async (req,res) => {
  
     try {
         const product = await Product.find({ name });
-        res.send(product[0]);
+        res.status(200).send(product[0]);
 
     } catch(err) {
-            console.log('blad')
+        res.status(400).send({message: 'Wystąpił błąd. Produkt nie został znaleziony.'});
     }
 });
 
@@ -164,10 +181,10 @@ router.get('/:category', async (req,res) => {
  
     try {
         const categoryProducts = await Product.find({ category });
-        res.send(categoryProducts);
+        res.status(200).send(categoryProducts);
 
     } catch(err) {
-        console.log('blad')
+        res.status(400).send({message: 'Wystąpił błąd. Produkty nie zostały znalezione.'});
     }
 });
 

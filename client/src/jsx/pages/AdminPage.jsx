@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import { isDesktop } from 'react-device-detect';
 import Logo from '../components/Logo';
 import AdminMenu from '../components/AdminMenu';
 import AdminProduct from '../components/AdminProduct';
@@ -22,7 +23,12 @@ const AdminPage = () => {
                 return <AdminPromotion action={action} />
 
             default:
-                return <AdminMenu />
+                return isDesktop ?
+                    <div className='admin__overall-wrapper'>
+                        <AdminMenu />
+                        <h1 className='admin__welcome-text'>Centrum zarządzania treścią strony Navrot Szycie</h1>
+                    </div>
+                    : <AdminMenu />
         }
     }
 

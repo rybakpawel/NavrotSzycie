@@ -12,8 +12,6 @@ import Button from './Button';
 import Loading from './Loading';
 import heightIcon from '../../assets/icons/height.svg';
 import widthIcon from '../../assets/icons/width.svg';
-import pocztaPolska from '../../assets/images/poczta-polska.png';
-import inpost from '../../assets/images/inpost.png';
 
 SwiperCore.use([Pagination, Navigation, Thumbs]);
 
@@ -144,13 +142,13 @@ const Product = () => {
                             <div className='product-detail__first-row'
                                 onClick={handleDropdown}
                                 id={2}>
-                                <p>Pielęgnacja</p>
+                                <p>Materiały</p>
                                 <Button variant='empty'
                                     title={checkActive('2') === true ? '-' : '+'} />
                             </div>
                             {checkActive('2') ?
                                 <p className='product-detail__product-care'>
-                                    {product.care}
+                                    {product.materials}
                                 </p> :
                                 null
                             }
@@ -160,25 +158,14 @@ const Product = () => {
                             <div className='product-detail__first-row'
                                 onClick={handleDropdown}
                                 id={3}>
-                                <p>Dostawa</p>
+                                <p>Pielęgnacja</p>
                                 <Button variant='empty'
                                     title={checkActive('3') === true ? '-' : '+'} />
                             </div>
                             {checkActive('3') ?
-                                <div className='product-detail__second-row'>
-                                    <div className='product-detail__second-row__image-wrapper'>
-                                        <img src={pocztaPolska}
-                                            alt='poczta-polska'
-                                            className='product-detail__second-row__image product-detail__second-row__image--delivery' />
-                                    </div>
-                                    <p>14zł</p>
-                                    <div className='product-detail__second-row__image-wrapper'>
-                                        <img src={inpost}
-                                            alt='inpost'
-                                            className='product-detail__second-row__image product-detail__second-row__image--delivery' />
-                                    </div>
-                                    <p>8,99zł</p>
-                                </div> :
+                                <p className='product-detail__product-care'>
+                                    {product.care}
+                                </p> :
                                 null
                             }
 

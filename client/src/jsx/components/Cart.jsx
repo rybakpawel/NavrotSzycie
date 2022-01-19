@@ -157,13 +157,13 @@ const getLargeView = () => {
                                         </div>
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        {product.price.toFixed(2)}zł
+                                        {product.promotion ? product.priceWithPromotion.toFixed(2) : product.price.toFixed(2)}zł
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
                                         <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
                                     </div>
                                     <div className='cart__table__row-product__small-row'>
-                                        {priceTimesQuantity(product.price, product.quantity)}zł
+                                        {product.promotion ? priceTimesQuantity(product.priceWithPromotion, product.quantity) : priceTimesQuantity(product.price, product.quantity)}zł
                                     </div>
                                 </div>
                             )

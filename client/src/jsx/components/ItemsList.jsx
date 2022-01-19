@@ -6,6 +6,7 @@ import { getNewProducts, getSimilarProducts } from '../redux/actions/productActi
 import useWindowDimensions from '../utils/useWindowDimensions';
 import SmallCard from './SmallCard';
 import Loading from './Loading';
+import product from '../../../../server/models/product';
 
 let ItemsList = ({ isLandscape, variant }) => {
     const { category, name } = useParams();
@@ -41,8 +42,8 @@ let ItemsList = ({ isLandscape, variant }) => {
         products ?
             <div className='items-list'>
                 {products.slice(0, productsAmount).map(product => {
-                    const { name, category, quantity, price, priceWithPromotion, promotion } = product;
-                    return <SmallCard name={name} category={category} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
+                    const { name, category, images, quantity, price, priceWithPromotion, promotion } = product;
+                    return <SmallCard name={name} category={category} image={images[0]} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                 })}
             </div>
             : <Loading />

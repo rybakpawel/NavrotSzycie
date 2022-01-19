@@ -5,9 +5,8 @@ import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import Button from './Button';
 
 const AddProduct = () => {
-    const [form, setForm] = useState({
+    const formInitialState = {
         name: '',
-        category: '',
         price: '',
         description: '',
         height: '',
@@ -17,13 +16,18 @@ const AddProduct = () => {
         promotion: false,
         promotionSize: '',
         quantity: ''
-    });
+    };
+    const [form, setForm] = useState(formInitialState);
     const [newCategory, setNewCategory] = useState(false);
     const [responseMessage, setResponseMessage] = useState(null);
 
     const dispatch = useDispatch();
 
     const categoryList = useSelector(state => state.productReducer.categoryList);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         getData();
@@ -70,7 +74,7 @@ const AddProduct = () => {
         }
 
         for (let i = 0; i < e.target.image.files.length; i++) {
-            formData.append("image", e.target.image.files[i]);
+            formData.append('image', e.target.image.files[i]);
         }
 
         fetch('http://localhost:5000/products/add', {
@@ -78,14 +82,20 @@ const AddProduct = () => {
             body: formData,
         })
             .then(res => res.json())
-            .then(data => setResponseMessage(data))
+            .then(data => {
+                setResponseMessage(data.message);
+                if (data.clear) setForm({
+                    ...formInitialState,
+                    category: categoryList ? categoryList[0] : ''
+                });
+            })
     };
 
     return (
         <form className='add-product'
             id='addProductForm'
-            onSubmit={handleSubmitForm}
-        >
+            onSubmit={handleSubmitForm} >
+            <p className='add-product__response-message'>{responseMessage}</p>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Nazwa</label>
                 <input className='add-product__data-wrapper__input' type='text' name='name' value={form.name} onChange={handleChangeInput} />
@@ -99,7 +109,7 @@ const AddProduct = () => {
                                 return <option value={category}>{capitalizeFirstLetter(category)}</option>
                             }) : null}
                         </select>
-                        : <input className='add-product__data-wrapper__input' type='text' name='category' value={form.category} onChange={handleChangeInput} />}
+                        : <input className='add-product__data-wrapper__input add-product__data-wrapper__input--with-button' type='text' name='category' onChange={handleChangeInput} />}
                     <div className='add-product__data-wrapper__button' onClick={handleNewCategory}>
                         <Button variant='admin-add' title={!newCategory ? 'Nowa kategoria' : 'Lista kategorii'} type='button' />
                     </div>
@@ -115,7 +125,7 @@ const AddProduct = () => {
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Opis</label>
-                <input className='add-product__data-wrapper__input' type='text' name='description' value={form.description} onChange={handleChangeInput} />
+                <textarea className='add-product__data-wrapper__input' type='text' name='description' value={form.description} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Wysokość</label>
