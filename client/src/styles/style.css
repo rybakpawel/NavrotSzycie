@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Zeyada&display=swap&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -1659,10 +1659,6 @@ h4 {
   font-size: 1.3rem;
 }
 
-.about-me {
-  padding: 5%;
-}
-
 @media (min-width: 992px) {
   .about-me {
     display: -webkit-box;
@@ -1680,7 +1676,9 @@ h4 {
 
 .about-me__image {
   width: 100%;
+  padding: 5%;
   margin-bottom: 2rem;
+  border-radius: 50%;
 }
 
 @media (min-width: 992px) {
@@ -1692,22 +1690,20 @@ h4 {
 
 @media (min-width: 1200px) {
   .about-me__image {
-    width: 30%;
+    width: 35%;
     margin-bottom: 0;
   }
 }
 
-@media (min-width: 992px) {
-  .about-me__text {
-    padding-right: 5%;
-  }
+.about-me__text {
+  padding: 5%;
+  background-color: #f5f5f5;
 }
 
 .about-me__text__description {
   margin-top: 2rem;
-  font-size: 1.8rem;
-  letter-spacing: 1px;
-  line-height: 2.2rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 .admin {
@@ -1945,6 +1941,10 @@ h4 {
   border-top: solid #555 1px;
 }
 
+.footer--no-border {
+  border: none;
+}
+
 @media (min-width: 576px) {
   .footer {
     -webkit-box-pack: justify;
@@ -2150,20 +2150,15 @@ h4 {
 
 .hero__title {
   position: absolute;
-  top: 25%;
-  left: 10%;
-  max-width: 75%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  min-width: 80%;
   color: #fff;
-  -webkit-transform: rotate(-15deg);
-          transform: rotate(-15deg);
-  font-family: 'Zeyada', cursive;
-  font-size: 2.5rem;
-}
-
-@media (min-width: 576px) {
-  .hero__title {
-    max-width: 40%;
-  }
+  text-align: center;
+  font-size: 2.2rem;
+  font-family: 'Lobster', cursive;
 }
 
 @media (min-width: 576px) {

@@ -4,10 +4,10 @@ import Button from '../components/Button';
 import facebook from '../../assets/icons/facebook-footer.svg';
 import instagram from '../../assets/icons/instagram-footer.svg';
 
-const Footer = () => {
+const Footer = ({ border }) => {
     return (
         <div className='footer-wrapper'>
-            <footer className='footer'>
+            <footer className={`footer ${!border ? 'footer--no-border' : ''}`}>
                 <div className='footer__column footer__column--left'>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
                         <Button

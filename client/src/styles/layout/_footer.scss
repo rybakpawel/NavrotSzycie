@@ -12,6 +12,10 @@
     padding: 5% 3%;
     border-top: solid $base-font 1px;
 
+    &--no-border {
+        border: none;
+    }
+
     @media (min-width: 576px) {
         justify-content: space-between;
         padding: 3%;

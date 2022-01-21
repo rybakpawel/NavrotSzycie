@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
-import heroImage from '../../assets/images/hero.jpg';
+// import heroImage from '../../assets/images/hero.jpg';
+// import heroImage from '../../assets/images/hero-image-pexels.jpg';
+import heroImage from '../../assets/images/hero-image-pixabay.jpg';
 import facebook from '../../assets/icons/facebook.svg';
 import instagram from '../../assets/icons/instagram.svg';
 

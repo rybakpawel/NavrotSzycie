@@ -1,5 +1,5 @@
 .about-me {
-    padding: 5%;
+    // padding: 5%;
 
     @media (min-width: 992px) {
         display: flex;
@@ -9,7 +9,9 @@
 
     &__image {
         width: 100%;
+        padding: 5%;
         margin-bottom: 2rem;
+        border-radius: 50%;
 
         @media (min-width: 992px) {
             width: 40%;
@@ -17,21 +19,19 @@
         }
 
         @media (min-width: 1200px) {
-            width: 30%;
+            width: 35%;
             margin-bottom: 0;
         }
     }
 
     &__text {
-        @media (min-width: 992px) {
-            padding-right: 5%;
-        }
+        padding: 5%;
+        background-color: $base-background;
 
         &__description {
             margin-top: 2rem;
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            line-height: 2.2rem;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
         }
     }
 }

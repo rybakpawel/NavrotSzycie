@@ -37,7 +37,7 @@ const EditProduct = () => {
                     <div className='edit-product__row'>
                         <p className='edit-product__row__name'>{product.name}</p>
                         <div className='edit-product__row__button'>
-                            <Button variant='small' title='Edytuj' />
+                            <Button link={`/admin/product/edit/${product.name}`} variant='small' title='Edytuj' />
                         </div>
                         <div className='edit-product__row__button' onClick={() => handleDeleteProduct(product._id)}>
                             <Button variant='small' title='Usuń' />

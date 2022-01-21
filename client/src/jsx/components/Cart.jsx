@@ -150,7 +150,9 @@ const getLargeView = () => {
                             return (
                                 <div className='cart__table__row-product'>
                                     <div className='cart__table__row-product__large-row'>
-                                        <img src={example} alt="" className='cart__table__row-product__large-row__product-image' />
+                                        <img src={`http://localhost:5000/products/image/${product.images[0]}`}
+                                            alt={product.images[0]}
+                                            className='cart__table__row-product__large-row__product-image' />
                                         <p>{product.name}</p>
                                         <div>
                                             <img src={remove} alt="" onClick={() => handleRemoveFromCart(product._id)} />

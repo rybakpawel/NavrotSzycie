@@ -19,6 +19,7 @@ function App() {
                     <Route path='/aboutme' exact component={AboutMePage} />
                     <Route path='/admin' exact component={AdminPage} />
                     <Route path='/admin/:item/:action' exact component={AdminPage} />
+                    <Route path='/admin/:item/edit/:object' exact component={AdminPage} />
                     <Route path='/contact' exact component={ContactPage} />
                     <Route path='/cart' exact component={CartPage} />
                     <Route path='/checkout/delivery' exact render={(props) => (<CheckoutPage {...props} step='delivery' />)} />

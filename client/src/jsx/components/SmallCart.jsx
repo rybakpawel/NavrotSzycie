@@ -6,7 +6,6 @@ import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 import { calculateTotalPrice } from '../utils/calculateTotalPrice';
 import Button from './Button';
 import Quantity from './Quantity';
-import example from '../../assets/images/example-bag.jpg';
 import close from '../../assets/icons/close.svg';
 
 const SmallCart = () => {
@@ -28,8 +27,8 @@ const SmallCart = () => {
                 return (
                     <div className='small-cart__product'>
                         <img className='small-cart__product__image'
-                            src={example}
-                            alt="" />
+                            src={`http://localhost:5000/products/image/${product.images[0]}`}
+                            alt={product.name} />
                         <div className='small-cart__product__informations'>
                             <p>{product.name}</p>
                             <p>{capitalizeFirstLetter(product.category)}</p>
