@@ -6,6 +6,7 @@ import AdminMenu from '../components/AdminMenu';
 import AdminProduct from '../components/AdminProduct';
 import AdminSection from '../components/AdminSection';
 import AdminPromotion from '../components/AdminPromotion';
+import Messages from '../components/Messages';
 import user from '../../assets/icons/user.svg';
 
 const AdminPage = () => {
@@ -21,6 +22,9 @@ const AdminPage = () => {
 
             case 'promotion':
                 return <AdminPromotion action={action} />
+
+            case 'messages':
+                return <Messages />
 
             default:
                 return isDesktop ?

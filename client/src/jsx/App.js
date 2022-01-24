@@ -18,6 +18,7 @@ function App() {
                     <Route path='/' exact component={HomePage} />
                     <Route path='/aboutme' exact component={AboutMePage} />
                     <Route path='/admin' exact component={AdminPage} />
+                    <Route path='/admin/:item' exact component={AdminPage} />
                     <Route path='/admin/:item/:action' exact component={AdminPage} />
                     <Route path='/admin/:item/edit/:object' exact component={AdminPage} />
                     <Route path='/contact' exact component={ContactPage} />

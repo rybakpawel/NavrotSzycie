@@ -1,13 +1,11 @@
 @import './base/vars';
 @import './base/mixins';
 @import './base/app';
-@import './components/addProduct';
 @import './components/arrows';
 @import './components/button';
 @import './components/cart';
 @import './components/contactForm';
 @import './components/deliveryForm';
-@import './components/editProduct';
 @import './components/itemsList';
 @import './components/largeCard';
 @import './components/line';
@@ -27,10 +25,13 @@
 @import './layout/aboutMe';
 @import './layout/admin';
 @import './layout/adminMenu';
+@import './layout/addProduct';
 @import './layout/contact';
 @import './layout/designAd';
+@import './layout/editProduct';
 @import './layout/footer';
 @import './layout/header';
 @import './layout/hero';
 @import './layout/menu';
+@import './layout/messages';
 @import './layout/productsList';

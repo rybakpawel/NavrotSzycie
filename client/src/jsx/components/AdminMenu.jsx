@@ -59,7 +59,9 @@ const AdminMenu = () => {
                             </li>
                         </ul> : null}
                 </li>
-                <li className='admin-menu__list__item'>Wiadomości</li>
+                <li className='admin-menu__list__item'>
+                    <Link to='/admin/messages'>Wiadomości</Link>
+                </li>
                 <li className='admin-menu__list__item'>Wyloguj</li>
             </ul>
         </div>

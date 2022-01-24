@@ -18,7 +18,7 @@ const ContactForm = () => {
             headers: { 'Content-Type': 'application/json' },
         })
             .then(res => res.json())
-            .then(data => setResponseMessage(data.message))
+            .then(data => setResponseMessage(data.responseMessage))
     };
 
     return (
