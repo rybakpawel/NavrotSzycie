@@ -125,7 +125,7 @@ const AddProduct = () => {
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Opis</label>
-                <textarea className='add-product__data-wrapper__input' type='text' name='description' value={form.description} onChange={handleChangeInput} />
+                <textarea className='add-product__data-wrapper__input' rows={4} type='text' name='description' value={form.description} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Wysokość</label>
@@ -137,11 +137,11 @@ const AddProduct = () => {
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Materiały</label>
-                <input className='add-product__data-wrapper__input' type='text' name='materials' value={form.materials} onChange={handleChangeInput} />
+                <textarea className='add-product__data-wrapper__input' rows={4} type='text' name='materials' value={form.materials} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Pielęgnacja</label>
-                <input className='add-product__data-wrapper__input' type='text' name='care' value={form.care} onChange={handleChangeInput} />
+                <textarea className='add-product__data-wrapper__input' rows={4} type='text' name='care' value={form.care} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper add-product__data-wrapper--checkbox'>
                 <label className='add-product__data-wrapper__label add-product__data-wrapper__label--checkbox'>Promocja</label>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { isDesktop } from 'react-device-detect';
 import AdminMenu from './AdminMenu';
 import AddProduct from './AddProduct';
-import EditProduct from './EditProduct';
+import EditProducts from './EditProducts';
 import leftArrow from '../../assets/icons/left-arrow.svg';
 
 const AdminProduct = ({ action, obj }) => {
@@ -17,7 +17,7 @@ const AdminProduct = ({ action, obj }) => {
 
             case 'edit':
                 if (!title) setTitle('Edytuj produkt');
-                return <EditProduct />
+                return <EditProducts />
 
             default:
                 break;

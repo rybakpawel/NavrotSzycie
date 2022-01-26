@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 
 router.get('/messages', async (req, res) => {
     try {
-        const messages = await Message.find({ });
+        const messages = await Message.find().sort({_id: -1});
         res.status(200).send(messages);
      
     } catch(err) {

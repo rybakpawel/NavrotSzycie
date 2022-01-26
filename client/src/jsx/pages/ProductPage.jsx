@@ -16,7 +16,7 @@ const ProductPage = () => {
                     title='Podobne'
                     products='similar' />
             </div>
-            <Footer />
+            <Footer border={true} />
         </>
     )
 };

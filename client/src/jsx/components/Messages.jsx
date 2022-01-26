@@ -12,7 +12,7 @@ const Messages = () => {
 
     useEffect(() => {
         loadData();
-    }, [messages])
+    }, [])
 
     const loadData = async () => {
         const response = await fetch('http://localhost:5000/contact/messages');
@@ -20,7 +20,7 @@ const Messages = () => {
         setMessages(data);
     }
 
-    const handleShowMessage = (e, index) => {
+    const handleShowMessage = (index) => {
         if (activeMessages === index) setActiveMessages('');
         else setActiveMessages(index);
     }
@@ -29,7 +29,7 @@ const Messages = () => {
         const messagesList = messages.map(message => {
             return (
                 <>
-                    <div className='messages__row' onClick={(e) => handleShowMessage(e, message._id)}>
+                    <div className='messages__row' onClick={() => handleShowMessage(message._id)}>
                         <p className={`messages__row__email ${activeMessages === message._id ? 'messages__row__email--bold' : ''}`}>{message.email}</p>
                         <img src={activeMessages === message._id ? minus : plus}
                             alt={activeMessages === message._id ? 'Zwiń wiadomość' : 'Rozwiń wiadomość'}
@@ -47,6 +47,9 @@ const Messages = () => {
         isDesktop ?
             <div className='admin__overall-wrapper'>
                 <AdminMenu />
+                <div className='messages'>
+                    {messages ? getMessages() : null}
+                </div>
             </div>
             :
             <>
@@ -59,7 +62,6 @@ const Messages = () => {
                 <div className='messages'>
                     {messages ? getMessages() : null}
                 </div>
-
             </>
     )
 };

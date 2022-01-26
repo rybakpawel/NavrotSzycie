@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const addProductValidation = (data) => {
+const productValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string()
             .required()
@@ -40,4 +40,4 @@ const addProductValidation = (data) => {
     });
 }
 
-module.exports.addProductValidation = addProductValidation;
+module.exports.productValidation = productValidation;

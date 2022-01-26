@@ -12,7 +12,7 @@ const ContactPage = () => {
                 <Line variant='long' />
                 <Contact />
             </div>
-            <Footer />
+            <Footer border={true} />
         </>
     )
 };

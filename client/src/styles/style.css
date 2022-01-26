@@ -1620,6 +1620,7 @@ h4 {
 }
 
 .admin-menu {
+  min-width: 20%;
   min-height: 100vh;
   background-color: #3f505e;
   color: #fff;
@@ -1920,6 +1921,44 @@ h4 {
 
 .edit-product__row__button:nth-last-of-type(1) {
   margin-left: 0.5rem;
+}
+
+.edit-product__form {
+  border-bottom: 0.5px solid #e6e6e6;
+}
+
+.edit-product__form__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+
+.edit-product__form__row__label {
+  width: 50%;
+}
+
+.edit-product__form__row__input {
+  width: 50%;
+  padding: 0.5rem;
+  border: 1px solid #e6e6e6;
+}
+
+.edit-product__form__row__input--checkbox {
+  width: auto;
+  margin-right: auto;
+}
+
+.edit-product__form__button-wrapper {
+  padding: 1rem;
+  text-align: right;
 }
 
 .footer-wrapper {
@@ -2335,6 +2374,12 @@ h4 {
 
 .messages__row__message--inactive {
   display: none;
+}
+
+@media (min-width: 992px) {
+  .messages__row__message {
+    font-size: 1.6rem;
+  }
 }
 
 .products-list {

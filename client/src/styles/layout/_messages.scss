@@ -57,6 +57,10 @@
             &--inactive {
                 display: none;
             }
+
+            @media (min-width: 992px) {
+                font-size: 1.6rem;
+            }
         }
     }
 }

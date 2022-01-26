@@ -8,7 +8,7 @@ const Grid = require('gridfs-stream');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 const Product = require('../models/product');
-const { addProductValidation } = require('../validation/addProductValidation');
+const { productValidation } = require('../validation/productValidation');
 
 const DB_CONNECT = process.env.DB_CONNECT;
 const conn = mongoose.createConnection(DB_CONNECT);
@@ -47,45 +47,45 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 router.post('/add', upload.any('image'), async (req, res) => {
-        const { error } = addProductValidation(req.body);
+  const { error } = productValidation(req.body);
         
-        if (error) {
-            const message = error.details[0].message;
-            return res.status(400).send({ message });
-        }
+    if (error) {
+      const message = error.details[0].message;
+      return res.status(400).send({ message });
+    }
 
-        const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
+  const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
 
-        const nameExist = await Product.find({ name });
-        if (nameExist.length !== 0) return res.status(400).send({ message: 'Istnieje już produkt o podanej nazwie.'});
+  const nameExist = await Product.find({ name });
+  if (nameExist.length !== 0) return res.status(400).send({ message: 'Istnieje już produkt o podanej nazwie.'});
       
-        const images = req.files.map((img) => {
-            const { filename } = img;
-            return filename;
-        })
+  const images = req.files.map((img) => {
+    const { filename } = img;
+    return filename;
+  })
 
-        const now = new Date();
-        const product = new Product({
-            name,
-            category,
-            price,
-            priceWithPromotion: promotion ? price - promotionSize : price,
-            images,
-            description,
-            height,
-            width,
-            materials,
-            care,
-            promotion,
-            promotionSize: promotion ? promotionSize : 0,
-            quantity,
-            addDate: now.getDate()
-        })
+  const now = new Date();
+  const product = new Product({
+    name,
+    category,
+    price,
+    priceWithPromotion: promotion ? price - promotionSize : price,
+    images,
+    description,
+    height,
+    width,
+    materials,
+    care,
+    promotion,
+    promotionSize: promotion ? promotionSize : 0,
+    quantity,
+    addDate: now.getDate()
+  })
 
-        product.save((err) => {
-            if (err) res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został dodany.'});
-            else return res.status(200).send({ message: 'Dodano produkt', clear: true});
-        });
+  product.save((err) => {
+    if (err) res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został dodany.'});
+    else return res.status(200).send({ message: 'Dodano produkt', clear: true});
+  });
 });
 
 router.delete('/delete/:id', (req, res) => {
@@ -99,6 +99,41 @@ router.delete('/delete/:id', (req, res) => {
       return res.status(200);
     }
   });
+})
+
+router.put('/edit/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateProduct = req.body;
+
+    const { error } = productValidation(req.body);
+        
+    if (error) {
+      const message = error.details[0].message;
+      return res.status(400).send({ message });
+    }
+
+    const product = await Product.findOne({ _id: id });
+
+    Object.keys(product.toJSON()).forEach(key => {
+      if (updateProduct[key] || key === 'promotion') {
+        if (product[key] !== updateProduct[key]) {
+          product[key] = updateProduct[key];
+        }
+      }  
+    });
+
+    const { price, promotion, promotionSize } = updateProduct;
+
+    product.priceWithPromotion = promotion ? price - promotionSize : price;
+    product.promotionSize = promotion ? promotionSize : 0;
+
+    await product.save();
+    
+    res.status(200).send({message: 'Zaktualizowano produkt.'});
+  } catch(err) {
+    res.status(400).send({message: 'Wystąpił błąd. Produkty nie został zaktualizowany.'});
+  }
 })
 
 router.get('/all', async (req,res) => {
@@ -168,8 +203,8 @@ router.get('/:category/:name', async (req,res) => {
     const name = req.params.name;
  
     try {
-        const product = await Product.find({ name });
-        res.status(200).send(product[0]);
+        const product = await Product.findOne({ name });
+        res.status(200).send(product);
 
     } catch(err) {
         res.status(400).send({message: 'Wystąpił błąd. Produkt nie został znaleziony.'});

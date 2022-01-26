@@ -12,7 +12,7 @@ const CheckoutPage = ({ step }) => {
                 <Line variant='long' />
                 <Checkout step={step} />
             </div>
-            <Footer />
+            <Footer border={true} />
         </>
     )
 }

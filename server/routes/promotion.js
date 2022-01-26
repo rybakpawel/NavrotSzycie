@@ -5,11 +5,11 @@ router.post('/', async (req,res) => {
     try {
         const { promotionCode } = req.body;
     
-        const promotion = await Promotion.find({ code: promotionCode });
+        const promotion = await Promotion.findOne({ code: promotionCode });
         
-        if (promotion[0].active) {
+        if (promotion.active) {
             res.status(200).send({
-                discount: promotion[0].discount
+                discount: promotion.discount
             });
         } else {
             res.status(200).send({

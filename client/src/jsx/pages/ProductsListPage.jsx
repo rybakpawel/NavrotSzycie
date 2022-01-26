@@ -12,7 +12,7 @@ const ProductsListPage = () => {
                 <Line variant='long' />
                 <ProductsList />
             </div>
-            <Footer />
+            <Footer border={true} />
         </>
     )
 };
