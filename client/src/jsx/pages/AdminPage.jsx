@@ -4,7 +4,8 @@ import { isDesktop } from 'react-device-detect';
 import Logo from '../components/Logo';
 import AdminMenu from '../components/AdminMenu';
 import AdminProduct from '../components/AdminProduct';
-import AdminSection from '../components/AdminSection';
+import AdminHero from '../components/AdminHero';
+import AdminAboutMe from '../components/AdminAboutMe';
 import AdminPromotion from '../components/AdminPromotion';
 import Messages from '../components/Messages';
 import user from '../../assets/icons/user.svg';
@@ -17,8 +18,11 @@ const AdminPage = () => {
             case 'product':
                 return <AdminProduct action={action} />
 
-            case 'section':
-                return <AdminSection action={action} />
+            case 'hero':
+                return <AdminHero />
+
+            case 'aboutme':
+                return <AdminAboutMe />
 
             case 'promotion':
                 return <AdminPromotion action={action} />

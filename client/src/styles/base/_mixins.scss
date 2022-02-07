@@ -56,3 +56,144 @@
         }
     }
 }
+
+@mixin admin-add-form {
+    flex-grow: 2;
+    margin: 2rem 5%;
+
+    @media (min-width: 768px) {
+        margin: 2rem 20%;
+    }
+
+    &__response-message {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 1rem 0;
+        color: $error;
+
+        &--success {
+            color: $success;
+        }
+    }
+
+    &__data-wrapper {
+        @include post-form;
+
+        &__select-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__button-wrapper {
+        margin-top: 3rem;
+        text-align: center;
+    }
+}
+
+@mixin admin-edit-form {
+    flex-grow: 2;
+    height: 1%;
+    margin: 2rem 3%;
+    border: 0.5px solid $light-border;
+
+    @media (min-width: 768px) {
+        margin: 2rem 20%;
+    }
+
+    @media (min-width: 1200px) {
+        margin-top: 5rem;
+    }
+
+    &__response {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 1rem 0;
+        color: $error;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-bottom: 0.5px solid $light-border;
+
+        &:nth-last-of-type(1) {
+            border: none;
+        }
+
+        &:nth-of-type(odd) {
+            background-color: $base-background;
+        }
+
+        &__name {
+            flex-grow: 2;
+            font-size: 1.6rem;
+
+            &--bold {
+                flex-grow: none;
+                font-weight: bold;
+            }
+
+            @media (min-width: 992px) {
+                font-size: 1.4rem;
+            }
+        }
+
+        &__button {
+            &:nth-last-of-type(1) {
+                margin-left: 0.5rem;
+            }
+        }
+
+        &__confirm {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+
+            &__text {
+                margin: 0 1rem;
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            &__icon {
+                width: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__form {
+        border-bottom: 0.5px solid $light-border;
+
+        &__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            font-size: 1.4rem;
+
+            &__label {
+                width: 50%;
+            }
+
+            &__input {
+                width: 50%;
+                padding: 0.5rem;
+                border: 1px solid $light-border;
+
+                &--checkbox {
+                    width: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+
+        &__button-wrapper {
+            padding: 1rem;
+            text-align: right;
+        }
+    }
+}

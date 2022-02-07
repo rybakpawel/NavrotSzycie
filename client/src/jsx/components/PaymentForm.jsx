@@ -65,6 +65,13 @@ const PaymentForm = ({ promotion }) => {
 
         cart.map(product => {
             handleRemoveFromCart(product._id);
+            fetch(`http://localhost:5000/products/edit/quantity/${product._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            })
         });
 
         const { error } = await stripe.confirmPayment({

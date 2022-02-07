@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/actions/cartActions';
-import example from '../../assets/images/example-bag.jpg';
+import Percent from './Percent';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
@@ -37,6 +37,7 @@ const LargeCard = ({ name, category, image, price, priceWithPromotion, promotion
                 alt='dodaj'
                 className='large-card__add-to-cart'
                 onClick={isProductInCart ? null : handleAddToCart} />
+            {promotion ? <Percent /> : null}
         </div>
     )
 };

@@ -27,19 +27,20 @@
         }
     }
 
-    &__title {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        min-width: 80%;
-        color: #fff;
-        text-align: center;
-        font-size: 2.2rem;
-        font-family: 'Lobster', cursive;
+    // &__title {
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     min-width: 80%;
+    //     color: #fff;
+    //     text-align: center;
+    //     font-size: 2.2rem;
+    //     font-family: 'Lobster', cursive;
+    //     z-index: 2;
 
-        @media (min-width: 576px) {
-            font-size: 3.5rem;
-        }
-    }
+    //     @media (min-width: 576px) {
+    //         font-size: 3.5rem;
+    //     }
+    // }
 }

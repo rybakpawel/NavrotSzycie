@@ -38,6 +38,21 @@
             &--short {
                 width: 45%;
             }
+
+            &__radio {
+                display: flex;
+                align-items: center;
+                margin: 0.5rem 0 0.5rem 1rem;
+                font-size: 1.4rem;
+
+                @media (min-width: 992px) {
+                    font-size: 1.2rem;
+                }
+
+                input {
+                    margin-right: 0.5rem;
+                }
+            }
         }
 
         &__collection {

@@ -10,7 +10,11 @@
     &__response-message {
         font-size: 1.5rem;
         height: 2rem;
-        color: red;
+        color: $error;
+
+        &--success {
+            color: $success;
+        }
     }
 
     &__form {

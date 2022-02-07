@@ -72,6 +72,32 @@ const deliveryValidation = (data) => {
                 'string.max': `Miasto powinno zawierać maksymalnie 50 znaków`,
                 'any.required': `Pole 'miasto' jest wymagane`
             }),
+        phoneNumber: Joi.string()
+            .required()
+            .min(9)
+            .max(9)
+            .messages({
+                'string.empty': `Wprowadź number telefonu`,
+                'string.min': `Numer telefonu powinien zawierać 9 cyfr`,
+                'string.max': `Numer telefonu powinien zawierać 9 cyfr`,
+                'any.required': `Pole 'numer telefonu' jest wymagane`
+        }),
+        confirmation: Joi.string()
+            .required()
+            .messages({
+                'string.empty': `Zaznacz formę potwierdzenia płatności`,
+                'any.required': `Pole 'potwierdzenie płatności' jest wymagane`
+            }),
+        nip: Joi.number()
+            .allow('', null)
+            .messages({
+                
+            }),
+        companyName: Joi.string()
+            .allow('', null)
+            .messages({
+                
+            }),
         provider: Joi.string()
             .required()
             .messages({

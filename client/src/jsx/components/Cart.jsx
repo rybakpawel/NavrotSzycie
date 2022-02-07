@@ -8,7 +8,6 @@ import { calculateTotalPrice } from '../utils/calculateTotalPrice';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
 import Quantity from './Quantity';
-import example from '../../assets/images/example-bag.jpg';
 import remove from '../../assets/icons/remove-from-cart.svg';
 
 const getSmallView = () => {
@@ -54,14 +53,23 @@ const getSmallView = () => {
                     {cart.map(product => {
                         return (
                             <div className='cart__product'>
-                                <img className='cart__product__image'
-                                    src={example}
-                                    alt="" />
+                                <Link to={`/${product.category}/${product.name}`}>
+                                    <img className='cart__product__image'
+                                        src={`http://localhost:5000/products/image/${product.images[0]}`}
+                                        alt={product.name} />
+                                </Link>
                                 <div className='cart__product__informations'>
-                                    <p>{product.name}</p>
-                                    <p>{capitalizeFirstLetter(product.category)}</p>
-                                    {product.promotion ? <p>{priceTimesQuantity(product.priceWithPromotion, product.quantity)}zł</p> :
-                                        <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>}
+                                    <Link to={`/${product.category}/${product.name}`}>
+                                        <p>{product.name}</p>
+                                    </Link>
+                                    <Link to={`/${product.category}`}>
+                                        <p>{capitalizeFirstLetter(product.category)}</p>
+                                    </Link>
+                                    {promotionSize ?
+                                        product.promotion ?
+                                            <p>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</p> :
+                                            <p className='cart__product__informations--success'>{(priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</p> :
+                                        <p>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</p>}
                                     <img src={remove} alt='Usuń produkt' className='cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                                     <div className='cart__product__informations__amount-wrapper'>
                                         <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
@@ -150,23 +158,34 @@ const getLargeView = () => {
                             return (
                                 <div className='cart__table__row-product'>
                                     <div className='cart__table__row-product__large-row'>
-                                        <img src={`http://localhost:5000/products/image/${product.images[0]}`}
-                                            alt={product.images[0]}
-                                            className='cart__table__row-product__large-row__product-image' />
-                                        <p>{product.name}</p>
+                                        <Link to={`/${product.category}/${product.name}`}>
+                                            <img src={`http://localhost:5000/products/image/${product.images[0]}`}
+                                                alt={product.name}
+                                                className='cart__table__row-product__large-row__product-image' />
+                                        </Link>
+                                        <Link to={`/${product.category}/${product.name}`}>
+                                            <p>{product.name}</p>
+                                        </Link>
                                         <div>
-                                            <img src={remove} alt="" onClick={() => handleRemoveFromCart(product._id)} />
+                                            <img src={remove} alt={product.name} onClick={() => handleRemoveFromCart(product._id)} />
                                         </div>
                                     </div>
-                                    <div className='cart__table__row-product__small-row'>
-                                        {product.promotion ? product.priceWithPromotion.toFixed(2) : product.price.toFixed(2)}zł
-                                    </div>
+
+                                    {promotionSize ?
+                                        product.promotion ?
+                                            <div className='cart__table__row-product__small-row'>{product.priceWithPromotion.toFixed(2)}zł</div> :
+                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{(product.priceWithPromotion.toFixed(2) * promotionSize / 100).toFixed(2)}zł</div> :
+                                        <div className='cart__table__row-product__small-row'>{product.priceWithPromotion.toFixed(2)}zł</div>}
+
                                     <div className='cart__table__row-product__small-row'>
                                         <Quantity id={product._id} quantity={product.quantity} overallQuantity={product.overallQuantity} />
                                     </div>
-                                    <div className='cart__table__row-product__small-row'>
-                                        {product.promotion ? priceTimesQuantity(product.priceWithPromotion, product.quantity) : priceTimesQuantity(product.price, product.quantity)}zł
-                                    </div>
+
+                                    {promotionSize ?
+                                        product.promotion ?
+                                            <div className='cart__table__row-product__small-row'>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</div> :
+                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{(priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</div> :
+                                        <div className='cart__table__row-product__small-row'>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</div>}
                                 </div>
                             )
                         })}

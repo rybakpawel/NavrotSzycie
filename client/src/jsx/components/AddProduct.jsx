@@ -19,7 +19,10 @@ const AddProduct = () => {
     };
     const [form, setForm] = useState(formInitialState);
     const [newCategory, setNewCategory] = useState(false);
-    const [responseMessage, setResponseMessage] = useState(null);
+    const [responseMessage, setResponseMessage] = useState({
+        alert: '',
+        success: null
+    });
 
     const dispatch = useDispatch();
 
@@ -27,7 +30,7 @@ const AddProduct = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+    }, [form]);
 
     useEffect(() => {
         getData();
@@ -83,19 +86,24 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setResponseMessage(data.message);
-                if (data.clear) setForm({
+                setResponseMessage({
+                    alert: data.responseMessage,
+                    success: data.success
+                });
+                if (data.success) setForm({
                     ...formInitialState,
                     category: categoryList ? categoryList[0] : ''
                 });
             })
     };
 
+    const { alert, success } = responseMessage;
+
     return (
         <form className='add-product'
             id='addProductForm'
             onSubmit={handleSubmitForm} >
-            <p className='add-product__response-message'>{responseMessage}</p>
+            <p className={`add-product__response-message ${success ? 'add-product__response-message--success' : ''}`}>{alert}</p>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Nazwa</label>
                 <input className='add-product__data-wrapper__input' type='text' name='name' value={form.name} onChange={handleChangeInput} />

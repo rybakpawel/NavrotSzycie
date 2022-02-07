@@ -15,8 +15,12 @@
         background-color: $base-background;
         border: 0.1px solid $light-border;
 
-        &__image {
+        a {
             width: 30%;
+        }
+
+        &__image {
+            width: 100%;
         }
 
         &__informations {
@@ -24,7 +28,8 @@
             flex-direction: column;
             margin: 0.5rem 0 0.5rem 0.5rem;
 
-            p {
+            a {
+                transition: .3s;
 
                 &:nth-child(1) {
                     font-size: 1.2rem;
@@ -36,6 +41,12 @@
                     opacity: .7;
                 }
 
+                &:hover {
+                    opacity: .5;
+                }
+            }
+
+            p {
                 &:nth-child(3) {
                     font-size: 1.5rem;
                 }

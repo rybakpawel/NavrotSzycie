@@ -6,7 +6,7 @@ import AddProduct from './AddProduct';
 import EditProducts from './EditProducts';
 import leftArrow from '../../assets/icons/left-arrow.svg';
 
-const AdminProduct = ({ action, obj }) => {
+const AdminProduct = ({ action }) => {
     const [title, setTitle] = useState('');
 
     const checkAction = action => {

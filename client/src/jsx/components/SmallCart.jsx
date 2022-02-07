@@ -26,12 +26,18 @@ const SmallCart = () => {
             {cart.map(product => {
                 return (
                     <div className='small-cart__product'>
-                        <img className='small-cart__product__image'
-                            src={`http://localhost:5000/products/image/${product.images[0]}`}
-                            alt={product.name} />
+                        <Link to={`/${product.category}/${product.name}`}>
+                            <img className='small-cart__product__image'
+                                src={`http://localhost:5000/products/image/${product.images[0]}`}
+                                alt={product.name} />
+                        </Link>
                         <div className='small-cart__product__informations'>
-                            <p>{product.name}</p>
-                            <p>{capitalizeFirstLetter(product.category)}</p>
+                            <Link to={`/${product.category}/${product.name}`}>
+                                <p>{product.name}</p>
+                            </Link>
+                            <Link to={`/${product.category}`}>
+                                <p>{capitalizeFirstLetter(product.category)}</p>
+                            </Link>
                             {product.promotion ? <p>{priceTimesQuantity(product.priceWithPromotion, product.quantity)}zł</p> :
                                 <p>{priceTimesQuantity(product.price, product.quantity)}zł</p>}
                             <img src={close} alt='Usuń produkt' className='small-cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
-// import heroImage from '../../assets/images/hero.jpg';
-// import heroImage from '../../assets/images/hero-image-pexels.jpg';
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import SwiperCore, { Autoplay, Navigation, Pagination, Thumbs } from 'swiper';
 import heroImage from '../../assets/images/hero-image-pixabay.jpg';
 import facebook from '../../assets/icons/facebook.svg';
 import instagram from '../../assets/icons/instagram.svg';
 
+SwiperCore.use([Autoplay, Pagination, Navigation, Thumbs]);
+
 const Hero = () => {
+    const arr = [heroImage, heroImage, heroImage];
+
     return (
         <section className='hero'>
             {isMobileOnly ?
@@ -21,11 +27,32 @@ const Hero = () => {
                     </Link>
                 </div>
             }
-            <img
-                src={heroImage}
-                alt='Navrot Szycie'
-                className='hero__image' />
-            <h1 className='hero__title'>Wyjątkowe rękodzieła najwyższej jakości</h1>
+            <Swiper
+                pagination={true}
+                style={{ '--swiper-pagination-color': '#fff' }}
+                loop={true}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                spaceBetween={3}
+                navigation={true}
+                className="mySwiper2">
+
+                {arr.map(img => {
+                    return (
+
+                        <SwiperSlide>
+                            <Link to='/'>
+                                <img src={img}
+                                    alt='image'
+                                    className='hero__image' />
+                            </Link>
+                        </SwiperSlide>
+                    )
+                })}
+            </Swiper>
+            {/* <h1 className='hero__title'>Wyjątkowe rękodzieła najwyższej jakości</h1> */}
         </section>
     )
 }

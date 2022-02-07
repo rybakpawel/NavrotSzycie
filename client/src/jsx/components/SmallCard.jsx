@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from './Button';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/actions/cartActions';
-import example from '../../assets/images/example-bag.jpg';
+import Button from './Button';
+import Percent from './Percent';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
-import { Link } from 'react-router-dom';
 
 const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion, promotion }) => {
     const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion,
                         className='small-card__buttons-wrapper__add-to-cart'
                         onClick={isProductInCart ? null : handleAddToCart} /> : null}
             </div>
+            {promotion ? <Percent /> : null}
         </div>
     )
 }

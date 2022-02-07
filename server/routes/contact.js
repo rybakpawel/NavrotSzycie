@@ -5,11 +5,15 @@ const Message = require('../models/message');
 
 router.post('/', async (req, res) => {
     try {
+        console.log(req.body)
         const { error } = contactValidation(req.body);
 
         if (error) {
             const responseMessage = error.details[0].message;
-            return res.status(400).send({ responseMessage });
+            return res.status(400).send({ 
+                responseMessage,
+                success: false
+            });
         } else {
             sendContactEmail(req.body.email, req.body.message);
             
@@ -19,16 +23,22 @@ router.post('/', async (req, res) => {
             });
 
             message.save((err) => {
-                if (err) res.status(400).send({ message: 'Wystąpił błąd. Wiadomość nie została zapisana.'});
-                else return res.status(200).send({ message: 'Zapisano wiadomość', clear: true});
+                if (err) return res.status(400).send({ 
+                    responseMessage: 'Wystąpił błąd. Wiadomość nie została zapisana.',
+                    success: false
+                });
             });
 
-            const responseMessage = 'Wysłano wiadomość!';
-            return res.status(200).send({ responseMessage });
+            return res.status(200).send({ 
+                responseMessage: 'Wysłano wiadomość!',
+                success: true 
+            });
         }
     } catch {
-        const responseMessage = 'Server Error';
-        res.status(500).send({ responseMessage });
+        res.status(500).send({ 
+            responseMessage: 'Server Error',
+            success: false 
+        });
     }
 })
 

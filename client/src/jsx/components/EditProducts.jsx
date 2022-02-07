@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsList } from '../redux/actions/productActions';
+import { sortByKey } from '../utils/sortByKey';
 import Button from './Button';
+import ok from '../../assets/icons/ok.png';
+import reject from '../../assets/icons/reject.png';
 
 const EditProduct = () => {
     const formInitialState = {
@@ -20,6 +23,7 @@ const EditProduct = () => {
     const [form, setForm] = useState(formInitialState);
     const [responseMessage, setResponseMessage] = useState(null);
     const [activeEditProduct, setActiveEditProduct] = useState(null);
+    const [activeDeleteProduct, setActiveDeleteProduct] = useState(null);
 
     const dispatch = useDispatch();
     const allProducts = useSelector(state => state.productReducer.productsList);
@@ -69,15 +73,23 @@ const EditProduct = () => {
             ...prevState,
             [name]: !value ? product : value,
         }));
-    }
+    };
 
-    const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/products/delete/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
-            .then(data => setResponseMessage(data.message))
-    }
+    const handleDeleteProduct = (id, confirm) => {
+        if (activeDeleteProduct) {
+            setActiveDeleteProduct(false);
+
+            if (confirm) {
+                fetch(`http://localhost:5000/products/delete/${id}`, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.json())
+                    .then(data => setResponseMessage(data.message))
+            }
+        } else {
+            setActiveDeleteProduct(id);
+        }
+    };
 
     const handleSubmitForm = (id) => {
         fetch(`http://localhost:5000/products/edit/${id}`, {
@@ -93,22 +105,36 @@ const EditProduct = () => {
                 setResponseMessage(data.message);
                 setForm(formInitialState);
             })
-    }
+    };
+
+    const sortedProducts = sortByKey(allProducts, 'name');
 
     return (
         <div className='edit-product'>
             {responseMessage ? <p className='edit-product__response'>{responseMessage}</p> : null}
-            {allProducts.map(product => {
+            {sortedProducts.map(product => {
                 return (
                     <>
                         <div className='edit-product__row'>
-                            <p className='edit-product__row__name'>{product.name}</p>
-                            <div className='edit-product__row__button' onClick={() => handleEditProduct(product)}>
-                                <Button variant='small' title='Edytuj' />
-                            </div>
-                            <div className='edit-product__row__button' onClick={() => handleDeleteProduct(product._id)}>
-                                <Button variant='small' title='Usuń' />
-                            </div>
+                            {activeDeleteProduct === product._id ?
+                                <>
+                                    <p className='edit-product__row__name'>{product.name}</p>
+                                    <div className='edit-product__row__confirm'>
+                                        <img className='edit-product__row__confirm__icon' src={ok} alt='Potwierdź' onClick={() => handleDeleteProduct(product._id, true)} />
+                                        <p className='edit-product__row__confirm__text'>Na pewno?</p>
+                                        <img className='edit-product__row__confirm__icon' src={reject} alt='Zrezygnuj' onClick={() => handleDeleteProduct(product._id, false)} />
+                                    </div>
+                                </> :
+                                <>
+                                    <p className='edit-product__row__name'>{product.name}</p>
+                                    <div className='edit-product__row__button' onClick={() => handleEditProduct(product)}>
+                                        <Button variant='small' title='Edytuj' />
+                                    </div>
+                                    <div className='edit-product__row__button' onClick={() => handleDeleteProduct(product._id)}>
+                                        <Button variant='small' title='Usuń' />
+                                    </div>
+                                </>
+                            }
                         </div>
                         {activeEditProduct === product._id ?
                             <form className='edit-product__form'

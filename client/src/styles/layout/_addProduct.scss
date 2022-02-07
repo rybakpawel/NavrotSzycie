@@ -1,30 +1,3 @@
 .add-product {
-    flex-grow: 2;
-    margin: 2rem 5%;
-
-    @media (min-width: 768px) {
-        margin: 2rem 20%;
-    }
-
-    &__response-message {
-        font-size: 1.5rem;
-        text-align: center;
-        margin: 1rem 0;
-        color: $error;
-    }
-
-    &__data-wrapper {
-        @include post-form;
-
-        &__select-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
-
-    &__button-wrapper {
-        margin-top: 3rem;
-        text-align: center;
-    }
+    @include admin-add-form;
 }

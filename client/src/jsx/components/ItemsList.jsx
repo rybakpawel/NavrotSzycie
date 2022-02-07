@@ -6,7 +6,6 @@ import { getNewProducts, getSimilarProducts } from '../redux/actions/productActi
 import useWindowDimensions from '../utils/useWindowDimensions';
 import SmallCard from './SmallCard';
 import Loading from './Loading';
-import product from '../../../../server/models/product';
 
 let ItemsList = ({ isLandscape, variant }) => {
     const { category, name } = useParams();

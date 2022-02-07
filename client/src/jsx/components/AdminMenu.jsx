@@ -38,10 +38,10 @@ const AdminMenu = () => {
                     {checkActive('2') ?
                         <ul className='admin-menu__list'>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/section/hero'>Edytuj 'Hero image'</Link>
+                                <Link to='/admin/hero'>Edytuj 'Hero image'</Link>
                             </li>
                             <li className='admin-menu__list__item admin-menu__list__item--second'>
-                                <Link to='/admin/section/aboutme'>Edytuj 'O mnie'</Link>
+                                <Link to='/admin/aboutme'>Edytuj 'O mnie'</Link>
                             </li>
                         </ul> : null}
                 </li>

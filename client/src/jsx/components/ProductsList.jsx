@@ -48,10 +48,10 @@ const ProductsList = () => {
     const sortBy = (variant) => {
         switch (variant) {
             case 'cheap':
-                categoryProducts.sort((a, b) => a.price - b.price);
+                categoryProducts.sort((a, b) => a.priceWithPromotion - b.priceWithPromotion);
                 break;
             case 'expensive':
-                categoryProducts.sort((a, b) => b.price - a.price);
+                categoryProducts.sort((a, b) => b.priceWithPromotion - a.priceWithPromotion);
                 break;
             case 'alphabetic':
                 categoryProducts.sort((a, b) => a.name.localeCompare(b.name));
@@ -86,7 +86,7 @@ const ProductsList = () => {
                     </div>
                     <div className='products-list__cards'>
                         {categoryProducts.map(product => {
-                            const { name, images, price, priceWithPromotion, promotion, } = product;
+                            const { name, images, price, priceWithPromotion, promotion } = product;
                             return <LargeCard name={name} category={category} image={images[0]} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                         })}
                     </div>

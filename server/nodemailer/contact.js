@@ -20,7 +20,7 @@ const sendContactEmail = (email, message) => {
 
     transporter.sendMail(options, (err, info) => {
         if (err) console.log(`Nie udało się wysłać maila. Błąd: ${err}`)
-        else console.log(`Wysłano maila od ${email}`)
+        else console.log(`Wysłano maila od ${email}`) 
     })
 };
 

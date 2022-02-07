@@ -7,24 +7,15 @@ import useWindowDimensions from '../utils/useWindowDimensions';
 const DeliveryForm = ({ promotion }) => {
     const history = useHistory();
     const { width } = useWindowDimensions();
-    const [formInputs, setFormInputs] = useState({
-        email: '',
-        firstName: '',
-        lastName: '',
-        street: '',
-        buildingNumber: '',
-        flatNumber: '',
-        zipCode: '',
-        city: '',
-        provider: ''
-    });
+    const [formInputs, setFormInputs] = useState({ confirmation: 'receipt', provider: 'pocztex' });
     const [responseMessage, setResponseMessage] = useState(null);
 
     const handleChange = e => {
-        const value = e.target.value;
+        const { name, value } = e.target;
+
         setFormInputs({
             ...formInputs,
-            [e.target.name]: value
+            [name]: value
         });
     };
 
@@ -40,6 +31,10 @@ const DeliveryForm = ({ promotion }) => {
             flatNumber: '',
             zipCode: '',
             city: '',
+            phoneNumber: '',
+            confirmation: 'receipt',
+            nip: '',
+            companyName: '',
             provider: 'pocztex'
         })
 
@@ -79,7 +74,7 @@ const DeliveryForm = ({ promotion }) => {
                 </div>
                 <p className='delivery-form__customer-data__response-message'>{responseMessage}</p>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>E-mail</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>E-mail</label>
                     <input
                         type='email'
                         name='email'
@@ -88,7 +83,7 @@ const DeliveryForm = ({ promotion }) => {
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Imię</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>Imię</label>
                     <input
                         type='text'
                         name='firstName'
@@ -97,7 +92,7 @@ const DeliveryForm = ({ promotion }) => {
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Nazwisko</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>Nazwisko</label>
                     <input
                         type='text'
                         name='lastName'
@@ -106,7 +101,7 @@ const DeliveryForm = ({ promotion }) => {
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Ulica</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>Ulica</label>
                     <input
                         type='text'
                         name='street'
@@ -116,7 +111,7 @@ const DeliveryForm = ({ promotion }) => {
                 </div>
                 <div className='delivery-form__customer-data__collection'>
                     <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                        <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Numer domu</label>
+                        <label className='delivery-form__customer-data__wrapper__label'>Numer domu</label>
                         <input
                             type='text'
                             name='buildingNumber'
@@ -125,7 +120,7 @@ const DeliveryForm = ({ promotion }) => {
                             onChange={handleChange} />
                     </div>
                     <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                        <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Numer lokalu</label>
+                        <label className='delivery-form__customer-data__wrapper__label'>Numer lokalu</label>
                         <input
                             type='text'
                             name='flatNumber'
@@ -135,7 +130,7 @@ const DeliveryForm = ({ promotion }) => {
                     </div>
                 </div>
                 <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Kod pocztowy</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>Kod pocztowy</label>
                     <input
                         type='number'
                         name='zipCode'
@@ -144,7 +139,7 @@ const DeliveryForm = ({ promotion }) => {
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>
-                    <label htmlFor="" className='delivery-form__customer-data__wrapper__label'>Miejscowość</label>
+                    <label className='delivery-form__customer-data__wrapper__label'>Miejscowość</label>
                     <input
                         type='text'
                         name='city'
@@ -152,7 +147,73 @@ const DeliveryForm = ({ promotion }) => {
                         value={formInputs.city}
                         onChange={handleChange} />
                 </div>
-
+                <div className='delivery-form__customer-data__wrapper'>
+                    <label className='delivery-form__customer-data__wrapper__label'>Numer telefonu</label>
+                    <input
+                        type='text'
+                        name='phoneNumber'
+                        className='delivery-form__customer-data__wrapper__input'
+                        value={formInputs.phoneNumber}
+                        onChange={handleChange} />
+                </div>
+                <div className='delivery-form__customer-data__wrapper'>
+                    <label className='delivery-form__customer-data__wrapper__label'>Potwierdzenie zakupu</label>
+                    <div className='delivery-form__customer-data__wrapper__radio'>
+                        <input
+                            type='radio'
+                            id='receipt'
+                            name='confirmation'
+                            value='receipt'
+                            onChange={handleChange}
+                            checked={formInputs.confirmation === 'receipt'}
+                        />
+                        <label for='receipt'>Paragon</label>
+                    </div>
+                    <div className='delivery-form__customer-data__wrapper__radio'>
+                        <input
+                            type='radio'
+                            id='invoice-private'
+                            name='confirmation'
+                            value='invoice-private'
+                            onChange={handleChange}
+                            checked={formInputs.confirmation === 'invoice-private'}
+                        />
+                        <label for='invoice-private'>Faktura na osobę</label>
+                    </div>
+                    <div className='delivery-form__customer-data__wrapper__radio'>
+                        <input
+                            type='radio'
+                            id='invoice-company'
+                            name='confirmation'
+                            value='invoice-company'
+                            checked={formInputs.confirmation === 'invoice-company'}
+                            onChange={handleChange}
+                        />
+                        <label for='invoice-company'>Faktura na firmę</label>
+                    </div>
+                </div>
+                {formInputs.confirmation === 'invoice-company' ?
+                    <>
+                        <div className='delivery-form__customer-data__wrapper'>
+                            <label className='delivery-form__customer-data__wrapper__label'>NIP</label>
+                            <input
+                                type='number'
+                                name='nip'
+                                className='delivery-form__customer-data__wrapper__input'
+                                value={formInputs.nip}
+                                onChange={handleChange} />
+                        </div>
+                        <div className='delivery-form__customer-data__wrapper'>
+                            <label className='delivery-form__customer-data__wrapper__label'>Nazwa firmy</label>
+                            <input
+                                type='text'
+                                name='company-name'
+                                className='delivery-form__customer-data__wrapper__input'
+                                value={formInputs.companyName}
+                                onChange={handleChange} />
+                        </div>
+                    </> :
+                    null}
             </div>
 
             <div className='delivery-form__provider'>

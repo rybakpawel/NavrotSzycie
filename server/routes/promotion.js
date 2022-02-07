@@ -5,7 +5,7 @@ router.post('/', async (req,res) => {
     try {
         const { promotionCode } = req.body;
     
-        const promotion = await Promotion.findOne({ code: promotionCode });
+        const promotion = await Promotion.findOne({ code: promotionCode.toLowerCase() } );
         
         if (promotion.active) {
             res.status(200).send({
