@@ -21,8 +21,8 @@ const Product = () => {
     const dispatch = useDispatch();
 
     const product = useSelector(state => state.productReducer.product);
-    const cart = useSelector((state) => state.cartReducer.cartProducts);
-    const allProducts = useSelector(state => state.productReducer.productsList);
+    const cart = useSelector(state => state.cartReducer.cartProducts);
+    const allProducts = useSelector(state => state.productReducer.allProducts);
 
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [activeDetail, setActiveDetail] = useState([]);

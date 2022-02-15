@@ -12,7 +12,7 @@ const ProductsList = () => {
     const { category } = useParams();
     const dispatch = useDispatch();
     const categoryProducts = useSelector(state => state.productReducer.categoryProducts);
-    const categoryList = useSelector(state => state.productReducer.categoryList);
+    const categoryList = useSelector(state => state.productReducer.allCategories);
 
     const [isActiveSort, setIsActiveSort] = useState(false);
 

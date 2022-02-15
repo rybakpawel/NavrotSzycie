@@ -109,4 +109,4 @@ const deliveryValidation = (data) => {
     return schema.validate(data);
 }
 
-module.exports.deliveryValidation = deliveryValidation;
+module.exports = deliveryValidation;

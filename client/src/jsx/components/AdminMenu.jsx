@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../redux/actions/authActions';
 
 const AdminMenu = () => {
     const [activeItem, setActiveItem] = useState([]);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleClick = e => {
         if (!activeItem.includes(e.currentTarget.id)) setActiveItem([...activeItem, e.currentTarget.id]);
@@ -13,6 +19,11 @@ const AdminMenu = () => {
         if (!activeItem.includes(id)) return false;
         else return true;
     };
+
+    const handleLogout = () => {
+        dispatch(logOut());
+        history.push('/admin');
+    }
 
     return (
         <div className='admin-menu'>
@@ -62,7 +73,7 @@ const AdminMenu = () => {
                 <li className='admin-menu__list__item'>
                     <Link to='/admin/messages'>Wiadomości</Link>
                 </li>
-                <li className='admin-menu__list__item'>Wyloguj</li>
+                <li className='admin-menu__list__item' onClick={handleLogout}>Wyloguj</li>
             </ul>
         </div>
     )

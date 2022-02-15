@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 const MenuDropDown = () => {
     const dispatch = useDispatch();
 
-    const categoryList = useSelector(state => state.productReducer.categoryList);
+    const categoryList = useSelector(state => state.productReducer.allCategories);
 
     useEffect(() => {
         getData();

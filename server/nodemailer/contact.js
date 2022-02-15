@@ -24,4 +24,4 @@ const sendContactEmail = (email, message) => {
     })
 };
 
-module.exports.sendContactEmail = sendContactEmail;
+module.exports = sendContactEmail;

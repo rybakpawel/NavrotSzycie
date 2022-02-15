@@ -14,7 +14,10 @@ const productSchema = new mongoose.Schema({
     promotion: Boolean,
     promotionSize: Number,
     quantity: Number,
-    addDate: Date,
+    addDate: {
+        type: Date,
+        default: Date.now
+    }
 }, { collection: 'products' });
 
 module.exports = mongoose.model('Product', productSchema);

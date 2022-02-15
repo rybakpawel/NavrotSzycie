@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const multer = require('multer');
 const Grid = require('gridfs-stream');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 const Hero = require('../models/hero');
-const {storage} = require('../utils/storage'); 
+const { upload } = require('../middleware/multer'); 
 
 const DB_CONNECT = process.env.DB_CONNECT;
 const conn = mongoose.createConnection(DB_CONNECT);
@@ -17,13 +16,11 @@ conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo);
   
     gfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-        bucketName: 'hero'
+        bucketName: 'images'
     });
   
-    gfs.collection('hero');
+    gfs.collection('images');
 });
-
-const upload = multer({ storage });
 
 router.post('/add', upload.any('image'), async (req, res) => {
     const { name, link } = req.body;
@@ -94,6 +91,27 @@ router.get('/', async (req, res) => {
     } catch(err) {
         return res.status(400).send({message: 'Wystąpił błąd. Obrazy nie zostały znalezione.'});
     }
+});
+
+router.get('/image/:filename', (req, res) => {
+    const filename = req.params.filename;
+
+    gfs.files.findOne({ filename }, (err, file) => {
+        if (!file || file.length === 0) {
+            return res.status(404).json({
+                err: 'Plik nie istnieje'
+            });
+        }
+    
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+            const readStream = gfsBucket.openDownloadStream(file._id);
+            readStream.pipe(res);
+        } else {
+            res.status(404).json({
+                err: 'Plik nie jest obrazem'
+            });
+        }
+    });
 });
 
 module.exports = router;

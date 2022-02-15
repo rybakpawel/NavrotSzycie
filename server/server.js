@@ -9,6 +9,7 @@ const delivery = require('./routes/delivery');
 const payment = require('./routes/payment');
 const promotion = require('./routes/promotion');
 const hero = require('./routes/hero');
+const user = require('./routes/user');
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -38,3 +39,4 @@ app.use('/delivery', delivery);
 app.use('/payment', payment);
 app.use('/promotion', promotion);
 app.use('/hero', hero);
+app.use('/user', user);

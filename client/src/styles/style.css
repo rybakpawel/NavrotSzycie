@@ -1652,6 +1652,7 @@ h4 {
 
 .admin__header__user p {
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .admin__overall-wrapper {
@@ -2864,6 +2865,127 @@ h4 {
   .sort-drop-down__item {
     padding: 5% 10% 5% 5%;
     font-size: 1.5rem;
+  }
+}
+
+.sign-in {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  margin: 2rem 5%;
+}
+
+@media (min-width: 768px) {
+  .sign-in {
+    margin: 2rem 20%;
+  }
+}
+
+.sign-in__response-message {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+  color: #df1b41;
+}
+
+.sign-in__response-message--success {
+  color: #4BB543;
+}
+
+.sign-in__data-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.sign-in__data-wrapper--checkbox {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sign-in__data-wrapper__label {
+  text-align: left;
+  padding: 0.5rem 0;
+  font-size: 1.6rem;
+}
+
+.sign-in__data-wrapper__label--checkbox {
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .sign-in__data-wrapper__label {
+    font-size: 1.3rem;
+  }
+}
+
+.sign-in__data-wrapper input[type=file]::file-selector-button {
+  display: none;
+}
+
+.sign-in__data-wrapper__input {
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-family: 'Questrial', sans-serif;
+  border: 1px solid #e6e6e6;
+  color: #555;
+}
+
+.sign-in__data-wrapper__input--category {
+  width: 50%;
+}
+
+.sign-in__data-wrapper__input--images {
+  cursor: pointer;
+}
+
+.sign-in__data-wrapper__input--with-button {
+  width: 50%;
+}
+
+@media (min-width: 992px) {
+  .sign-in__data-wrapper__input {
+    padding: 0.5rem 1rem;
+    padding-left: 1rem;
+    font-size: 1.4rem;
+  }
+}
+
+.sign-in__data-wrapper__input__plus {
+  width: 15px;
+}
+
+.sign-in__data-wrapper__select-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sign-in__button-wrapper {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .sign-in {
+    border: 1px solid #e6e6e6;
+    padding: 2rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

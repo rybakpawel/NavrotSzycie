@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isMobileOnly } from 'react-device-detect';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import SwiperCore, { Autoplay, Navigation, Pagination, Thumbs } from 'swiper';
-import heroImage from '../../assets/images/hero-image-pixabay.jpg';
 import facebook from '../../assets/icons/facebook.svg';
 import instagram from '../../assets/icons/instagram.svg';
 
 SwiperCore.use([Autoplay, Pagination, Navigation, Thumbs]);
 
 const Hero = () => {
-    const arr = [heroImage, heroImage, heroImage];
+    const [heroImages, setHeroImages] = useState(null);
+
+    useEffect(() => {
+        loadData();
+    }, [])
+
+    const loadData = async () => {
+        const response = await fetch('http://localhost:5000/hero');
+        const data = await response.json();
+        setHeroImages(data);
+    }
 
     return (
         <section className='hero'>
@@ -39,18 +48,18 @@ const Hero = () => {
                 navigation={true}
                 className="mySwiper2">
 
-                {arr.map(img => {
+                {heroImages ? heroImages.map(hero => {
                     return (
 
                         <SwiperSlide>
-                            <Link to='/'>
-                                <img src={img}
+                            <a href={`${hero.link}`}>
+                                <img src={`http://localhost:5000/hero/image/${hero.image}`}
                                     alt='image'
                                     className='hero__image' />
-                            </Link>
+                            </a>
                         </SwiperSlide>
                     )
-                })}
+                }) : null}
             </Swiper>
             {/* <h1 className='hero__title'>Wyjątkowe rękodzieła najwyższej jakości</h1> */}
         </section>

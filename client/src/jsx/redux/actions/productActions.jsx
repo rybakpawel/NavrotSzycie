@@ -5,9 +5,7 @@ export const getProductsList = () => async dispatch => {
 
         dispatch({
             type: 'GET_ALL_PRODUCTS',
-            payload: {
-                data
-            }
+            payload: data
         });
     } catch {
         console.log('blad');
@@ -21,9 +19,7 @@ export const getCategoriesList = () => async dispatch => {
 
         dispatch({
             type: 'GET_ALL_CATEGORIES',
-            payload: {
-                data
-            }
+            payload: data
         });
     } catch {
         console.log('blad');
@@ -37,9 +33,7 @@ export const getProduct = (category, name) => async dispatch => {
 
         dispatch({
             type: 'GET_PRODUCT',
-            payload: {
-                data
-            }
+            payload: data
         });
     } catch {
         console.log('błąd');
@@ -53,9 +47,7 @@ export const getProductsFromCategory = (category) => async dispatch => {
 
         dispatch({
             type: 'GET_CATEGORY_PRODUCTS',
-            payload: {
-                data
-            }
+            payload: data
         });
     } catch {
         console.log('blad');
@@ -69,9 +61,7 @@ export const getNewProducts = () => async dispatch => {
 
         dispatch({
             type: 'GET_NEW_PRODUCTS',
-            payload: {
-                data
-            }
+            payload: data
         });
     } catch {
         console.log('blad');
@@ -89,9 +79,7 @@ export const getSimilarProducts = (category, name) => async dispatch => {
 
         dispatch({
             type: 'GET_SIMILAR_PRODUCTS',
-            payload: {
-                similarProducts
-            }
+            payload: similarProducts
         });
     } catch {
         console.log('blad');

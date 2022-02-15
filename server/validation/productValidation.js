@@ -40,4 +40,4 @@ const productValidation = (data) => {
     });
 }
 
-module.exports.productValidation = productValidation;
+module.exports = productValidation;

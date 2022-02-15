@@ -3,10 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import productReducer from "./reducers/productReducer";
 import cartReducer from "./reducers/cartReducer";
+import authReducer from "./reducers/authReducer";
 
 const allReducers = combineReducers({
     productReducer,
-    cartReducer
+    cartReducer,
+    authReducer
 });
 
 const cartProductsInLocalStorage = localStorage.getItem('cart')

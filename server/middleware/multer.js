@@ -1,6 +1,7 @@
 const path = require('path');
 const crypto = require('crypto');
 const { GridFsStorage } = require('multer-gridfs-storage');
+const multer = require('multer');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
@@ -25,4 +26,6 @@ const storage = new GridFsStorage({
     }
 });
 
-module.exports.storage = storage;
+const upload = multer({ storage });
+
+module.exports.upload = upload;

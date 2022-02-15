@@ -26,7 +26,7 @@ const AddProduct = () => {
 
     const dispatch = useDispatch();
 
-    const categoryList = useSelector(state => state.productReducer.categoryList);
+    const categoryList = useSelector(state => state.productReducer.allCategories);
 
     useEffect(() => {
         window.scrollTo(0, 0);

@@ -26,7 +26,7 @@ const EditProduct = () => {
     const [activeDeleteProduct, setActiveDeleteProduct] = useState(null);
 
     const dispatch = useDispatch();
-    const allProducts = useSelector(state => state.productReducer.productsList);
+    const allProducts = useSelector(state => state.productReducer.allProducts);
 
     useEffect(() => {
         getData();

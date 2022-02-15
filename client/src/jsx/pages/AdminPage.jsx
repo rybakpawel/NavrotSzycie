@@ -1,7 +1,11 @@
-import React from 'react';
-import { useParams } from 'react-router';
+import React, { useEffect } from 'react';
+import { useParams, useHistory } from 'react-router';
+import { useSelector } from "react-redux";
 import { isDesktop } from 'react-device-detect';
+import { useDispatch } from 'react-redux';
+import { loadUser, logOut } from '../redux/actions/authActions';
 import Logo from '../components/Logo';
+import SignIn from '../components/SignIn';
 import AdminMenu from '../components/AdminMenu';
 import AdminProduct from '../components/AdminProduct';
 import AdminHero from '../components/AdminHero';
@@ -12,6 +16,19 @@ import user from '../../assets/icons/user.svg';
 
 const AdminPage = () => {
     const { item, action } = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const auth = useSelector((state) => state.authReducer.isAuthenticate);
+
+    useEffect(() => {
+        dispatch(loadUser())
+    }, [dispatch]);
+
+    const handleLogout = () => {
+        dispatch(logOut());
+        history.push('/admin');
+    }
 
     const checkItem = item => {
         switch (item) {
@@ -45,12 +62,13 @@ const AdminPage = () => {
             <header className='admin__header'>
                 <Logo admin={true} />
                 <p className='admin__header__text'>Admin</p>
-                <div className='admin__header__user'>
-                    <img src={user} alt='uzytkownik' />
-                    <p>Witaj, Patrycja</p>
-                </div>
+                {auth ?
+                    <div className='admin__header__user'>
+                        <img src={user} alt='uzytkownik' />
+                        <p onClick={handleLogout}>Wyloguj się</p>
+                    </div> : null}
             </header>
-            {checkItem(item)}
+            {auth ? checkItem(item) : <SignIn />}
         </div>
     )
 };

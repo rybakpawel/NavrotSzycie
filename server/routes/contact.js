@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { contactValidation } = require('../validation/contactValidation');
-const { sendContactEmail } = require('../nodemailer/contact');
+const contactValidation = require('../validation/contactValidation');
+const sendContactEmail = require('../nodemailer/contact');
 const Message = require('../models/message');
 
 router.post('/', async (req, res) => {

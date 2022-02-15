@@ -11,7 +11,7 @@ import close from '../../assets/icons/close.svg';
 const Menu = ({ largeView }) => {
     const dispatch = useDispatch();
 
-    const categoryList = useSelector(state => state.productReducer.categoryList);
+    const categoryList = useSelector(state => state.productReducer.allCategories);
 
     const [isActiveMenu, setIsActiveMenu] = useState(false);
     const [isActiveProducts, setIsActiveProducts] = useState(false);

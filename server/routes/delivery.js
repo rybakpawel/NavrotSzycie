@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
-const { deliveryValidation } = require('../validation/deliveryValidation');
+const deliveryValidation = require('../validation/deliveryValidation');
 
 let dane;
 

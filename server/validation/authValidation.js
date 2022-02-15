@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const contactValidation = (data) => {
+const authValidation = (data) => {
     const schema = Joi.object({
         email: Joi.string()
             .required()
@@ -10,16 +10,16 @@ const contactValidation = (data) => {
                 'string.empty': `Wprowadź e-mail`,
                 'any.required': `Pole e-mail jest wymagane`
             }),
-        message: Joi.string()
+        password: Joi.string()
             .required()
             .messages({
-                'string.base': `Wiadomość powinna być tekstem`,
-                'string.empty': `Wprowadź wiadomość`,
-                'any.required': `Wiadomość jest wymagana`
+                'string.base': `Hasło powinno być tekstem`,
+                'string.empty': `Wprowadź hasło`,
+                'any.required': `Pole hasło jest wymagane`
             }),
     });
 
     return schema.validate(data);
 }
 
-module.exports = contactValidation;
+module.exports = authValidation;

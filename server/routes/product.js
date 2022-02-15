@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const multer = require('multer');
 const Grid = require('gridfs-stream');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 const Product = require('../models/product');
-const { storage } = require('../utils/storage');
-const { productValidation } = require('../validation/productValidation');
+const { upload } = require('../middleware/multer');
+const productValidation = require('../validation/productValidation');
 
 const DB_CONNECT = process.env.DB_CONNECT;
 const conn = mongoose.createConnection(DB_CONNECT);
@@ -23,8 +22,6 @@ conn.once('open', () => {
 
     gfs.collection('images');
 });
-
-const upload = multer({ storage });
 
 router.post('/add', upload.any('image'), async (req, res) => {
     const { error } = productValidation(req.body);
@@ -50,7 +47,6 @@ router.post('/add', upload.any('image'), async (req, res) => {
         return filename;
     })
 
-    const now = new Date();
     const product = new Product({
         name,
         category,
@@ -65,7 +61,6 @@ router.post('/add', upload.any('image'), async (req, res) => {
         promotion,
         promotionSize: promotion ? promotionSize : 0,
         quantity,
-        addDate: now.getDate()
     })
 
     product.save((err) => {

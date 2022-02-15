@@ -1,0 +1,8 @@
+.sign-in {
+    @include admin-add-form;
+
+    @media (min-width: 992px) {
+        border: 1px solid $light-border;
+        padding: 2rem;
+    }
+}

@@ -1,6 +1,6 @@
 const defaultState = {
     cartProducts: []
-}
+};
 
 const cartReducer = (state = defaultState, action) => {
     switch (action.type) {
