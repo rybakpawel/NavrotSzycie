@@ -9,6 +9,8 @@ const productSchema = new mongoose.Schema({
     description: String,
     height: Number,
     width: Number,
+    circuit: Number,
+    depth: Number,
     materials: String,
     care: String,
     promotion: Boolean,

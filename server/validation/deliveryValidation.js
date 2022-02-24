@@ -74,12 +74,8 @@ const deliveryValidation = (data) => {
             }),
         phoneNumber: Joi.string()
             .required()
-            .min(9)
-            .max(9)
             .messages({
                 'string.empty': `Wprowadź number telefonu`,
-                'string.min': `Numer telefonu powinien zawierać 9 cyfr`,
-                'string.max': `Numer telefonu powinien zawierać 9 cyfr`,
                 'any.required': `Pole 'numer telefonu' jest wymagane`
         }),
         confirmation: Joi.string()
@@ -104,6 +100,11 @@ const deliveryValidation = (data) => {
                 'string.empty': `Zaznacz formę dostawy`,
                 'any.required': `Pole 'sposób dostawy' jest wymagane`
             }),
+        inpostPoint: Joi.string()
+            .when('provider', { is: 'inpost', then: Joi.required().messages({
+                        'string.empty': `Zaznacz paczkomat`,
+                         'any.required': `Pole 'paczkomat' jest wymagane`
+                        }), otherwise: Joi.allow('', null) })
     });
 
     return schema.validate(data);

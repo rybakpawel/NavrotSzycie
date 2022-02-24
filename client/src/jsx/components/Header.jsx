@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { isMobileOnly, withOrientationChange } from 'react-device-detect';
 import Logo from './Logo';
 import Search from './Search';
@@ -7,7 +8,7 @@ import Menu from './Menu';
 import SmallCart from './SmallCart';
 import cart from '../../assets/icons/shopping-cart.svg';
 
-const getSmallView = (isPortrait) => {
+const getSmallView = (isPortrait, cartLength) => {
     return (
         <header className='header'>
             <Logo />
@@ -19,6 +20,10 @@ const getSmallView = (isPortrait) => {
                             src={cart}
                             alt='koszyk'
                             className='cart-icon' />
+                        {cartLength ?
+                            <div className='header__cart__quantity'>
+                                <p>{cartLength}</p>
+                            </div> : null}
                     </div>
                 </Link>
                 <Menu />
@@ -28,7 +33,7 @@ const getSmallView = (isPortrait) => {
     )
 }
 
-const getLargeView = () => {
+const getLargeView = (cartLength) => {
     const [isActiveSmallCart, setIsActiveSmallCart] = useState(false);
 
     const handleSmallCart = () => {
@@ -47,6 +52,10 @@ const getLargeView = () => {
                     src={cart}
                     alt='koszyk'
                     className='cart-icon' />
+                {cartLength ?
+                    <div className='header__cart__quantity'>
+                        <p>{cartLength}</p>
+                    </div> : null}
                 {isActiveSmallCart ? <SmallCart /> : null}
             </div>
         </header>
@@ -54,9 +63,11 @@ const getLargeView = () => {
 }
 
 let Header = ({ isPortrait }) => {
+    const cart = useSelector((state) => state.cartReducer.cartProducts);
+
     return (
         <>
-            {isMobileOnly ? getSmallView(isPortrait) : getLargeView()}
+            {isMobileOnly ? getSmallView(isPortrait, cart.length) : getLargeView(cart.length)}
         </>
     )
 };

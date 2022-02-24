@@ -3,12 +3,51 @@ import { useHistory } from 'react-router-dom';
 import Button from './Button';
 import SectionTitle from './SectionTitle';
 import useWindowDimensions from '../utils/useWindowDimensions';
+import useDebouncedEffect from '../utils/useDebouncedEffect';
+import { sortByKey } from '../utils/sortByKey';
 
 const DeliveryForm = ({ promotion }) => {
     const history = useHistory();
     const { width } = useWindowDimensions();
-    const [formInputs, setFormInputs] = useState({ confirmation: 'receipt', provider: 'pocztex' });
+    const [formInputs, setFormInputs] = useState({
+        confirmation: 'receipt',
+        provider: 'pocztex',
+        inpostPoint: ''
+    });
+    const [points, setPoints] = useState({
+        city: null,
+        allPoints: []
+    });
     const [responseMessage, setResponseMessage] = useState(null);
+
+    useDebouncedEffect(() => {
+        const fetchData = async () => {
+            if (points.city) {
+                let allData = [];
+                let morePagesAvailable = true;
+                let currentPage = 0;
+
+                while (morePagesAvailable) {
+                    currentPage++;
+                    const res = await fetch(`https://api-shipx-pl.easypack24.net/v1/points/?city=${points.city}&page=${currentPage}&per_page=100&type=parcel_locker_only`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    const { items, total_pages } = await res.json();
+
+                    items.forEach(item => allData.push(item));
+                    morePagesAvailable = currentPage < total_pages;
+                }
+                setPoints({
+                    ...points,
+                    allPoints: allData
+                })
+            }
+        }
+        fetchData();
+    }, 300, [points.city]);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -18,6 +57,15 @@ const DeliveryForm = ({ promotion }) => {
             [name]: value
         });
     };
+
+    const handleChangePoints = e => {
+        const city = e.target.value;
+
+        setPoints({
+            ...points,
+            city
+        });
+    }
 
     const handleSubmitForm = e => {
         e.preventDefault();
@@ -35,7 +83,8 @@ const DeliveryForm = ({ promotion }) => {
             confirmation: 'receipt',
             nip: '',
             companyName: '',
-            provider: 'pocztex'
+            provider: 'pocztex',
+            inpostPoint: ''
         })
 
         fetch('http://localhost:5000/delivery', {
@@ -244,6 +293,16 @@ const DeliveryForm = ({ promotion }) => {
                         onChange={handleChange} />
                     <label htmlFor='inpost'>Paczkomat InPost - <strong>9,95zł</strong></label>
                 </div>
+                {formInputs.provider === 'inpost' ?
+                    <div className='delivery-form__provider__points'>
+                        <label className='delivery-form__provider__points__label'>Paczkomat</label>
+                        <input className='delivery-form__provider__points__input' type='text' placeholder='Wprowadź miasto' onChange={(e) => handleChangePoints(e)}></input>
+                        <select className='delivery-form__provider__points__input' name='inpostPoint' onChange={handleChange}>
+                            {points.allPoints ? sortByKey(points.allPoints, 'address', 'line1').map(point => {
+                                return <option value={point.name}>{point.address.line1}, {point.address.line2}, {point.name}</option>
+                            }) : null}
+                        </select>
+                    </div> : null}
                 <div className='delivery-form__provider__button'>
                     <Button variant='checkout' title='Przejdź do płatności' type='submit' form='deliveryForm' />
                 </div>

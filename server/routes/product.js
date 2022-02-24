@@ -34,7 +34,7 @@ router.post('/add', upload.any('image'), async (req, res) => {
         });
     }
 
-    const { name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = req.body;
+    const { name, category, price, description, height, width, circuit, depth, materials, care, promotion, promotionSize, quantity } = req.body;
 
     const nameExist = await Product.find({ name });
     if (nameExist.length !== 0) return res.status(400).send({ 
@@ -56,6 +56,8 @@ router.post('/add', upload.any('image'), async (req, res) => {
         description,
         height,
         width,
+        circuit,
+        depth,
         materials,
         care,
         promotion,

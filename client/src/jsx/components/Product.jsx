@@ -3,15 +3,13 @@ import { Redirect, useLocation, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct, getProductsList } from '../redux/actions/productActions';
 import { addToCart } from '../redux/actions/cartActions';
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import SwiperCore, { Navigation, Pagination, Thumbs } from 'swiper';
 import useWindowDimensions from '../utils/useWindowDimensions';
 import Button from './Button';
 import Loading from './Loading';
-import heightIcon from '../../assets/icons/height.svg';
-import widthIcon from '../../assets/icons/width.svg';
 
 SwiperCore.use([Pagination, Navigation, Thumbs]);
 
@@ -77,28 +75,27 @@ const Product = () => {
                                 )
                             })}
                         </Swiper>
-                        {width < 992
-                            ? null
-                            : <div className='product__slider__small-images-wrapper'>
-                                <Swiper
-                                    onSwiper={setThumbsSwiper}
-                                    loop={true} spaceBetween={10}
-                                    slidesPerView={4}
-                                    freeMode={true}
-                                    watchSlidesProgress={true}
-                                    className="mySwiper">
+                        <div className='product__slider__small-images-wrapper'>
+                            <Swiper
+                                onSwiper={setThumbsSwiper}
+                                loop={true}
+                                spaceBetween={10}
+                                slidesPerView={4}
+                                freeMode={true}
+                                watchSlidesProgress={true}
+                                className='mySwiper'>
 
-                                    {product.images.map(img => {
-                                        return (
-                                            <SwiperSlide>
-                                                <img src={`http://localhost:5000/products/image/${img}`}
-                                                    alt='image'
-                                                    className='product__slider__small-image' />
-                                            </SwiperSlide>
-                                        )
-                                    })}
-                                </Swiper>
-                            </div>}
+                                {product.images.map(img => {
+                                    return (
+                                        <SwiperSlide>
+                                            <img src={`http://localhost:5000/products/image/${img}`}
+                                                alt='image'
+                                                className='product__slider__small-image' />
+                                        </SwiperSlide>
+                                    )
+                                })}
+                            </Swiper>
+                        </div>
                     </div>
                     <div className='product__informations'>
                         <h2 className='product__informations__title'>{product.name}</h2>
@@ -126,18 +123,22 @@ const Product = () => {
 
                                 {checkActive('1') ?
                                     <div className='product-detail__second-row'>
-                                        <div className='product-detail__second-row__image-wrapper'>
-                                            <img src={heightIcon}
-                                                alt='height'
-                                                className='product-detail__second-row__image' />
-                                        </div>
-                                        <p>{product.height}cm</p>
-                                        <div className='product-detail__second-row__image-wrapper'>
-                                            <img src={widthIcon}
-                                                alt='width'
-                                                className='product-detail__second-row__image' />
-                                        </div>
-                                        <p>{product.width}cm</p>
+                                        {product.height && <div className='product-detail__second-row__size-wrapper'>
+                                            <p>Wysokość</p>
+                                            <p>{product.height}cm</p>
+                                        </div>}
+                                        {product.width && <div className='product-detail__second-row__size-wrapper'>
+                                            <p>Szerokość</p>
+                                            <p>{product.width}cm</p>
+                                        </div>}
+                                        {product.circuit && <div className='product-detail__second-row__size-wrapper'>
+                                            <p>Obwód</p>
+                                            <p>{product.circuit}cm</p>
+                                        </div>}
+                                        {product.depth && <div className='product-detail__second-row__size-wrapper'>
+                                            <p>Głębokość</p>
+                                            <p>{product.depth}cm</p>
+                                        </div>}
                                     </div> :
                                     null
                                 }

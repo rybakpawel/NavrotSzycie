@@ -58,9 +58,9 @@ const Menu = ({ largeView }) => {
                                     title='Produkty'
                                 />
                             </li>
-                            <li className='menu__list__item'>
+                            {/* <li className='menu__list__item'>
                                 <Link to='/creator'>Kreator</Link>
-                            </li>
+                            </li> */}
                             <li className='menu__list__item'>
                                 <Link to='/aboutme'>O mnie</Link>
                             </li>
@@ -115,9 +115,9 @@ const Menu = ({ largeView }) => {
                         null :
                         <MenuDropDown />}
                 </li>
-                <li className='menu__list__item'>
+                {/* <li className='menu__list__item'>
                     <Link to='/creator'>Kreator</Link>
-                </li>
+                </li> */}
                 <li className='menu__list__item'>
                     <Link to='/aboutme'>O mnie</Link>
                 </li>

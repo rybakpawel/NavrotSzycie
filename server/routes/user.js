@@ -51,34 +51,4 @@ router.post('/auth', async (req, res) => {
     } 
 });
 
-// router.get('/reg', async (req, res) => {
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash('numerek123', salt);
-
-//     const user = new User({
-//         name: 'Patrycja',
-//         email: 'navrot.szycie@gmail.com',
-//         password: hashedPassword,
-//     });
-//     await user.save()
-//         .then(user => {
-//             jwt.sign(
-//                 { id: user.id },
-//                 JWT_SECRET,
-//                 { expiresIn: 3600 },
-//                 (err, token) => {
-//                     if (err) console.log('blad')
-//                     res.json({
-//                         token,
-//                         user: {
-//                             id: user.id,
-//                             name: user.name,
-//                             email: user.email
-//                         }
-//                     })
-//                 }
-//             )
-//         }) 
-// })
-
 module.exports = router;

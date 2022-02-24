@@ -43,5 +43,22 @@
             width: 2.5rem;
             height: 2.5rem;
         }
+
+        &__quantity {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            font-weight: bold;
+            background-color: orangered;
+            color: #fff;
+            border-radius: 50%;
+
+            p {
+                text-align: center;
+                line-height: 1.5rem;
+            }
+        }
     }
 }

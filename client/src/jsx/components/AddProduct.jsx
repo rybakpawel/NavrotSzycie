@@ -11,6 +11,8 @@ const AddProduct = () => {
         description: '',
         height: '',
         width: '',
+        circuit: '',
+        depth: '',
         materials: '',
         care: '',
         promotion: false,
@@ -142,6 +144,14 @@ const AddProduct = () => {
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Szerokość</label>
                 <input className='add-product__data-wrapper__input' type='number' name='width' value={form.width} onChange={handleChangeInput} />
+            </div>
+            <div className='add-product__data-wrapper'>
+                <label className='add-product__data-wrapper__label'>Obwód</label>
+                <input className='add-product__data-wrapper__input' type='number' name='circuit' value={form.circuit} onChange={handleChangeInput} />
+            </div>
+            <div className='add-product__data-wrapper'>
+                <label className='add-product__data-wrapper__label'>Głębokość</label>
+                <input className='add-product__data-wrapper__input' type='number' name='depth' value={form.depth} onChange={handleChangeInput} />
             </div>
             <div className='add-product__data-wrapper'>
                 <label className='add-product__data-wrapper__label'>Materiały</label>

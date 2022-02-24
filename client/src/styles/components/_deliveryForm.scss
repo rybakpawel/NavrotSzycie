@@ -69,6 +69,7 @@
         @media (min-width: 992px) {
             display: flex;
             flex-direction: column;
+            width: 25%;
             margin: 0;
             font-size: 1.5rem;
         }
@@ -89,6 +90,19 @@
 
         label {
             padding-left: 1rem;
+        }
+
+        &__points {
+            @include post-form;
+            margin: 1rem 0;
+
+            label {
+                padding-left: 0;
+            }
+
+            input {
+                margin-bottom: 0.5rem;
+            }
         }
     }
 }

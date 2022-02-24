@@ -14,6 +14,8 @@ const EditProduct = () => {
         description: '',
         height: '',
         width: '',
+        circuit: '',
+        depth: '',
         materials: '',
         care: '',
         promotion: '',
@@ -37,7 +39,7 @@ const EditProduct = () => {
     };
 
     const handleEditProduct = (product) => {
-        const { _id, name, category, price, description, height, width, materials, care, promotion, promotionSize, quantity } = product;
+        const { _id, name, category, price, description, height, width, circuit, depth, materials, care, promotion, promotionSize, quantity } = product;
         if (activeEditProduct === _id) {
             setActiveEditProduct(null);
             setForm(formInitialState);
@@ -50,6 +52,8 @@ const EditProduct = () => {
                 description,
                 height,
                 width,
+                circuit,
+                depth,
                 materials,
                 care,
                 promotion,
@@ -167,6 +171,14 @@ const EditProduct = () => {
                                 <div className='edit-product__form__row'>
                                     <label className='edit-product__form__row__label'>Szerokość</label>
                                     <input className='edit-product__form__row__input' type='number' name='width' placeholder={product.width} onChange={(e) => handleChangeInput(e, product.width)} />
+                                </div>
+                                <div className='edit-product__form__row'>
+                                    <label className='edit-product__form__row__label'>Obwód</label>
+                                    <input className='edit-product__form__row__input' type='number' name='circuit' placeholder={product.circuit} onChange={(e) => handleChangeInput(e, product.circuit)} />
+                                </div>
+                                <div className='edit-product__form__row'>
+                                    <label className='edit-product__form__row__label'>Głębokość</label>
+                                    <input className='edit-product__form__row__input' type='number' name='depth' placeholder={product.depth} onChange={(e) => handleChangeInput(e, product.depth)} />
                                 </div>
                                 <div className='edit-product__form__row'>
                                     <label className='edit-product__form__row__label'>Materiały</label>

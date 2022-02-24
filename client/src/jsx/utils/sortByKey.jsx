@@ -1,7 +1,13 @@
-export const sortByKey = (array, key) => {
+export const sortByKey = (array, key, lowerKey) => {
     return array.sort((a, b) => {
-        const x = a[key];
-        const y = b[key];
+        let x, y;
+        if (lowerKey) {
+            x = a[key][lowerKey];
+            y = b[key][lowerKey];
+        } else {
+            x = a[key];
+            y = b[key];
+        }
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
 }
