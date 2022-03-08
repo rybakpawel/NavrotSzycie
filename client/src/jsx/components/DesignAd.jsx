@@ -4,12 +4,12 @@ import Button from './Button';
 const DesignAd = () => {
     return (
         <section className='design-ad'>
-            <h2 className='design-ad__text'>Zaprojektuj swój unikalny produkt!</h2>
+            <h2 className='design-ad__text'>Masz pomysł na wzór? Napisz do mnie!</h2>
             <div className='design-ad__button-wrapper'>
                 <Button
-                    link='creator'
+                    link='contact'
                     variant='design-ad'
-                    title='Dowiedz się więcej' />
+                    title='Kontakt' />
             </div>
         </section>
     )

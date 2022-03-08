@@ -52,7 +52,7 @@ const getSmallView = () => {
                 <>
                     {cart.map(product => {
                         return (
-                            <div className='cart__product'>
+                            <div key={product._id} className='cart__product'>
                                 <Link to={`/${product.category}/${product.name}`}>
                                     <img className='cart__product__image'
                                         src={`http://localhost:5000/products/image/${product.images[0]}`}

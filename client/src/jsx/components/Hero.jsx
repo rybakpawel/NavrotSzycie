@@ -12,6 +12,7 @@ SwiperCore.use([Autoplay, Pagination, Navigation, Thumbs]);
 
 const Hero = () => {
     const [heroImages, setHeroImages] = useState(null);
+    const [isImageLoading, setIsImageLoading] = useState(true);
 
     useEffect(() => {
         loadData();
@@ -21,6 +22,10 @@ const Hero = () => {
         const response = await fetch('http://localhost:5000/hero');
         const data = await response.json();
         setHeroImages(data);
+    }
+
+    const handleOnLoad = () => {
+        setIsImageLoading(false);
     }
 
     return (
@@ -36,6 +41,8 @@ const Hero = () => {
                     </Link>
                 </div>
             }
+            <div className='hero__image'
+                style={{ display: isImageLoading ? 'block' : 'none' }}></div>
             <Swiper
                 pagination={true}
                 style={{ '--swiper-pagination-color': '#fff' }}
@@ -50,18 +57,19 @@ const Hero = () => {
 
                 {heroImages ? heroImages.map(hero => {
                     return (
-
-                        <SwiperSlide>
+                        <SwiperSlide key={hero._id}>
                             <a href={`${hero.link}`}>
+
                                 <img src={`http://localhost:5000/hero/image/${hero.image}`}
                                     alt='image'
-                                    className='hero__image' />
+                                    className='hero__image'
+                                    style={{ display: isImageLoading ? 'none' : 'block' }}
+                                    onLoad={handleOnLoad} />
                             </a>
                         </SwiperSlide>
                     )
                 }) : null}
             </Swiper>
-            {/* <h1 className='hero__title'>Wyjątkowe rękodzieła najwyższej jakości</h1> */}
         </section>
     )
 }

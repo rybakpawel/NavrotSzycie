@@ -25,7 +25,7 @@ const SmallCart = () => {
         <div className='small-cart'>
             {cart.map(product => {
                 return (
-                    <div className='small-cart__product'>
+                    <div className='small-cart__product' key={product._id}>
                         <Link to={`/${product.category}/${product.name}`}>
                             <img className='small-cart__product__image'
                                 src={`http://localhost:5000/products/image/${product.images[0]}`}

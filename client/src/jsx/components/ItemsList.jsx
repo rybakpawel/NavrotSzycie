@@ -41,8 +41,8 @@ let ItemsList = ({ isLandscape, variant }) => {
         products ?
             <div className='items-list'>
                 {products.slice(0, productsAmount).map(product => {
-                    const { name, category, images, quantity, price, priceWithPromotion, promotion } = product;
-                    return <SmallCard name={name} category={category} image={images[0]} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
+                    const { _id, name, category, images, quantity, price, priceWithPromotion, promotion } = product;
+                    return <SmallCard key={_id} name={name} category={category} image={images[0]} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                 })}
             </div>
             : <Loading />

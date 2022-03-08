@@ -9,6 +9,7 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ProductsListPage from './pages/ProductsListPage';
 import ProductPage from './pages/ProductPage';
+import RulesPage from './pages/RulesPage';
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     <Route path='/checkout/delivery' exact render={(props) => (<CheckoutPage {...props} step='delivery' />)} />
                     <Route path='/checkout/payment' exact render={(props) => (<CheckoutPage {...props} step='payment' />)} />
                     <Route path='/checkout/summary' exact render={(props) => (<CheckoutPage {...props} step='summary' />)} />
+                    <Route path='/rules' exact component={RulesPage} />
                     <Route path='/:category' exact component={ProductsListPage} />
                     <Route path='/:category/:name' component={ProductPage} />
                     <Redirect to='/' />

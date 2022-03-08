@@ -201,7 +201,7 @@ router.get('/:category/similar', async (req,res) => {
     const category = req.params.category;
  
     try {
-        const similarProducts = await Product.find({ category }).limit(5);
+        const similarProducts = await Product.find({ category }).limit(6);
         res.status(200).send(similarProducts);
 
     } catch(err) {

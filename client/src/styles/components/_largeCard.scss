@@ -17,6 +17,24 @@
 
     &__product-image {
         width: 100%;
+
+        &--placeholder {
+            width: 47.5vw;
+            min-height: 20rem;
+            background-color: transparent;
+
+            @media (min-width: 576px) {
+                width: 30vw;
+            }
+
+            @media (min-width: 992px) {
+                min-height: 25rem;
+            }
+
+            @media (min-width: 1200px) {
+                width: 22.5vw;
+            }
+        }
     }
 
     &__informations {

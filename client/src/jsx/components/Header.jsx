@@ -9,8 +9,14 @@ import SmallCart from './SmallCart';
 import cart from '../../assets/icons/shopping-cart.svg';
 
 const getSmallView = (isPortrait, cartLength) => {
+    const [isActiveMenu, setIsActiveMenu] = useState(false);
+
+    const handleIsActiveMenu = () => {
+        setIsActiveMenu(!isActiveMenu);
+    }
+
     return (
-        <header className='header'>
+        <header className={`header ${isActiveMenu ? 'header--active' : ''}`}>
             <Logo />
             {isPortrait ? null : <Search />}
             <div className='header__cart-menu-icons'>
@@ -26,7 +32,7 @@ const getSmallView = (isPortrait, cartLength) => {
                             </div> : null}
                     </div>
                 </Link>
-                <Menu />
+                <Menu handleHeader={handleIsActiveMenu} />
             </div>
             {isPortrait ? <Search /> : null}
         </header>

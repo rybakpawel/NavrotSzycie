@@ -29,6 +29,7 @@
     &__column {
         display: flex;
         flex-direction: column;
+        justify-content: center;
 
         &__link-wrapper {
             margin: 0.5rem 0;

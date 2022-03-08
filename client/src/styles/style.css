@@ -806,6 +806,30 @@ h4 {
   width: 100%;
 }
 
+.large-card__product-image--placeholder {
+  width: 47.5vw;
+  min-height: 20rem;
+  background-color: transparent;
+}
+
+@media (min-width: 576px) {
+  .large-card__product-image--placeholder {
+    width: 30vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .large-card__product-image--placeholder {
+    min-height: 25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .large-card__product-image--placeholder {
+    width: 22.5vw;
+  }
+}
+
 .large-card__informations {
   padding: 1rem 0 1rem 0.5rem;
 }
@@ -1474,6 +1498,24 @@ h4 {
 
 .small-card__product-image {
   width: 100%;
+}
+
+.small-card__product-image--placeholder {
+  min-height: 20rem;
+  width: 48vw;
+  background-color: transparent;
+}
+
+@media (min-width: 576px) {
+  .small-card__product-image--placeholder {
+    width: 31vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .small-card__product-image--placeholder {
+    width: 18vw;
+  }
 }
 
 .small-card__name-price {
@@ -2467,6 +2509,9 @@ h4 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .footer__column__link-wrapper {
@@ -2548,10 +2593,12 @@ h4 {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 0 5% 1.5rem 5%;
+  overflow: hidden;
+  z-index: 2;
 }
 
 .header--active {
-  overflow-x: auto;
+  overflow: visible;
 }
 
 @media (min-width: 480px) {
@@ -2567,6 +2614,7 @@ h4 {
     -webkit-box-pack: none;
         -ms-flex-pack: none;
             justify-content: none;
+    overflow: visible;
   }
 }
 
@@ -2640,6 +2688,7 @@ h4 {
   position: absolute;
   top: 3%;
   left: 3%;
+  z-index: 2;
 }
 
 .hero__social-media img {
@@ -2650,7 +2699,7 @@ h4 {
 
 .hero__image {
   width: 100%;
-  max-height: 75vh;
+  height: 75vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -2969,6 +3018,32 @@ h4 {
     padding: 5% 10% 5% 5%;
     font-size: 1.5rem;
   }
+}
+
+.rules {
+  margin: 2rem 0;
+  padding: 0 5%;
+}
+
+.rules__content {
+  padding: 2rem 0;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  list-style-position: inside;
+}
+
+.rules__content li {
+  margin: .5rem 0;
+}
+
+.rules__content li p {
+  display: inline;
+  padding-left: .5rem;
+}
+
+.rules__content li p p {
+  display: block;
+  padding-left: 3rem;
 }
 
 .sign-in {

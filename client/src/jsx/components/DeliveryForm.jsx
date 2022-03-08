@@ -216,7 +216,7 @@ const DeliveryForm = ({ promotion }) => {
                             onChange={handleChange}
                             checked={formInputs.confirmation === 'receipt'}
                         />
-                        <label for='receipt'>Paragon</label>
+                        <label htmlFor='receipt'>Paragon</label>
                     </div>
                     <div className='delivery-form__customer-data__wrapper__radio'>
                         <input
@@ -227,7 +227,7 @@ const DeliveryForm = ({ promotion }) => {
                             onChange={handleChange}
                             checked={formInputs.confirmation === 'invoice-private'}
                         />
-                        <label for='invoice-private'>Faktura na osobę</label>
+                        <label htmlFor='invoice-private'>Faktura na osobę</label>
                     </div>
                     <div className='delivery-form__customer-data__wrapper__radio'>
                         <input
@@ -238,7 +238,7 @@ const DeliveryForm = ({ promotion }) => {
                             checked={formInputs.confirmation === 'invoice-company'}
                             onChange={handleChange}
                         />
-                        <label for='invoice-company'>Faktura na firmę</label>
+                        <label htmlFor='invoice-company'>Faktura na firmę</label>
                     </div>
                 </div>
                 {formInputs.confirmation === 'invoice-company' ?
@@ -299,7 +299,7 @@ const DeliveryForm = ({ promotion }) => {
                         <input className='delivery-form__provider__points__input' type='text' placeholder='Wprowadź miasto' onChange={(e) => handleChangePoints(e)}></input>
                         <select className='delivery-form__provider__points__input' name='inpostPoint' onChange={handleChange}>
                             {points.allPoints ? sortByKey(points.allPoints, 'address', 'line1').map(point => {
-                                return <option value={point.name}>{point.address.line1}, {point.address.line2}, {point.name}</option>
+                                return <option key={point.name} value={point.name}>{point.address.line1}, {point.address.line2}, {point.name}</option>
                             }) : null}
                         </select>
                     </div> : null}

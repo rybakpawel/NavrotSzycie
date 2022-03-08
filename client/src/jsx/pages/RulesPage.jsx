@@ -1,20 +1,20 @@
 import React from 'react';
 import Header from '../components/Header';
 import Line from '../components/Line';
-import Checkout from '../components/Checkout';
+import Rules from '../components/Rules';
 import Footer from '../components/Footer';
 
-const CheckoutPage = ({ step }) => {
+const RulesPage = () => {
     return (
         <>
             <div className='page-wrapper'>
                 <Header />
                 <Line variant='long' />
-                <Checkout step={`${step}`} />
+                <Rules />
             </div>
             <Footer border={true} />
         </>
     )
 }
 
-export default CheckoutPage;
+export default RulesPage;

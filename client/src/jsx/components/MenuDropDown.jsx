@@ -21,7 +21,7 @@ const MenuDropDown = () => {
         <ul className='menu-drop-down'>
             {categoryList ? categoryList.map(category => {
                 return (
-                    <li className='menu-drop-down__item'>
+                    <li className='menu-drop-down__item' key={category}>
                         <Link to={`/${category}`}>
                             {capitalizeFirstLetter(category)}
                         </Link>

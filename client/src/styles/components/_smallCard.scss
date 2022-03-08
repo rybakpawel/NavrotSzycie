@@ -17,6 +17,20 @@
 
     &__product-image {
         width: 100%;
+
+        &--placeholder {
+            min-height: 20rem;
+            width: 48vw;
+            background-color: transparent;
+
+            @media (min-width: 576px) {
+                width: 31vw;
+            }
+
+            @media (min-width: 1200px) {
+                width: 18vw;
+            }
+        }
     }
 
     &__name-price {

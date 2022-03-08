@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/actions/cartActions';
@@ -8,6 +8,8 @@ import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
 const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion, promotion }) => {
+    const [isImageLoading, setIsImageLoading] = useState(true);
+
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
@@ -15,15 +17,23 @@ const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion,
         dispatch(addToCart(category, name))
     };
 
+    const handleOnLoad = () => {
+        setIsImageLoading(false);
+    }
+
     const isProductInCart = cart.some(product => product['name'] === name);
 
     return (
         <div className='small-card'>
             <Link to={`/${category}/${name}`}>
+                <div className='small-card__product-image--placeholder'
+                    style={{ display: isImageLoading ? 'block' : 'none' }}></div>
                 <img
                     src={`http://localhost:5000/products/image/${image}`}
                     alt='produkt'
-                    className='small-card__product-image' />
+                    className='small-card__product-image'
+                    style={{ display: isImageLoading ? 'none' : 'block' }}
+                    onLoad={handleOnLoad} />
             </Link>
             <div className='small-card__name-price'>
                 <h3 className='small-card__name-price__name'>{name}</h3>

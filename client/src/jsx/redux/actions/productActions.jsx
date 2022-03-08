@@ -8,7 +8,7 @@ export const getProductsList = () => async dispatch => {
             payload: data
         });
     } catch {
-        console.log('blad');
+        console.log('Nie można pobrać wszystkich produktów');
     }
 };
 
@@ -22,7 +22,7 @@ export const getCategoriesList = () => async dispatch => {
             payload: data
         });
     } catch {
-        console.log('blad');
+        console.log('Nie można pobrać wszystkich kategorii');
     }
 };
 
@@ -36,7 +36,7 @@ export const getProduct = (category, name) => async dispatch => {
             payload: data
         });
     } catch {
-        console.log('błąd');
+        console.log('Nie można pobrać produktu');
     }
 }
 
@@ -50,7 +50,7 @@ export const getProductsFromCategory = (category) => async dispatch => {
             payload: data
         });
     } catch {
-        console.log('blad');
+        console.log('Nie można pobrać produktów z kategorii');
     }
 };
 
@@ -64,7 +64,7 @@ export const getNewProducts = () => async dispatch => {
             payload: data
         });
     } catch {
-        console.log('blad');
+        console.log('Nie można pobrać nowych produktów');
     }
 }
 
@@ -75,13 +75,13 @@ export const getSimilarProducts = (category, name) => async dispatch => {
 
         const similarProducts = data.filter(product => {
             return product.name !== name;
-        })
+        });
 
         dispatch({
             type: 'GET_SIMILAR_PRODUCTS',
             payload: similarProducts
         });
     } catch {
-        console.log('blad');
+        console.log('Nie można pobrać podobnych produktów');
     }
 }

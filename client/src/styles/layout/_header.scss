@@ -4,10 +4,11 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 0 5% 1.5rem 5%;
-    // overflow: hidden;
+    overflow: hidden;
+    z-index: 2;
 
     &--active {
-        overflow-x: auto;
+        overflow: visible;
     }
 
     @media (min-width: 480px) {
@@ -16,6 +17,7 @@
 
     @media (min-width: 768px) {
         justify-content: none;
+        overflow: visible;
     }
 
     &__cart-menu-icons {

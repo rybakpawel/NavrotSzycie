@@ -72,7 +72,7 @@ const ProductsList = () => {
                             <h2>{capitalizeFirstLetter(category)}</h2>
                             {categoryList.map(categoryFromArray => {
                                 if (categoryFromArray !== category) {
-                                    return <Link to={`${categoryFromArray}`}>{capitalizeFirstLetter(categoryFromArray)}</Link>
+                                    return <Link key={categoryFromArray} to={`${categoryFromArray}`}>{capitalizeFirstLetter(categoryFromArray)}</Link>
                                 }
                             })}
                         </div>
@@ -86,13 +86,13 @@ const ProductsList = () => {
                     </div>
                     <div className='products-list__cards'>
                         {categoryProducts.map(product => {
-                            const { name, images, price, priceWithPromotion, promotion } = product;
-                            return <LargeCard name={name} category={category} image={images[0]} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
+                            const { _id, name, images, price, priceWithPromotion, promotion } = product;
+                            return <LargeCard key={_id} name={name} category={category} image={images[0]} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                         })}
                     </div>
                 </section>
             )
-        } else return <Redirect to='/' />
+        } else return <Redirect to='/plecaki' />
     }
 
     return categoryList && categoryProducts ? checkCategory(categoryList) : <Loading />

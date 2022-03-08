@@ -67,7 +67,7 @@ const Product = () => {
 
                             {product.images.map(img => {
                                 return (
-                                    <SwiperSlide>
+                                    <SwiperSlide key={img}>
                                         <img src={`http://localhost:5000/products/image/${img}`}
                                             alt='image'
                                             className='product__slider__image' />
@@ -87,7 +87,7 @@ const Product = () => {
 
                                 {product.images.map(img => {
                                     return (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={img}>
                                             <img src={`http://localhost:5000/products/image/${img}`}
                                                 alt='image'
                                                 className='product__slider__small-image' />

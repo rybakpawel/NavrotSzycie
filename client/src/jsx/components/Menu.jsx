@@ -8,7 +8,7 @@ import MenuDropDown from './MenuDropDown';
 import bars from '../../assets/icons/menu-bars.svg';
 import close from '../../assets/icons/close.svg';
 
-const Menu = ({ largeView }) => {
+const Menu = ({ largeView, handleHeader }) => {
     const dispatch = useDispatch();
 
     const categoryList = useSelector(state => state.productReducer.allCategories);
@@ -39,7 +39,10 @@ const Menu = ({ largeView }) => {
                     src={bars}
                     alt='menu'
                     className='menu__bars-icon'
-                    onClick={handleMenuBars} />
+                    onClick={() => {
+                        handleMenuBars();
+                        handleHeader();
+                    }} />
                 {
                     isActiveProducts === false ?
                         <ul className={`menu__list ${isActiveMenu ? 'menu__list--active' : ''}`}>
@@ -47,7 +50,10 @@ const Menu = ({ largeView }) => {
                                 src={close}
                                 alt='zamknij'
                                 className='menu__list__close'
-                                onClick={handleMenuBars} />
+                                onClick={() => {
+                                    handleMenuBars();
+                                    handleHeader();
+                                }} />
                             <li className='menu__list__item'>
                                 <Link to='/'>Strona główna</Link>
                             </li>
@@ -58,9 +64,6 @@ const Menu = ({ largeView }) => {
                                     title='Produkty'
                                 />
                             </li>
-                            {/* <li className='menu__list__item'>
-                                <Link to='/creator'>Kreator</Link>
-                            </li> */}
                             <li className='menu__list__item'>
                                 <Link to='/aboutme'>O mnie</Link>
                             </li>
@@ -77,10 +80,11 @@ const Menu = ({ largeView }) => {
                                 onClick={() => {
                                     handleMenuBars();
                                     handleProductsButton();
+                                    handleHeader();
                                 }} />
                             {categoryList ? categoryList.map(category => {
                                 return (
-                                    <li className='menu__list__item'>
+                                    <li className='menu__list__item' key={category}>
                                         <Link to={`/${category}`}
                                             onClick={() => {
                                                 handleMenuBars();
@@ -115,9 +119,6 @@ const Menu = ({ largeView }) => {
                         null :
                         <MenuDropDown />}
                 </li>
-                {/* <li className='menu__list__item'>
-                    <Link to='/creator'>Kreator</Link>
-                </li> */}
                 <li className='menu__list__item'>
                     <Link to='/aboutme'>O mnie</Link>
                 </li>

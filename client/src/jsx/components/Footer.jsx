@@ -11,27 +11,21 @@ const Footer = ({ border }) => {
                 <div className='footer__column footer__column--left'>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
                         <Button
-                            link='/'
+                            link='/rules'
                             variant='footer'
                             title='Regulamin' />
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
                         <Button
-                            link='/'
+                            link='/rules'
                             variant='footer'
                             title='Polityka prywatności' />
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
                         <Button
-                            link='/'
+                            link='/rules'
                             variant='footer'
-                            title='Reklamacje' />
-                    </div>
-                    <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
-                        <Button
-                            link='/'
-                            variant='footer'
-                            title='Zwroty' />
+                            title='Reklamacje i zwroty' />
                     </div>
                 </div>
                 <div className='footer__column footer__column--middle'>
@@ -44,7 +38,7 @@ const Footer = ({ border }) => {
                             <img src={instagram} alt='instagram' />
                         </Link>
                     </div>
-                    <h4 className='footer__column__copywrite'>2021@ Navrot Szycie</h4>
+                    <h4 className='footer__column__copywrite'>2021&copy; Navrot Szycie</h4>
                 </div>
                 <div className='footer__column footer__column--right'>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
@@ -52,12 +46,6 @@ const Footer = ({ border }) => {
                             link='/'
                             variant='footer'
                             title='Produkty' />
-                    </div>
-                    <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
-                        <Button
-                            link='/creator'
-                            variant='footer'
-                            title='Kreator' />
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                         <Button
