@@ -31,10 +31,6 @@ const AddProduct = () => {
     const categoryList = useSelector(state => state.productReducer.allCategories);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [form]);
-
-    useEffect(() => {
         getData();
     }, [dispatch]);
 
@@ -96,6 +92,7 @@ const AddProduct = () => {
                     ...formInitialState,
                     category: categoryList ? categoryList[0] : ''
                 });
+                window.scrollTo(0, 0);
             })
     };
 
@@ -116,7 +113,7 @@ const AddProduct = () => {
                     {!newCategory ?
                         <select className='add-product__data-wrapper__input add-product__data-wrapper__input--category' name='category' form='addProductForm' onChange={handleChangeInput}>
                             {categoryList ? categoryList.map(category => {
-                                return <option value={category}>{capitalizeFirstLetter(category)}</option>
+                                return <option key={category} value={category}>{capitalizeFirstLetter(category)}</option>
                             }) : null}
                         </select>
                         : <input className='add-product__data-wrapper__input add-product__data-wrapper__input--with-button' type='text' name='category' onChange={handleChangeInput} />}

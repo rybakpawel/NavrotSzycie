@@ -8,7 +8,7 @@ const ContactForm = () => {
         alert: '',
         success: null
     });
-    // const [success, setSuccess] = useState(null);
+    
     const { alert, success } = responseMessage;
 
     const handleSubmitForm = e => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isDesktop } from 'react-device-detect';
 import AdminMenu from './AdminMenu';
@@ -28,7 +28,7 @@ const Messages = () => {
     const getMessages = () => {
         const messagesList = messages.map(message => {
             return (
-                <>
+                <Fragment key={message._id}>
                     <div className='messages__row' onClick={() => handleShowMessage(message._id)}>
                         <p className={`messages__row__email ${activeMessages === message._id ? 'messages__row__email--bold' : ''}`}>{message.email}</p>
                         <img src={activeMessages === message._id ? minus : plus}
@@ -36,7 +36,7 @@ const Messages = () => {
                             className='messages__row__icon' />
                     </div>
                     <p className={`messages__row__message ${activeMessages === message._id ? '' : 'messages__row__message--inactive'}`}>{message.message}</p>
-                </>
+                </Fragment>
             )
         })
 

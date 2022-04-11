@@ -8,7 +8,7 @@ import Button from './Button';
 import Loading from './Loading';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const PaymentForm = ({ promotion }) => {
+const PaymentForm = ({ promotion, delivery }) => {
     const stripe = useStripe();
     const elements = useElements();
     const dispatch = useDispatch();
@@ -17,6 +17,8 @@ const PaymentForm = ({ promotion }) => {
 
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const deliveryCost = delivery.provider === 'pocztex' ? 15.6 : 9.95
 
     const handleRemoveFromCart = (id) => {
         dispatch(removeFromCart(id))
@@ -100,7 +102,7 @@ const PaymentForm = ({ promotion }) => {
                 <div className="payment-form__form__payment-element-wrapper">
                     <PaymentElement />
                 </div>
-                {isLoading ? <Loading /> : <Button variant='checkout' title={`Zapłać: ${calculateTotalPrice(cart, promotion)}zł`} />}
+                {isLoading ? <Loading /> : <Button variant='checkout' title={`Zapłać: ${parseInt(calculateTotalPrice(cart, promotion)) + deliveryCost}zł`} />}
             </div>
             {message && <div className='payment-form__message'>{message}</div>}
         </form>

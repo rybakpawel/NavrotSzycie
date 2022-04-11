@@ -42,7 +42,7 @@ const AdminPage = () => {
                 return <AdminAboutMe />
 
             case 'promotion':
-                return <AdminPromotion action={action} />
+                return <AdminPromotion />
 
             case 'messages':
                 return <Messages />

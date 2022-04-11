@@ -68,7 +68,7 @@ const getSmallView = () => {
                                     {promotionSize ?
                                         product.promotion ?
                                             <p>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</p> :
-                                            <p className='cart__product__informations--success'>{(priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</p> :
+                                            <p className='cart__product__informations--success'>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) - (priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</p> :
                                         <p>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</p>}
                                     <img src={remove} alt='Usuń produkt' className='cart__product__informations__delete' onClick={() => handleRemoveFromCart(product._id)} />
                                     <div className='cart__product__informations__amount-wrapper'>
@@ -87,7 +87,7 @@ const getSmallView = () => {
                                 disabled={promotionSize ? true : false} />
                         </form>
                         <p className='cart__overall-price'>Razem:
-                            <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span>
+                            <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span><br></br><span className='cart__overall-price--delivery'>+ dostawa</span>
                         </p>
                         <div className='cart__button'>
                             <Link to={{
@@ -156,7 +156,7 @@ const getLargeView = () => {
                         </div>
                         {cart.map(product => {
                             return (
-                                <div className='cart__table__row-product'>
+                                <div className='cart__table__row-product' key={product._id}>
                                     <div className='cart__table__row-product__large-row'>
                                         <Link to={`/${product.category}/${product.name}`}>
                                             <img src={`http://localhost:5000/products/image/${product.images[0]}`}
@@ -174,7 +174,7 @@ const getLargeView = () => {
                                     {promotionSize ?
                                         product.promotion ?
                                             <div className='cart__table__row-product__small-row'>{product.priceWithPromotion.toFixed(2)}zł</div> :
-                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{(product.priceWithPromotion.toFixed(2) * promotionSize / 100).toFixed(2)}zł</div> :
+                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{product.priceWithPromotion.toFixed(2) - (product.priceWithPromotion.toFixed(2) * promotionSize / 100).toFixed(2)}zł</div> :
                                         <div className='cart__table__row-product__small-row'>{product.priceWithPromotion.toFixed(2)}zł</div>}
 
                                     <div className='cart__table__row-product__small-row'>
@@ -184,7 +184,7 @@ const getLargeView = () => {
                                     {promotionSize ?
                                         product.promotion ?
                                             <div className='cart__table__row-product__small-row'>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</div> :
-                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{(priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</div> :
+                                            <div className={`cart__table__row-product__small-row cart__table__row-product__small-row--active-code`}>{(priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)) - (priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity) * promotionSize / 100).toFixed(2)}zł</div> :
                                         <div className='cart__table__row-product__small-row'>{priceTimesQuantity(product.priceWithPromotion.toFixed(2), product.quantity)}zł</div>}
                                 </div>
                             )
@@ -199,7 +199,7 @@ const getLargeView = () => {
                                 {promotionSize ? <p className='cart__promotion-code__promotion-size'>Zastosowano kod promocyjny w wysokości {promotionSize}% na wszystkie nieprzecenione produkty.</p> : null}
                             </form>
                             <p className='cart__overall-price'>Razem:
-                                <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span>
+                                <span className={`${promotionSize ? 'cart__overall-price--active-code' : ''}`}> {calculateTotalPrice(cart, promotionSize)}zł</span><br></br><span className='cart__overall-price--delivery'>+ dostawa</span>
                             </p>
                             <div className='cart__button'>
                                 <Link to={{

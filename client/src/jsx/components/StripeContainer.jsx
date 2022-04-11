@@ -45,7 +45,7 @@ const StripeContainer = ({ delivery, promotion }) => {
         <>
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
-                    <PaymentForm promotion={promotion} />
+                    <PaymentForm promotion={promotion} delivery={delivery} />
                 </Elements>
             )}
         </>

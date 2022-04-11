@@ -103,6 +103,7 @@ h4 {
 .button--footer {
   font-size: 1.2rem;
   border: none;
+  background-color: transparent;
 }
 
 .button--empty {
@@ -425,6 +426,10 @@ h4 {
   color: #4BB543;
 }
 
+.cart__overall-price--delivery {
+  font-size: 1.4rem;
+}
+
 @media (min-width: 768px) {
   .cart__overall-price {
     margin-right: 0;
@@ -568,10 +573,6 @@ h4 {
   }
 }
 
-.delivery-form__customer-data__wrapper input[type=file]::file-selector-button {
-  display: none;
-}
-
 .delivery-form__customer-data__wrapper__input {
   padding: 1rem;
   font-size: 1.8rem;
@@ -586,6 +587,10 @@ h4 {
 
 .delivery-form__customer-data__wrapper__input--images {
   cursor: pointer;
+}
+
+.delivery-form__customer-data__wrapper__input--images::file-selector-button {
+  display: none;
 }
 
 .delivery-form__customer-data__wrapper__input--with-button {
@@ -715,10 +720,6 @@ h4 {
   }
 }
 
-.delivery-form__provider__points input[type=file]::file-selector-button {
-  display: none;
-}
-
 .delivery-form__provider__points__input {
   padding: 1rem;
   font-size: 1.8rem;
@@ -733,6 +734,10 @@ h4 {
 
 .delivery-form__provider__points__input--images {
   cursor: pointer;
+}
+
+.delivery-form__provider__points__input--images::file-selector-button {
+  display: none;
 }
 
 .delivery-form__provider__points__input--with-button {
@@ -1151,6 +1156,7 @@ h4 {
 
 .product__slider__small-image {
   width: 100%;
+  cursor: pointer;
 }
 
 .product__informations {
@@ -1418,6 +1424,25 @@ h4 {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.search__suggestions {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  width: calc(100% - 40px);
+  list-style-type: none;
+  background-color: #fff;
+  border: 0.5px solid #e6e6e6;
+}
+
+.search__suggestions__item {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.2rem;
+}
+
+.search__suggestions__item--active {
+  background-color: #f5f5f5;
 }
 
 .section-title__text {
@@ -1903,10 +1928,6 @@ h4 {
   }
 }
 
-.admin-hero__add-image__data-wrapper input[type=file]::file-selector-button {
-  display: none;
-}
-
 .admin-hero__add-image__data-wrapper__input {
   padding: 1rem;
   font-size: 1.8rem;
@@ -1921,6 +1942,10 @@ h4 {
 
 .admin-hero__add-image__data-wrapper__input--images {
   cursor: pointer;
+}
+
+.admin-hero__add-image__data-wrapper__input--images::file-selector-button {
+  display: none;
 }
 
 .admin-hero__add-image__data-wrapper__input--with-button {
@@ -1982,6 +2007,10 @@ h4 {
   text-align: center;
   margin: 1rem 0;
   color: #df1b41;
+}
+
+.admin-hero__edit-image__response--success {
+  color: #4BB543;
 }
 
 .admin-hero__edit-image__row {
@@ -2079,6 +2108,42 @@ h4 {
 .admin-hero__edit-image__form__row__input--checkbox {
   width: auto;
   margin-right: auto;
+}
+
+.admin-hero__edit-image__form__row__input--image div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.admin-hero__edit-image__form__row__input--image div div {
+  position: relative;
+}
+
+.admin-hero__edit-image__form__row__input--image div div img:nth-child(1) {
+  width: 5rem;
+  height: 5rem;
+  padding-right: 0.5rem;
+}
+
+.admin-hero__edit-image__form__row__input--image div div img:nth-child(2) {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.admin-hero__edit-image__form__row__input--image input {
+  cursor: pointer;
+  padding-top: 0.5rem;
+}
+
+.admin-hero__edit-image__form__row__input--image input::file-selector-button {
+  display: none;
 }
 
 .admin-hero__edit-image__form__button-wrapper {
@@ -2198,10 +2263,6 @@ h4 {
   }
 }
 
-.add-product__data-wrapper input[type=file]::file-selector-button {
-  display: none;
-}
-
 .add-product__data-wrapper__input {
   padding: 1rem;
   font-size: 1.8rem;
@@ -2216,6 +2277,10 @@ h4 {
 
 .add-product__data-wrapper__input--images {
   cursor: pointer;
+}
+
+.add-product__data-wrapper__input--images::file-selector-button {
+  display: none;
 }
 
 .add-product__data-wrapper__input--with-button {
@@ -2358,6 +2423,10 @@ h4 {
   color: #df1b41;
 }
 
+.edit-product__response--success {
+  color: #4BB543;
+}
+
 .edit-product__row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2453,6 +2522,42 @@ h4 {
 .edit-product__form__row__input--checkbox {
   width: auto;
   margin-right: auto;
+}
+
+.edit-product__form__row__input--image div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.edit-product__form__row__input--image div div {
+  position: relative;
+}
+
+.edit-product__form__row__input--image div div img:nth-child(1) {
+  width: 5rem;
+  height: 5rem;
+  padding-right: 0.5rem;
+}
+
+.edit-product__form__row__input--image div div img:nth-child(2) {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.edit-product__form__row__input--image input {
+  cursor: pointer;
+  padding-top: 0.5rem;
+}
+
+.edit-product__form__row__input--image input::file-selector-button {
+  display: none;
 }
 
 .edit-product__form__button-wrapper {
@@ -3032,6 +3137,11 @@ h4 {
   list-style-position: inside;
 }
 
+.rules__content--strong {
+  padding-bottom: 0;
+  font-size: 1.5rem;
+}
+
 .rules__content li {
   margin: .5rem 0;
 }
@@ -3107,10 +3217,6 @@ h4 {
   }
 }
 
-.sign-in__data-wrapper input[type=file]::file-selector-button {
-  display: none;
-}
-
 .sign-in__data-wrapper__input {
   padding: 1rem;
   font-size: 1.8rem;
@@ -3125,6 +3231,10 @@ h4 {
 
 .sign-in__data-wrapper__input--images {
   cursor: pointer;
+}
+
+.sign-in__data-wrapper__input--images::file-selector-button {
+  display: none;
 }
 
 .sign-in__data-wrapper__input--with-button {

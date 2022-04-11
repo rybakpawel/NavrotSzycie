@@ -6,14 +6,14 @@ const sendContactEmail = (email, message) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'betterapp.euro2021@gmail.com',
+            user: 'navrot.szycie@gmail.com',
             pass: process.env.EMAIL_PASSWORD
         }
     })
 
-        const options = {
-        from: 'betterapp.euro2021@gmail.com',
-        to: 'rybakpawel92@gmail.com',
+    const options = {
+        from: 'navrot.szycie@gmail.com',
+        to: 'navrot.szycie@gmail.com',
         subject: 'Nowa wiadomość na Navrot Szycie',
         text: `Wiadomość wysłana z adresu: ${email}.\n\n ${message}`
     }

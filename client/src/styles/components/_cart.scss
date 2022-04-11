@@ -237,6 +237,10 @@
             color: $success;
         }
 
+        &--delivery {
+            font-size: 1.4rem;
+        }
+
         @media (min-width: 768px) {
             margin-right: 0;
         }

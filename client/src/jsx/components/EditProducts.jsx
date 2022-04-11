@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsList } from '../redux/actions/productActions';
 import { sortByKey } from '../utils/sortByKey';
@@ -11,6 +11,7 @@ const EditProduct = () => {
         name: '',
         category: '',
         price: '',
+        images: [],
         description: '',
         height: '',
         width: '',
@@ -23,7 +24,10 @@ const EditProduct = () => {
         quantity: ''
     };
     const [form, setForm] = useState(formInitialState);
-    const [responseMessage, setResponseMessage] = useState(null);
+    const [responseMessage, setResponseMessage] = useState({
+        alert: '',
+        success: null
+    });
     const [activeEditProduct, setActiveEditProduct] = useState(null);
     const [activeDeleteProduct, setActiveDeleteProduct] = useState(null);
 
@@ -39,7 +43,7 @@ const EditProduct = () => {
     };
 
     const handleEditProduct = (product) => {
-        const { _id, name, category, price, description, height, width, circuit, depth, materials, care, promotion, promotionSize, quantity } = product;
+        const { _id, name, category, price, images, description, height, width, circuit, depth, materials, care, promotion, promotionSize, quantity } = product;
         if (activeEditProduct === _id) {
             setActiveEditProduct(null);
             setForm(formInitialState);
@@ -49,6 +53,7 @@ const EditProduct = () => {
                 name,
                 category,
                 price,
+                images,
                 description,
                 height,
                 width,
@@ -79,6 +84,17 @@ const EditProduct = () => {
         }));
     };
 
+    const handleDeleteImage = (img) => {
+        const images = form.images.filter(item => {
+            return item != img
+        })
+        
+        setForm(prevState => ({
+            ...prevState,
+            images
+        }));
+    }
+
     const handleDeleteProduct = (id, confirm) => {
         if (activeDeleteProduct) {
             setActiveDeleteProduct(false);
@@ -88,37 +104,60 @@ const EditProduct = () => {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
-                    .then(data => setResponseMessage(data.message))
+                    .then(data => setResponseMessage({
+                        alert: data.message,
+                        success: data.success
+                    }))
             }
         } else {
             setActiveDeleteProduct(id);
         }
     };
 
-    const handleSubmitForm = (id) => {
+    const handleSubmitForm = (e, id) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+
+        for (const value in form) {
+            if (value !== 'images') {
+                formData.append(value, form[value]);
+            }
+        }
+
+        for (let i = 0; i < form.images.length; i++) {
+            formData.append('images[]', form.images[i]);
+          }
+
+        for (let i = 0; i < e.target.image.files.length; i++) {
+            formData.append('image', e.target.image.files[i]);
+        }
+
         fetch(`http://localhost:5000/products/edit/${id}`, {
             method: 'PUT',
-            body: JSON.stringify(form),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            body: formData,
         })
             .then(res => res.json())
             .then(data => {
-                setResponseMessage(data.message);
+                setResponseMessage({
+                    alert: data.message,
+                    success: data.success
+                });
                 setForm(formInitialState);
+                setActiveEditProduct(null)
             })
-    };
+    }; 
 
     const sortedProducts = sortByKey(allProducts, 'name');
 
+    const { alert, success } = responseMessage;
+
     return (
         <div className='edit-product'>
-            {responseMessage ? <p className='edit-product__response'>{responseMessage}</p> : null}
+            {alert ? <p className={`edit-product__response ${success ? 'edit-product__response--success' : ''}`}>{alert}</p> : null}
             {sortedProducts.map(product => {
                 return (
-                    <>
+                    <Fragment key={product._id}>
                         <div className='edit-product__row'>
                             {activeDeleteProduct === product._id ?
                                 <>
@@ -143,7 +182,7 @@ const EditProduct = () => {
                         {activeEditProduct === product._id ?
                             <form className='edit-product__form'
                                 id='editProductForm'
-                                onSubmit={() => handleSubmitForm(product._id)}>
+                                onSubmit={(e) => handleSubmitForm(e, product._id)}>
                                 <div className='edit-product__form__row'>
                                     <label className='edit-product__form__row__label'>Nazwa</label>
                                     <input className='edit-product__form__row__input' type='text' name='name' placeholder={product.name} onChange={(e) => handleChangeInput(e, product.name)} />
@@ -156,10 +195,22 @@ const EditProduct = () => {
                                     <label className='edit-product__form__row__label'>Cena</label>
                                     <input className='edit-product__form__row__input' type='number' step={0.01} name='price' placeholder={product.price} onChange={(e) => handleChangeInput(e, product.price)} />
                                 </div>
-                                {/* <div className='edit-product__form__row'>
+                                <div className='edit-product__form__row'>
                                     <label className='edit-product__form__row__label'>Zdjęcia</label>
-                                    <input className='edit-product__form__row__input' type="text" placeholder={product.name} />
-                                </div> */}
+                                    <div className='edit-product__form__row__input edit-product__form__row__input--image'>
+                                        <div>
+                                            {form.images.map(img => {
+                                                return (
+                                                    <div key={img}>
+                                                        <img src={`http://localhost:5000/products/image/${img}`} alt={img}/>
+                                                        <img src={reject} alt='Usuń zdjcie' onClick={() => handleDeleteImage(img)}/>
+                                                    </div>
+                                                )    
+                                            })}
+                                        </div>
+                                        <input id='image' type='file' name='image' multiple />
+                                    </div>
+                                </div>
                                 <div className='edit-product__form__row'>
                                     <label className='edit-product__form__row__label'>Opis</label>
                                     <textarea className='edit-product__form__row__input' rows={6} type='text' name='description' placeholder={product.description} onChange={(e) => handleChangeInput(e, product.description)} />
@@ -205,7 +256,7 @@ const EditProduct = () => {
                                 </div>
                             </form> : null
                         }
-                    </>
+                    </Fragment>
                 )
             })}
         </div>

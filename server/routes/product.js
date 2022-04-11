@@ -77,45 +77,61 @@ router.post('/add', upload.any('image'), async (req, res) => {
     });
 });
 
-router.delete('/delete/:id', (req, res) => {
-    const id = req.params.id;
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
 
-  // gfs.remove({ _id: id, root: 'images' }, (err, gridStore) => {
-  //   if (err) {
-  //     return res.status(400).json({ message: 'Wystąpił błąd. Produkt nie został usunięty.'});
-  //   }
-  // });
+        const product = await Product.findOne({ _id: id });
 
-    Product.deleteOne({ _id: id }, (err) => {
-        if (err) {
-            return res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został usunięty.'});
-        }
-        else {
-            return res.status(200);
-        }
-    });
+        product.images.forEach((image) => {
+            gfs.files.findOne({ filename: image }, (err, file) => {
+                if (err) return res.status(404).json({ err: err });
+            
+                gfsBucket.delete( file._id, (err) => {
+                    if (err) return res.status(404).json({ err: err });
+                });
+            });
+        });
+
+        Product.deleteOne({ _id: id }, (err) => {
+            if (err) return res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został usunięty.'});
+            else return res.status(200);
+        });
+        res.status(200).send({message: 'Usunięto produkt.'});
+    } catch {
+        res.status(400).send({message: 'Wystąpił błąd. Produkt nie został usunięty.'});
+    }
 });
 
-router.put('/edit/:id', async (req, res) => {
+router.put('/edit/:id', upload.any('image'), async (req, res) => {
     try {
         const id = req.params.id;
         const updateProduct = req.body;
 
-        const { error } = productValidation(req.body);
+        const images = req.files.map((img) => {
+            const { filename } = img;
+            return filename;
+        });
+
+        if (updateProduct.images) updateProduct.images = updateProduct.images.concat(images);
+        else updateProduct.images = images;
+
+        const product = await Product.findOne({ _id: id });
+
+        const { error } = productValidation(updateProduct);
         
         if (error) {
             const message = error.details[0].message;
             return res.status(400).send({ message });
         }
 
-        const product = await Product.findOne({ _id: id });
-
         Object.keys(product.toJSON()).forEach(key => {
+            if (updateProduct[key] === 'null') updateProduct[key] = null
             if (updateProduct[key] || key === 'promotion') {
                 if (product[key] !== updateProduct[key]) {
                     product[key] = updateProduct[key];
-                }
-            }  
+                };
+            };
         });
 
         const { price, promotion, promotionSize } = updateProduct;
@@ -124,10 +140,16 @@ router.put('/edit/:id', async (req, res) => {
         product.promotionSize = promotion ? promotionSize : 0;
 
         await product.save();
-    
-        res.status(200).send({message: 'Zaktualizowano produkt.'});
+
+        res.status(200).send({
+            message: 'Zaktualizowano produkt.',
+            success: true
+        });
     } catch(err) {
-        res.status(400).send({message: 'Wystąpił błąd. Produkt nie został zaktualizowany.'});
+        res.status(400).send({
+            message: 'Wystąpił błąd. Produkt nie został zaktualizowany.',
+            success: false
+        });
     }
 });
 

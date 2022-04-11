@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isDesktop } from 'react-device-detect';
 import AdminMenu from './AdminMenu';
@@ -27,7 +27,7 @@ const AdminHero = () => {
         const response = await fetch('http://localhost:5000/hero');
         const data = await response.json();
         setHeroImages(data);
-    }, [heroImages]);
+    }, []);
 
     const handleChangeInput = (e, variant) => {
         const { name, value } = e.target;
@@ -79,7 +79,6 @@ const AdminHero = () => {
                 'Content-Type': 'application/json'
             }
         })
-            .then(console.log('dziala'))
     }
 
     const handleEditImage = (image) => {
@@ -143,7 +142,7 @@ const AdminHero = () => {
         return (
             heroImages.map(image => {
                 return (
-                    <>
+                    <Fragment key={image._id}>
                         <div className='admin-hero__edit-image__row'>
                             {activeDeleteImage === image._id ?
                                 <>
@@ -173,10 +172,6 @@ const AdminHero = () => {
                                     <label className='admin-hero__edit-image__form__row__label'>Nazwa</label>
                                     <input className='admin-hero__edit-image__form__row__input' type='text' name='name' placeholder={image.name} onChange={(e) => handleChangeInput(e, 'edit')} />
                                 </div>
-                                {/* <div className='admin-hero__add-image__data-wrapper'>
-                                    <label className='admin-hero__edit-image__data-wrapper__label admin-hero__edit-image__data-wrapper__label--images'>Obraz</label>
-                                    <input className='admin-hero__edit-image__data-wrapper__input admin-hero__edit-image__data-wrapper__input--images' id='image' type='file' name='image' multiple />
-                                </div> */}
                                 <div className='admin-hero__edit-image__form__row'>
                                     <label className='admin-hero__edit-image__form__row__label'>Link</label>
                                     <input className='admin-hero__edit-image__form__row__input' type='text' name='link' placeholder={image.link} onChange={(e) => handleChangeInput(e, 'edit')} />
@@ -185,7 +180,7 @@ const AdminHero = () => {
                                     <Button variant='small' title='Zatwierdź zmiany' type='submit' form='editHeroImage' />
                                 </div>
                             </form> : null}
-                    </>
+                    </Fragment>
                 )
             })
         )

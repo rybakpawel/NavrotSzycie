@@ -40,32 +40,58 @@ const DeliveryForm = ({ promotion }) => {
                     items.forEach(item => allData.push(item));
                     morePagesAvailable = currentPage < total_pages;
                 }
+                setFormInputs({
+                    ...formInputs,
+                    inpostPoint: allData[0].name
+                })
                 setPoints({
                     ...points,
                     allPoints: allData
-                })
+                });
             }
         }
         fetchData();
     }, 300, [points.city]);
+
+    const handleZipCode = input => {
+        if (input) {
+            let chars = input.split('');
+  
+            if (chars.length > 2 && chars[2] !== '-') {
+                chars.splice(2, 0, '-');
+                const num = chars.join('');
+                return num;
+            }
+        }
+        
+        return input
+    }
 
     const handleChange = e => {
         const { name, value } = e.target;
 
         setFormInputs({
             ...formInputs,
-            [name]: value
+            [name]: name !== 'zipCode' ? value : handleZipCode(value)
         });
     };
 
     const handleChangePoints = e => {
-        const city = e.target.value;
+        const city = e.target.value.split(" ");
+
+        let fullCity = city.map(word => { 
+            if (word[0]) {
+                return word[0].toUpperCase() + word.substring(1); 
+            }
+        }).join(" ");
+
+        fullCity = fullCity.replace(/\-[a-z]/g, match => match.toUpperCase());
 
         setPoints({
             ...points,
-            city
+            city: fullCity
         });
-    }
+    };
 
     const handleSubmitForm = e => {
         e.preventDefault();
@@ -181,10 +207,11 @@ const DeliveryForm = ({ promotion }) => {
                 <div className='delivery-form__customer-data__wrapper delivery-form__customer-data__wrapper--short'>
                     <label className='delivery-form__customer-data__wrapper__label'>Kod pocztowy</label>
                     <input
-                        type='number'
+                        type='text'
                         name='zipCode'
                         className='delivery-form__customer-data__wrapper__input'
                         value={formInputs.zipCode}
+                        maxlength='6'
                         onChange={handleChange} />
                 </div>
                 <div className='delivery-form__customer-data__wrapper'>

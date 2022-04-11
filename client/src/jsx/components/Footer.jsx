@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Button from '../components/Button';
 import facebook from '../../assets/icons/facebook-footer.svg';
 import instagram from '../../assets/icons/instagram-footer.svg';
@@ -16,16 +17,18 @@ const Footer = ({ border }) => {
                             title='Regulamin' />
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
-                        <Button
-                            link='/rules'
-                            variant='footer'
-                            title='Polityka prywatności' />
+                        <HashLink to='/rules/#privacy'>
+                            <Button
+                                variant='footer'
+                                title='Polityka prywatności' />
+                        </HashLink>
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--left'>
-                        <Button
-                            link='/rules'
-                            variant='footer'
-                            title='Reklamacje i zwroty' />
+                        <HashLink to='/rules/#returns'>
+                            <Button
+                                variant='footer'
+                                title='Reklamacje i zwroty' />
+                        </HashLink>
                     </div>
                 </div>
                 <div className='footer__column footer__column--middle'>
