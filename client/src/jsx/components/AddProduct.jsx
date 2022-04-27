@@ -78,7 +78,7 @@ const AddProduct = () => {
             formData.append('image', e.target.image.files[i]);
         }
 
-        fetch('http://localhost:5000/products/add', {
+        fetch('https://admin.navrot-szycie.pl/products/add', {
             method: 'POST',
             body: formData,
         })

@@ -67,7 +67,7 @@ const PaymentForm = ({ promotion, delivery }) => {
 
         cart.map(product => {
             handleRemoveFromCart(product._id);
-            fetch(`http://localhost:5000/products/edit/quantity/${product._id}`, {
+            fetch(`https://admin.navrot-szycie.pl/products/edit/quantity/${product._id}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -79,7 +79,7 @@ const PaymentForm = ({ promotion, delivery }) => {
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: 'http://localhost:3000/checkout/summary',
+                return_url: 'https://navrotszycie.usermd.net/checkout/summary',
             },
         });
 

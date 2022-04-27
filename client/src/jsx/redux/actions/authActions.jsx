@@ -12,7 +12,7 @@ export const loadUser = () => async (dispatch, getState) => {
 
     if (token) config.headers['x-auth-token'] = token;
 
-    fetch('http://localhost:5000/user/', config)
+    fetch('https://admin.navrot-szycie.pl/user/', config)
         .then(res => {
             if (res.ok) {
                 dispatch({
@@ -30,7 +30,7 @@ export const loadUser = () => async (dispatch, getState) => {
 
 export const signIn = (email, password) => {
     return (dispatch) => {
-        fetch(`http://localhost:5000/user/auth`, {
+        fetch(`https://admin.navrot-szycie.pl/user/auth`, {
             method: 'POST',
             body: JSON.stringify({
                 email,

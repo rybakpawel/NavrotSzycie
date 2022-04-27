@@ -26,7 +26,7 @@ const AdminPromotion = () => {
     const [activeDeletePromotion, setActiveDeletePromotion] = useState(null);
 
     useEffect(async () => {
-        const response = await fetch('http://localhost:5000/promotion/all');
+        const response = await fetch('https://admin.navrot-szycie.pl/promotion/all');
         const data = await response.json();
         setPromotions(data);
     }, [promotions]);
@@ -56,7 +56,7 @@ const AdminPromotion = () => {
     const handleSubmitAddForm = e => {
         e.preventDefault();
 
-        fetch('http://localhost:5000/promotion/add', {
+        fetch('https://admin.navrot-szycie.pl/promotion/add', {
             method: 'POST',
             body: JSON.stringify(addForm),
             headers: {
@@ -77,7 +77,7 @@ const AdminPromotion = () => {
     };
 
     const handleSubmitEditForm = id => {
-        fetch(`http://localhost:5000/promotion/edit/${id}`, {
+        fetch(`https://admin.navrot-szycie.pl/promotion/edit/${id}`, {
             method: 'PUT',
             body: JSON.stringify(editForm),
             headers: {
@@ -118,7 +118,7 @@ const AdminPromotion = () => {
             setActiveDeletePromotion(false);
 
             if (confirm) {
-                fetch(`http://localhost:5000/promotion/delete/${id}`, {
+                fetch(`https://admin.navrot-szycie.pl/promotion/delete/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

@@ -13,7 +13,7 @@ const StripeContainer = ({ delivery, promotion }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/payment', {
+        fetch('https://admin.navrot-szycie.pl/payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

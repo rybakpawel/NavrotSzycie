@@ -15,7 +15,7 @@ const Messages = () => {
     }, [])
 
     const loadData = async () => {
-        const response = await fetch('http://localhost:5000/contact/messages');
+        const response = await fetch('https://admin.navrot-szycie.pl/contact/messages');
         const data = await response.json();
         setMessages(data);
     }

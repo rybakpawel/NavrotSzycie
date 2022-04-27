@@ -68,7 +68,7 @@ const Product = () => {
                             {product.images.map(img => {
                                 return (
                                     <SwiperSlide key={img}>
-                                        <img src={`http://localhost:5000/products/image/${img}`}
+                                        <img src={`https://admin.navrot-szycie.pl/products/image/${img}`}
                                             alt='image'
                                             className='product__slider__image' />
                                     </SwiperSlide>
@@ -88,7 +88,7 @@ const Product = () => {
                                 {product.images.map(img => {
                                     return (
                                         <SwiperSlide key={img}>
-                                            <img src={`http://localhost:5000/products/image/${img}`}
+                                            <img src={`https://admin.navrot-szycie.pl/products/image/${img}`}
                                                 alt='image'
                                                 className='product__slider__small-image' />
                                         </SwiperSlide>

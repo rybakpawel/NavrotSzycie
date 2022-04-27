@@ -1,6 +1,6 @@
 export const addToCart = (category, name) => async (dispatch, getState) => {
     try {
-        const res = await fetch(`http://localhost:5000/products/${category}/${name}`);
+        const res = await fetch(`https://admin.navrot-szycie.pl/products/${category}/${name}`);
         const data = await res.json();
 
         const { addDate, care, images, description, height, materials, price, priceWithPromotion, promotion, promotionSize, quantity, width, _id } = data;

@@ -113,7 +113,7 @@ const DeliveryForm = ({ promotion }) => {
             inpostPoint: ''
         })
 
-        fetch('http://localhost:5000/delivery', {
+        fetch('https://admin.navrot-szycie.pl/delivery', {
             method: 'POST',
             body: JSON.stringify(formInputs),
             headers: {

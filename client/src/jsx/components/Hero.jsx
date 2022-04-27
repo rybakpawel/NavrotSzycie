@@ -19,7 +19,7 @@ const Hero = () => {
     }, [])
 
     const loadData = async () => {
-        const response = await fetch('http://localhost:5000/hero');
+        const response = await fetch('https://admin.navrot-szycie.pl/hero');
         const data = await response.json();
         setHeroImages(data);
     }
@@ -60,7 +60,7 @@ const Hero = () => {
                         <SwiperSlide key={hero._id}>
                             <a href={`${hero.link}`}>
 
-                                <img src={`http://localhost:5000/hero/image/${hero.image}`}
+                                <img src={`https://admin.navrot-szycie.pl/hero/image/${hero.image}`}
                                     alt='image'
                                     className='hero__image'
                                     style={{ display: isImageLoading ? 'none' : 'block' }}

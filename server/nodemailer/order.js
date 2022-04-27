@@ -6,8 +6,7 @@ const sendOrderEmail = (order) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            // user: 'navrot.szycie@gmail.com',
-            user: 'betterapp.euro2021@gmail.com',
+            user: 'navrot.szycie@gmail.com',
             pass: process.env.EMAIL_PASSWORD
         }
     });
@@ -17,10 +16,8 @@ const sendOrderEmail = (order) => {
     });
 
     const options = {
-        // from: 'navrot.szycie@gmail.com',
-        from: 'betterapp.euro2021@gmail.com',
-        // to: 'navrot.szycie@gmail.com',
-        to: 'rybakpawel92@gmail.com',
+        from: 'navrot.szycie@gmail.com',
+        to: 'navrot.szycie@gmail.com',
         subject: 'Nowe zamówienie na Navrot Szycie',
         text: `Szczegóły zamówienia:\n\n
             Produkty:${products}\n

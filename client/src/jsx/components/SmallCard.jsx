@@ -29,7 +29,7 @@ const SmallCard = ({ name, category, image, quantity, price, priceWithPromotion,
                 <div className='small-card__product-image--placeholder'
                     style={{ display: isImageLoading ? 'block' : 'none' }}></div>
                 <img
-                    src={`http://localhost:5000/products/image/${image}`}
+                    src={`https://admin.navrot-szycie.pl/products/image/${image}`}
                     alt='produkt'
                     className='small-card__product-image'
                     style={{ display: isImageLoading ? 'none' : 'block' }}

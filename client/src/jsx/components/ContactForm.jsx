@@ -17,7 +17,7 @@ const ContactForm = () => {
         setEmail('');
         setMessage('');
 
-        fetch('http://localhost:5000/contact', {
+        fetch('https://admin.navrot-szycie.pl/contact', {
             method: 'POST',
             body: JSON.stringify(form),
             headers: { 'Content-Type': 'application/json' },
