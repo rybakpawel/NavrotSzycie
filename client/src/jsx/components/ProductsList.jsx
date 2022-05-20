@@ -92,10 +92,10 @@ const ProductsList = () => {
                     </div>
                 </section>
             )
-        } else return <Redirect to='/plecaki' />
+        } else return <Redirect to='/' />
     }
 
-    return categoryList && categoryProducts ? checkCategory(categoryList) : <Loading />
+    return categoryList.length > 0 && categoryProducts.length > 0 ? checkCategory(categoryList) : <Loading />
 };
 
 export default ProductsList;

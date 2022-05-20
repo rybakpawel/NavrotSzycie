@@ -4,6 +4,7 @@ import image from '../../assets/images/about-me.jpg';
 
 const AboutMe = () => {
     return (
+        
         <section className='about-me'>
             <img src={image} alt='Patrycja' className="about-me__image" />
             <div className='about-me__text'>

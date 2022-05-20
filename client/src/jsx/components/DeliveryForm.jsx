@@ -113,7 +113,7 @@ const DeliveryForm = ({ promotion }) => {
             inpostPoint: ''
         })
 
-        fetch('https://admin.navrot-szycie.pl/delivery', {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}delivery`, {
             method: 'POST',
             body: JSON.stringify(formInputs),
             headers: {
@@ -308,7 +308,7 @@ const DeliveryForm = ({ promotion }) => {
                         value='pocztex'
                         checked={formInputs.provider === 'pocztex'}
                         onChange={handleChange} />
-                    <label htmlFor='pocztex'>Kurier Pocztex - <strong>15,60zł</strong></label>
+                    <label htmlFor='pocztex'>Kurier Pocztex - <strong>15,99zł</strong></label>
                 </div>
                 <div className='delivery-form__provider__inpost'>
                     <input
@@ -318,7 +318,7 @@ const DeliveryForm = ({ promotion }) => {
                         value='inpost'
                         checked={formInputs.provider === 'inpost'}
                         onChange={handleChange} />
-                    <label htmlFor='inpost'>Paczkomat InPost - <strong>9,95zł</strong></label>
+                    <label htmlFor='inpost'>Paczkomat InPost - <strong>13,99zł</strong></label>
                 </div>
                 {formInputs.provider === 'inpost' ?
                     <div className='delivery-form__provider__points'>

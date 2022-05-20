@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import PaymentForm from './PaymentForm'
 
-const PUBLIC_KEY = 'pk_test_51JzgkOAilfEJpBjvqaH91ZjVfk07tUUwekop2UgwFOmW8RYZ6vphxK4Fa2gMCN13xOlaXcJ5UXeqvcvjsXyyTUwq005uuQmWJo';
+const PUBLIC_KEY = 'pk_live_51JzgkOAilfEJpBjvAlX1o7uXLILH6b1FYAZxkj7UCw3Xae4iqbHRschpBUqyoPIYYROra17jPy6Nm7Tz0NW39CUm00GPpaWGBc';
 const stripePromise = loadStripe(PUBLIC_KEY);
 
 const StripeContainer = ({ delivery, promotion }) => {
@@ -13,7 +13,7 @@ const StripeContainer = ({ delivery, promotion }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
-        fetch('https://admin.navrot-szycie.pl/payment', {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}payment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

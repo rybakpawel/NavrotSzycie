@@ -28,7 +28,7 @@ const LargeCard = ({ name, category, image, price, priceWithPromotion, promotion
                 <div className='large-card__product-image--placeholder'
                     style={{ display: isImageLoading ? 'block' : 'none' }}></div>
                 <img
-                    src={`https://admin.navrot-szycie.pl/products/image/${image}`}
+                    src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${image}`}
                     alt='produkt'
                     className='large-card__product-image'
                     style={{ display: isImageLoading ? 'none' : 'block' }}

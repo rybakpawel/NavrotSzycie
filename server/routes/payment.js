@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
         const { items, delivery, promotion } = req.body;
         const { email, provider } = delivery;
         
-        const deliveryCost = provider === 'pocztex' ? 15.6 : 9.95
+        const deliveryCost = provider === 'pocztex' ? 15.99 : 13.99
         const totalAmount = parseInt(calculateTotalPrice(items, promotion), 10) + (deliveryCost * 100)
 
         const paymentIntent = await stripe.paymentIntents.create({
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
             payment_method_types: ['card', 'p24'],
             receipt_email: email
           });
-
+    
         sendOrderEmail(req.body);
 
         res.status(200).send({

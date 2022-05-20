@@ -1,27 +1,8 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
-const Grid = require('gridfs-stream');
-const dotenv = require('dotenv');
-dotenv.config({ path: './.env' });
+const path = require('path');
 const Product = require('../models/product');
 const { upload } = require('../middleware/multer');
 const productValidation = require('../validation/productValidation');
-
-const DB_CONNECT = process.env.DB_CONNECT;
-const conn = mongoose.createConnection(DB_CONNECT);
-
-let gfsBucket;
-let gfs;
-
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-
-    gfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-        bucketName: 'images'
-    });
-
-    gfs.collection('images');
-});
 
 router.post('/add', upload.any('image'), async (req, res) => {
     const { error } = productValidation(req.body);
@@ -82,16 +63,6 @@ router.delete('/delete/:id', async (req, res) => {
         const id = req.params.id;
 
         const product = await Product.findOne({ _id: id });
-
-        product.images.forEach((image) => {
-            gfs.files.findOne({ filename: image }, (err, file) => {
-                if (err) return res.status(404).json({ err: err });
-            
-                gfsBucket.delete( file._id, (err) => {
-                    if (err) return res.status(404).json({ err: err });
-                });
-            });
-        });
 
         Product.deleteOne({ _id: id }, (err) => {
             if (err) return res.status(400).send({ message: 'Wystąpił błąd. Produkt nie został usunięty.'});
@@ -201,21 +172,12 @@ router.get('/new', async (req,res) => {
 router.get('/image/:filename', (req, res) => {
     const filename = req.params.filename;
 
-    gfs.files.findOne({ filename }, (err, file) => {
-        if (!file || file.length === 0) {
-            return res.status(404).json({
-                err: 'Plik nie istnieje'
-            });
-        }
+    const options = {
+        root: path.join(__dirname, '../uploads')
+    };
     
-        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-            const readStream = gfsBucket.openDownloadStream(file._id);
-            readStream.pipe(res);
-        } else {
-            res.status(404).json({
-                err: 'Plik nie jest obrazem'
-            });
-        }
+    res.sendFile(filename, options, (err) => {
+        if (err) console.log('Nie wysłano pliku.')
     });
 });
 

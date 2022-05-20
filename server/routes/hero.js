@@ -1,26 +1,8 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
-const Grid = require('gridfs-stream');
-const dotenv = require('dotenv');
-dotenv.config({ path: './.env' });
+const path = require('path');
+const fs = require('fs');
 const Hero = require('../models/hero');
-const { upload } = require('../middleware/multer'); 
-
-const DB_CONNECT = process.env.DB_CONNECT;
-const conn = mongoose.createConnection(DB_CONNECT);
-
-let gfsBucket;
-let gfs;
-
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-  
-    gfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-        bucketName: 'images'
-    });
-  
-    gfs.collection('images');
-});
+const { upload } = require('../middleware/multer');
 
 router.post('/add', upload.any('image'), async (req, res) => {
     const { name, link } = req.body;
@@ -44,8 +26,14 @@ router.post('/add', upload.any('image'), async (req, res) => {
     });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
     const id = req.params.id;
+
+    const hero = await Hero.findOne({ _id: id });
+
+    fs.unlink(path.join(__dirname, `../uploads/${hero.image}`), (err) => {
+        if (err) console.log(err)
+    });
 
     Hero.deleteOne({ _id: id }, (err) => {
         if (err) {
@@ -65,8 +53,11 @@ router.put('/edit/:id', async (req, res) => {
         const id = req.params.id;
         const updateHero = req.body;
 
-        const hero = await Hero.findOne({ _id: id });
+        console.log(id)
+        console.log(updateHero)
 
+        const hero = await Hero.findOne({ _id: id });
+        
         Object.keys(hero.toJSON()).forEach(key => {
             if (updateHero[key]) {
                 if (hero[key] !== updateHero[key]) {
@@ -96,22 +87,13 @@ router.get('/', async (req, res) => {
 router.get('/image/:filename', (req, res) => {
     const filename = req.params.filename;
 
-    gfs.files.findOne({ filename }, (err, file) => {
-        if (!file || file.length === 0) {
-            return res.status(404).json({
-                err: 'Plik nie istnieje'
-            });
-        }
+    const options = {
+        root: path.join(__dirname, '../uploads')
+    };
     
-        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-            const readStream = gfsBucket.openDownloadStream(file._id);
-            readStream.pipe(res);
-        } else {
-            res.status(404).json({
-                err: 'Plik nie jest obrazem'
-            });
-        }
-    });
+    res.sendFile(filename, options, (err) => {
+        if (err) console.log('Nie wysłano pliku.')
+    })
 });
 
 module.exports = router;

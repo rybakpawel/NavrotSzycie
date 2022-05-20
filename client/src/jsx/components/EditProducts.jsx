@@ -100,7 +100,7 @@ const EditProduct = () => {
             setActiveDeleteProduct(false);
 
             if (confirm) {
-                fetch(`https://admin.navrot-szycie.pl/products/delete/${id}`, {
+                fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/delete/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -133,7 +133,7 @@ const EditProduct = () => {
             formData.append('image', e.target.image.files[i]);
         }
 
-        fetch(`https://admin.navrot-szycie.pl/products/edit/${id}`, {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/edit/${id}`, {
             method: 'PUT',
             body: formData,
         })
@@ -202,7 +202,7 @@ const EditProduct = () => {
                                             {form.images.map(img => {
                                                 return (
                                                     <div key={img}>
-                                                        <img src={`https://admin.navrot-szycie.pl/products/image/${img}`} alt={img}/>
+                                                        <img src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${img}`} alt={img}/>
                                                         <img src={reject} alt='Usuń zdjcie' onClick={() => handleDeleteImage(img)}/>
                                                     </div>
                                                 )    

@@ -19,7 +19,7 @@ const Hero = () => {
     }, [])
 
     const loadData = async () => {
-        const response = await fetch('https://admin.navrot-szycie.pl/hero');
+        const response = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}hero`);
         const data = await response.json();
         setHeroImages(data);
     }
@@ -48,7 +48,7 @@ const Hero = () => {
                 style={{ '--swiper-pagination-color': '#fff' }}
                 loop={true}
                 autoplay={{
-                    delay: 3000,
+                    delay: 6000,
                     disableOnInteraction: false,
                 }}
                 spaceBetween={3}
@@ -59,8 +59,7 @@ const Hero = () => {
                     return (
                         <SwiperSlide key={hero._id}>
                             <a href={`${hero.link}`}>
-
-                                <img src={`https://admin.navrot-szycie.pl/hero/image/${hero.image}`}
+                                  <img src={`${process.env.REACT_APP_SERVER_ADRESS}hero/image/${hero.image}`}
                                     alt='image'
                                     className='hero__image'
                                     style={{ display: isImageLoading ? 'none' : 'block' }}

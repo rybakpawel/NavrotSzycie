@@ -1,6 +1,6 @@
 export const getProductsList = () => async dispatch => {
     try {
-        const res = await fetch('https://admin.navrot-szycie.pl/products/all');
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/all`);
         const data = await res.json();
 
         dispatch({
@@ -14,7 +14,7 @@ export const getProductsList = () => async dispatch => {
 
 export const getCategoriesList = () => async dispatch => {
     try {
-        const res = await fetch('https://admin.navrot-szycie.pl/products/categories');
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/categories`);
         const data = await res.json();
 
         dispatch({
@@ -28,7 +28,7 @@ export const getCategoriesList = () => async dispatch => {
 
 export const getProduct = (category, name) => async dispatch => {
     try {
-        const res = await fetch(`https://admin.navrot-szycie.pl/products/${category}/${name}`);
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/${category}/${name}`);
         const data = await res.json();
 
         dispatch({
@@ -42,7 +42,7 @@ export const getProduct = (category, name) => async dispatch => {
 
 export const getProductsFromCategory = (category) => async dispatch => {
     try {
-        const res = await fetch(`https://admin.navrot-szycie.pl/products/${category}`);
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/${category}`);
         const data = await res.json();
 
         dispatch({
@@ -56,7 +56,7 @@ export const getProductsFromCategory = (category) => async dispatch => {
 
 export const getNewProducts = () => async dispatch => {
     try {
-        const res = await fetch('https://admin.navrot-szycie.pl/products/new');
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/new`);
         const data = await res.json();
 
         dispatch({
@@ -70,7 +70,7 @@ export const getNewProducts = () => async dispatch => {
 
 export const getSimilarProducts = (category, name) => async dispatch => {
     try {
-        const res = await fetch(`https://admin.navrot-szycie.pl/products/${category}/similar`);
+        const res = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}products/${category}/similar`);
         const data = await res.json();
 
         const similarProducts = data.filter(product => {

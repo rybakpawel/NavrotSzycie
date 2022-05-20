@@ -15,7 +15,7 @@ const Messages = () => {
     }, [])
 
     const loadData = async () => {
-        const response = await fetch('https://admin.navrot-szycie.pl/contact/messages');
+        const response = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}contact/messages`);
         const data = await response.json();
         setMessages(data);
     }

@@ -68,7 +68,7 @@ const Product = () => {
                             {product.images.map(img => {
                                 return (
                                     <SwiperSlide key={img}>
-                                        <img src={`https://admin.navrot-szycie.pl/products/image/${img}`}
+                                        <img src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${img}`}
                                             alt='image'
                                             className='product__slider__image' />
                                     </SwiperSlide>
@@ -88,7 +88,7 @@ const Product = () => {
                                 {product.images.map(img => {
                                     return (
                                         <SwiperSlide key={img}>
-                                            <img src={`https://admin.navrot-szycie.pl/products/image/${img}`}
+                                            <img src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${img}`}
                                                 alt='image'
                                                 className='product__slider__small-image' />
                                         </SwiperSlide>
@@ -190,7 +190,7 @@ const Product = () => {
         } else return <Redirect to={`/${category}`} />
     }
 
-    return product && allProducts ? checkProduct(allProducts) : <Loading allPage={true} />
+    return product && allProducts.length > 0 ? checkProduct(allProducts) : <Loading allPage={true} />
 }
 
 export default Product;

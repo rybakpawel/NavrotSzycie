@@ -18,7 +18,7 @@ const getSmallView = () => {
     const [promotionSize, setPromotionSize] = useState(null);
 
     useEffect(() => {
-        fetch('https://admin.navrot-szycie.pl/promotion', {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}promotion`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ const getSmallView = () => {
                             <div key={product._id} className='cart__product'>
                                 <Link to={`/${product.category}/${product.name}`}>
                                     <img className='cart__product__image'
-                                        src={`https://admin.navrot-szycie.pl/products/image/${product.images[0]}`}
+                                        src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${product.images[0]}`}
                                         alt={product.name} />
                                 </Link>
                                 <div className='cart__product__informations'>
@@ -115,7 +115,7 @@ const getLargeView = () => {
     const [promotionSize, setPromotionSize] = useState(null);
 
     useEffect(() => {
-        fetch('https://admin.navrot-szycie.pl/promotion', {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}promotion`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -159,7 +159,7 @@ const getLargeView = () => {
                                 <div className='cart__table__row-product' key={product._id}>
                                     <div className='cart__table__row-product__large-row'>
                                         <Link to={`/${product.category}/${product.name}`}>
-                                            <img src={`https://admin.navrot-szycie.pl/products/image/${product.images[0]}`}
+                                            <img src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${product.images[0]}`}
                                                 alt={product.name}
                                                 className='cart__table__row-product__large-row__product-image' />
                                         </Link>

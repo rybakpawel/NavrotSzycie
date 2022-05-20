@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { removeFromCart } from '../redux/actions/cartActions';
 import { calculateTotalPrice } from '../utils/calculateTotalPrice';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
@@ -11,18 +10,12 @@ import useWindowDimensions from '../utils/useWindowDimensions';
 const PaymentForm = ({ promotion, delivery }) => {
     const stripe = useStripe();
     const elements = useElements();
-    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
     const { width } = useWindowDimensions();
 
-    const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const deliveryCost = delivery.provider === 'pocztex' ? 15.6 : 9.95
-
-    const handleRemoveFromCart = (id) => {
-        dispatch(removeFromCart(id))
-    }
+    const deliveryCost = delivery.provider === 'pocztex' ? 15.99 : 13.99
 
     useEffect(() => {
         if (!stripe) {
@@ -65,29 +58,15 @@ const PaymentForm = ({ promotion, delivery }) => {
 
         setIsLoading(true);
 
-        cart.map(product => {
-            handleRemoveFromCart(product._id);
-            fetch(`https://admin.navrot-szycie.pl/products/edit/quantity/${product._id}`, {
-                method: 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-            })
-        });
-
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: 'https://navrotszycie.usermd.net/checkout/summary',
+                return_url: 'https://navrot-szycie.pl/checkout/summary',
             },
         });
 
         if (error.type === 'card_error' || error.type === 'validation_error') {
-            setMessage(error.message);
             setIsLoading(false);
-        } else {
-            setMessage('An unexpected error occured.');
         }
     };
 
@@ -102,9 +81,8 @@ const PaymentForm = ({ promotion, delivery }) => {
                 <div className="payment-form__form__payment-element-wrapper">
                     <PaymentElement />
                 </div>
-                {isLoading ? <Loading /> : <Button variant='checkout' title={`Zapłać: ${parseInt(calculateTotalPrice(cart, promotion)) + deliveryCost}zł`} />}
+                {isLoading ? <Loading /> : <Button variant='checkout' title={`Zapłać: ${(parseFloat(calculateTotalPrice(cart, promotion)) + parseFloat(deliveryCost)).toFixed(2)}zł`} />}
             </div>
-            {message && <div className='payment-form__message'>{message}</div>}
         </form>
     )
 }

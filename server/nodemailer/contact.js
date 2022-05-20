@@ -4,16 +4,19 @@ dotenv.config({ path: './.env' });
 
 const sendContactEmail = (email, message) => {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'mail20.mydevil.net',
+        port: 587,
+        secure: false,
         auth: {
-            user: 'navrot.szycie@gmail.com',
+            user: 'admin@navrot-szycie.pl',
             pass: process.env.EMAIL_PASSWORD
         }
     })
 
     const options = {
-        from: 'navrot.szycie@gmail.com',
-        to: 'navrot.szycie@gmail.com',
+        from: 'admin@navrot-szycie.pl',
+        // to: 'navrot.szycie@gmail.com',
+        to: 'rybakpawel92@gmail.com',
         subject: 'Nowa wiadomość na Navrot Szycie',
         text: `Wiadomość wysłana z adresu: ${email}.\n\n ${message}`
     }

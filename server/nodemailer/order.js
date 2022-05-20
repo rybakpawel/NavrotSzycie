@@ -4,9 +4,11 @@ dotenv.config({ path: './.env' });
 
 const sendOrderEmail = (order) => {
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'mail20.mydevil.net',
+        port: 587,
+        secure: false,
         auth: {
-            user: 'navrot.szycie@gmail.com',
+            user: 'admin@navrot-szycie.pl',
             pass: process.env.EMAIL_PASSWORD
         }
     });
@@ -16,8 +18,9 @@ const sendOrderEmail = (order) => {
     });
 
     const options = {
-        from: 'navrot.szycie@gmail.com',
-        to: 'navrot.szycie@gmail.com',
+        from: 'admin@navrot-szycie.pl',
+        // to: 'navrot.szycie@gmail.com',
+        to: 'rybakpawel92@gmail.com',
         subject: 'Nowe zamówienie na Navrot Szycie',
         text: `Szczegóły zamówienia:\n\n
             Produkty:${products}\n

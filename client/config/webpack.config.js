@@ -2,6 +2,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: 'production',
@@ -45,11 +46,13 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            favicon: './src/assets/icons/favicon.ico'
         }),
         new MiniCssExtractPlugin({
             filename: '[name]-[contenthash].css'
-        })
+        }),
+        new Dotenv()
     ],
     resolve: {
         extensions: ['', '.js', '.jsx']

@@ -24,7 +24,7 @@ const AdminHero = () => {
     const [activeDeleteImage, setActiveDeleteImage] = useState(null);
 
     useEffect(async () => {
-        const response = await fetch('https://admin.navrot-szycie.pl/hero');
+        const response = await fetch(`${process.env.REACT_APP_SERVER_ADRESS}hero`);
         const data = await response.json();
         setHeroImages(data);
     }, [heroImages]);
@@ -54,7 +54,7 @@ const AdminHero = () => {
         }
         formData.append('image', e.target.image.files[0]);
 
-        fetch('https://admin.navrot-szycie.pl/hero/add', {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}hero/add`, {
             method: 'POST',
             body: formData,
         })
@@ -71,7 +71,7 @@ const AdminHero = () => {
     };
 
     const handleSubmitEditForm = id => {
-        fetch(`https://admin.navrot-szycie.pl/hero/edit/${id}`, {
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}hero/edit/${id}`, {
             method: 'PUT',
             body: JSON.stringify(editForm),
             headers: {
@@ -100,7 +100,7 @@ const AdminHero = () => {
             setActiveDeleteImage(false);
 
             if (confirm) {
-                fetch(`https://admin.navrot-szycie.pl/hero/delete/${id}`, {
+                fetch(`${process.env.REACT_APP_SERVER_ADRESS}hero/delete/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

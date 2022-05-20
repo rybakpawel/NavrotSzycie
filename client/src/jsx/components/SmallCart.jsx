@@ -28,7 +28,7 @@ const SmallCart = () => {
                     <div className='small-cart__product' key={product._id}>
                         <Link to={`/${product.category}/${product.name}`}>
                             <img className='small-cart__product__image'
-                                src={`https://admin.navrot-szycie.pl/products/image/${product.images[0]}`}
+                                src={`${process.env.REACT_APP_SERVER_ADRESS}products/image/${product.images[0]}`}
                                 alt={product.name} />
                         </Link>
                         <div className='small-cart__product__informations'>
