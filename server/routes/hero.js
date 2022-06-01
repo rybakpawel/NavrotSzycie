@@ -53,9 +53,6 @@ router.put('/edit/:id', async (req, res) => {
         const id = req.params.id;
         const updateHero = req.body;
 
-        console.log(id)
-        console.log(updateHero)
-
         const hero = await Hero.findOne({ _id: id });
         
         Object.keys(hero.toJSON()).forEach(key => {

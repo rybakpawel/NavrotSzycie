@@ -11,6 +11,7 @@ import AdminProduct from '../components/AdminProduct';
 import AdminHero from '../components/AdminHero';
 import AdminAboutMe from '../components/AdminAboutMe';
 import AdminPromotion from '../components/AdminPromotion';
+import AdminOrders from '../components/AdminOrders';
 import Messages from '../components/Messages';
 import user from '../../assets/icons/user.svg';
 
@@ -43,6 +44,9 @@ const AdminPage = () => {
 
             case 'promotion':
                 return <AdminPromotion />
+            
+            case 'orders':
+                return <AdminOrders action={action}/>
 
             case 'messages':
                 return <Messages />

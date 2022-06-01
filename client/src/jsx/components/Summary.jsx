@@ -24,6 +24,10 @@ const Summary = () => {
         });
     }, []);
 
+    useEffect(() => {
+        
+    })
+
     return (
         <div className='summary'>
             <h1 className='summary__thanks'>Dziękuję za zakup!</h1>

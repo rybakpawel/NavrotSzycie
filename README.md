@@ -21,6 +21,7 @@ E-commerce application.
 
 ![Home Page](/readme/homepage.png "Home Page")
 ![Products List Page](/readme/workoplecaki.png "Products List Page")
+![Product Page](/readme/product.png "Product Page")
 ![Admin Page](/readme/admin.png "Admin Page")
 
 ## Author

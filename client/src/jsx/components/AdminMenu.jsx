@@ -59,6 +59,20 @@ const AdminMenu = () => {
                 <li className='admin-menu__list__item'>
                     <Link to='/admin/promotion'>Zarządzaj promocjami</Link>
                 </li>
+                <li className={`admin-menu__list__item ${checkActive('3') ? 'admin-menu__list__item--active' : ''}`}
+                    onClick={handleClick}
+                    id={3}>
+                    Zarządzaj zamówieniami
+                    {checkActive('3') ?
+                        <ul className='admin-menu__list'>
+                            <li className='admin-menu__list__item admin-menu__list__item--second'>
+                                <Link to='/admin/orders/add'>Dodaj zamówienie</Link>
+                            </li>
+                            <li className='admin-menu__list__item admin-menu__list__item--second'>
+                                <Link to='/admin/orders'>Przeglądaj zamówienia</Link>
+                            </li>
+                        </ul> : null}
+                </li>
                 <li className='admin-menu__list__item'>
                     <Link to='/admin/messages'>Wiadomości</Link>
                 </li>

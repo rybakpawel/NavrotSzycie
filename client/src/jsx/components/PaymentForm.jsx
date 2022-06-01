@@ -13,7 +13,7 @@ const PaymentForm = ({ promotion, delivery }) => {
     const cart = useSelector((state) => state.cartReducer.cartProducts);
     const { width } = useWindowDimensions();
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const deliveryCost = delivery.provider === 'pocztex' ? 15.99 : 13.99
 
@@ -26,10 +26,14 @@ const PaymentForm = ({ promotion, delivery }) => {
             'payment_intent_client_secret'
         );
 
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 2500)
+
         if (!clientSecret) {
             return;
         }
-
+   
         stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
             switch (paymentIntent.status) {
                 case 'succeeded':
@@ -46,7 +50,7 @@ const PaymentForm = ({ promotion, delivery }) => {
                     break;
             }
         });
-
+        
     }, [stripe]);
 
     const handleSubmit = async (e) => {
@@ -55,13 +59,12 @@ const PaymentForm = ({ promotion, delivery }) => {
         if (!stripe || !elements) {
             return;
         }
-
         setIsLoading(true);
 
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: 'https://navrot-szycie.pl/checkout/summary',
+                return_url: `${process.env.REACT_APP_CLIENT_ADRESS}checkout/summary`,
             },
         });
 
@@ -69,7 +72,7 @@ const PaymentForm = ({ promotion, delivery }) => {
             setIsLoading(false);
         }
     };
-
+    
     return (
         <form className='payment-form' onSubmit={handleSubmit}>
             {width >= 992 ?
