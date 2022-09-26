@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/style.css';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import CookieConsent from 'react-cookie-consent'
 import HomePage from './pages/HomePage';
 import AboutMePage from './pages/AboutMePage';
 import AdminPage from './pages/AdminPage';
@@ -31,6 +32,11 @@ function App() {
                     <Route path='/:category/:name' component={ProductPage} />
                     <Redirect to='/' />
                 </Switch>
+                <CookieConsent 
+                    debug={true}
+                    buttonText='Zgoda'>
+                    Ta strona korzysta z ciasteczek aby świadczyć usługi na najwyższym poziomie. Dalsze korzystanie ze strony oznacza, że zgadzasz się na ich użycie.
+                </CookieConsent>
             </BrowserRouter>
         </>
     )

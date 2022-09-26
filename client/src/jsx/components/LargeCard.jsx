@@ -6,7 +6,7 @@ import Percent from './Percent';
 import addToCartIcon from '../../assets/icons/add-to-cart.svg';
 import okIcon from '../../assets/icons/ok.png';
 
-const LargeCard = ({ name, category, image, price, priceWithPromotion, promotion }) => {
+const LargeCard = ({ name, category, image, quantity, price, priceWithPromotion, promotion }) => {
     const [isImageLoading, setIsImageLoading] = useState(true);
 
     const dispatch = useDispatch();
@@ -42,11 +42,12 @@ const LargeCard = ({ name, category, image, price, priceWithPromotion, promotion
                     }
                 </div>
             </Link>
+            {quantity ?
             <img
                 src={isProductInCart ? okIcon : addToCartIcon}
                 alt='dodaj'
                 className='large-card__add-to-cart'
-                onClick={isProductInCart ? null : handleAddToCart} />
+                onClick={isProductInCart ? null : handleAddToCart} />  : null}
             {promotion ? <Percent /> : null}
         </div>
     )

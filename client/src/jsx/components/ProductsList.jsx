@@ -86,8 +86,8 @@ const ProductsList = () => {
                     </div>
                     <div className='products-list__cards'>
                         {categoryProducts.map(product => {
-                            const { _id, name, images, price, priceWithPromotion, promotion } = product;
-                            return <LargeCard key={_id} name={name} category={category} image={images[0]} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
+                            const { _id, name, images, quantity, price, priceWithPromotion, promotion } = product;
+                            return <LargeCard key={_id} name={name} category={category} image={images[0]} quantity={quantity} price={price} priceWithPromotion={priceWithPromotion} promotion={promotion} />
                         })}
                     </div>
                 </section>
