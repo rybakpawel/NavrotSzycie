@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const path = require('path');
 const Order = require('../models/order');
 
 router.get('/', async (req, res) => {    
@@ -33,6 +34,12 @@ router.post('/add', async (req, res) => {
             success: true
         }); 
     });
+});
+
+router.get('/:orderno', async (req, res) => {
+    const orderNo = req.params.orderno;
+
+    res.download(path.resolve(`pdf/invoices/Faktura${orderNo}.pdf`));
 });
 
 module.exports = router;

@@ -1,34 +1,31 @@
-const fs = require('fs');
-const Pdfmake = require('pdfmake');
+const PdfPrinter = require('pdfmake');
 
-const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNumber, flatNumber, zipCode, city, items, totalAmount) => {
-    const fonts = {
-        Roboto: {
-            normal: '../pdf/fonts/Roboto-Regular.ttf',
-            bold: '../pdf/fonts/Roboto-Bold.ttf'
-        }
-    };
-    
-    const pdfmake = new Pdfmake(fonts);
 
-    const itemsDetails = items.map(item => {
-            const oneItem = {
-                item: item.name,
-                quantity: item.quantity,
-                price: item.priceWithPromotion
-            }
+const fonts = {
+    Roboto: {
+        normal: 'node_modules/roboto-font/fonts/Roboto/roboto-regular-webfont.ttf',
+        bold: 'node_modules/roboto-font/fonts/Roboto/roboto-bold-webfont.ttf'
+    }
+};
+const printer = new PdfPrinter(fonts)
 
-            return oneItem
+const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNumber, flatNumber, zipCode, city, items, totalAmount, deliveryCost) => {  
+    const invoicePattern = [
+        [{text:'Nazwa', style: 'thirdSection'}, {text: 'Ilość', style: 'thirdSection', alignment: 'right'}, {text: 'Kwota', style: 'thirdSection', alignment: 'right'}, {text: 'Suma', style: 'thirdSection', alignment: 'right'}],
+        ['Dostawa', {text: '', alignment: 'right'}, {text: '', alignment: 'right'}, {text: `${deliveryCost}zł`, alignment: 'right'}]
+    ]
+    items.forEach(item => {
+        invoicePattern.splice(-1, 0, [item.name, {text: item.quantity, alignment: 'right'}, {text: `${item.price.toFixed(2)}zł`, alignment: 'right'}, {text: `${(item.price * item.quantity).toFixed(2)}zł`, alignment: 'right'}])
     })
-    
+
     const docDefinition = {
         content: [
             {
                 style: 'firstSection',
                 columns: [
                     {
-                        text: 'Navrot Szycie',
-                        fontSize: 30
+                        image: 'pdf/assets/Logo.png',
+                        width: 150
                     },
                     [   
                         {
@@ -79,7 +76,7 @@ const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNu
                                        fontSize: 14
                                     }],
                                     [`${firstName} ${lastName}`],
-                                    [`${street} ${buildingNumber} ${flatNumber ? flatNumber : null}`],
+                                    [`ul. ${street}, ${buildingNumber} ${flatNumber ? `/ ${flatNumber}` : null}`],
                                     [`${zipCode} ${city}`],
                                 ]
                             },
@@ -92,17 +89,13 @@ const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNu
                 table: {
                     headerRows: 1,
                     widths: ['*', 50, 100, 100],
-                    body: [
-                          [{text:'Nazwa', style: 'thirdSection'}, {text: 'Ilośc', style: 'thirdSection', alignment: 'right'}, {text: 'Kwota', style: 'thirdSection', alignment: 'right'}, {text: 'Suma', style: 'thirdSection', alignment: 'right'}],
-                          ['das', {text: 'dsa', alignment: 'right'}, {text: 'dsa', alignment: 'right'}, {text: 'dsa', alignment: 'right'}],
-                          ['das', {text: 'dsa', alignment: 'right'}, {text: 'dsa', alignment: 'right'}, {text: 'dsa', alignment: 'right'}],
-                    ]
+                    body: invoicePattern
                 },
                 layout: 'lightHorizontalLines'
             },
             {
                 style: 'fourthSection',
-                text: `Łącznie: ${totalAmount / 100}`,
+                text: `Łącznie: ${totalAmount / 100}zł`,
             }
         ],
         styles: {
@@ -124,10 +117,10 @@ const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNu
             }
         }
     };
+
+    const pdfDoc = printer.createPdfKitDocument(docDefinition);
     
-    const pdfDoc = pdfmake.createPdfKitDocument(docDefinition);
-    pdfDoc.pipe(fs.createWriteStream('../pdf/invoices'));
-    pdfDoc.end();
+    return pdfDoc
 };
 
 module.exports.createInvoicePdf = createInvoicePdf

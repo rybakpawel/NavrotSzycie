@@ -25,6 +25,7 @@
     "nodemailer": "^6.7.0",
     "path": "^0.12.7",
     "pdfmake": "^0.2.5",
+    "roboto-font": "^0.1.0",
     "stripe": "^8.191.0"
   }
 }
