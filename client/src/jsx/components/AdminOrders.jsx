@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { isDesktop } from 'react-device-detect';
 import leftArrow from '../../assets/icons/left-arrow.svg';
+import download from '../../assets/icons/download.png';
 import AdminMenu from './AdminMenu';
 import AddOrder from './AddOrder';
 
@@ -21,6 +22,9 @@ const AdminOrders = ({ action }) => {
     const getOrders = () => {
         const ordersList = orders.map(order => {
             let products = order.product.join(', ');
+
+            const linkOrderNo = order.orderNo.replaceAll('/', '')
+          
             return (
                 <Fragment key={order._id}>
                     <div className='order'>
@@ -28,6 +32,9 @@ const AdminOrders = ({ action }) => {
                         <p className='order__detail'>{order.date}</p>
                         <p className='order__detail'>{order.orderNo}</p>
                         <p className='order__detail'>{order.amount}zł</p>
+                        <a href={`${process.env.REACT_APP_SERVER_ADRESS}orders/${linkOrderNo}`} className='order__detail'>
+                            <img src={download} alt='Pobierz fakturę' /> 
+                        </a>
                     </div>
                 </Fragment>
             )
@@ -47,6 +54,7 @@ const AdminOrders = ({ action }) => {
                         <p className='order__detail'><strong>Data</strong></p>
                         <p className='order__detail'><strong>Faktura</strong></p>
                         <p className='order__detail'><strong>Kwota</strong></p>
+                        <p className='order__detail'><strong>PDF</strong></p>
                     </div>
                     {orders ? getOrders() : null}
                 </div>}

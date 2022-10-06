@@ -24,19 +24,31 @@
 
         @media (min-width: 768px) {
             flex-direction: row;
+            align-items: center;
         }
 
         &__detail {
             font-size: 1.6rem;
             padding: 0.5rem 0 0.5rem 1rem;
-            flex-basis: 15%;
+            flex-basis: 12.5%;
 
             &:nth-child(1) {
-                flex-basis: 55%;
+                flex-basis: 40%;
             }
 
-            &:nth-child(4) {
+            &:nth-child(5) {
                 padding-right: 1rem;
+                flex-basis: 7.5%;
+
+                @media (min-width: 768px) {
+                    text-align: center;
+                } 
+            }
+
+            img {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
             }
         }
     }
