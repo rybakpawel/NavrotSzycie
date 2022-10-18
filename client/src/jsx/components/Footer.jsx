@@ -46,9 +46,9 @@ const Footer = ({ border }) => {
                 <div className='footer__column footer__column--right'>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                         <Button
-                            link='/'
+                            link='/cart'
                             variant='footer'
-                            title='Produkty' />
+                            title='Koszyk' />
                     </div>
                     <div className='footer__column__link-wrapper footer__column__link-wrapper--right'>
                         <Button

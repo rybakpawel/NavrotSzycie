@@ -7,7 +7,7 @@ import Button from './Button';
 import Loading from './Loading';
 import useWindowDimensions from '../utils/useWindowDimensions';
 
-const PaymentForm = ({ promotion, delivery }) => {
+const PaymentForm = ({ promotion, delivery, orderNo }) => {
     const stripe = useStripe();
     const elements = useElements();
     const cart = useSelector((state) => state.cartReducer.cartProducts);
@@ -16,6 +16,7 @@ const PaymentForm = ({ promotion, delivery }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     const deliveryCost = delivery.provider === 'pocztex' ? 15.99 : 13.99
+    const linkOrderNo = orderNo.replaceAll('/', '')
 
     useEffect(() => {
         if (!stripe) {
@@ -60,11 +61,11 @@ const PaymentForm = ({ promotion, delivery }) => {
             return;
         }
         setIsLoading(true);
-
+        
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
-                return_url: `${process.env.REACT_APP_CLIENT_ADRESS}checkout/summary`,
+                return_url: `${process.env.REACT_APP_CLIENT_ADRESS}checkout/summary/${linkOrderNo}`,
             },
         });
 

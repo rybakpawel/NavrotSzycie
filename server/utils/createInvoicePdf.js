@@ -12,7 +12,7 @@ const printer = new PdfPrinter(fonts)
 const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNumber, flatNumber, zipCode, city, items, totalAmount, deliveryCost) => {  
     const invoicePattern = [
         [{text:'Nazwa', style: 'thirdSection'}, {text: 'Ilość', style: 'thirdSection', alignment: 'right'}, {text: 'Kwota', style: 'thirdSection', alignment: 'right'}, {text: 'Suma', style: 'thirdSection', alignment: 'right'}],
-        ['Dostawa', {text: '', alignment: 'right'}, {text: '', alignment: 'right'}, {text: `${deliveryCost}zł`, alignment: 'right'}]
+        ['Dostawa', {text: '1', alignment: 'right'}, {text: `${deliveryCost}zł`, alignment: 'right'}, {text: `${deliveryCost}zł`, alignment: 'right'}]
     ]
     items.forEach(item => {
         invoicePattern.splice(-1, 0, [item.name, {text: item.quantity, alignment: 'right'}, {text: `${item.price.toFixed(2)}zł`, alignment: 'right'}, {text: `${(item.price * item.quantity).toFixed(2)}zł`, alignment: 'right'}])
@@ -60,7 +60,8 @@ const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNu
                                     }],
                                     ['Navrot Szycie Patrycja Nawrotkiewicz'],
                                     ['ul. Lubińska 46/8'],
-                                    ['53-625 Wrocław']
+                                    ['53-625 Wrocław'],
+                                    ['NIP 8971843751']
                                 ]
                             },
                             layout: 'noBorders',
@@ -76,7 +77,7 @@ const createInvoicePdf = (orderNo, date, firstName, lastName, street, buildingNu
                                        fontSize: 14
                                     }],
                                     [`${firstName} ${lastName}`],
-                                    [`ul. ${street}, ${buildingNumber} ${flatNumber ? `/ ${flatNumber}` : null}`],
+                                    [`ul. ${street}, ${buildingNumber} ${flatNumber ? `/ ${flatNumber}` : ''}`],
                                     [`${zipCode} ${city}`],
                                 ]
                             },

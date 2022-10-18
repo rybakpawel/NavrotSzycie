@@ -12,7 +12,7 @@ const { createInvoicePdf } = require('../utils/createInvoicePdf');
 router.post('/', async (req, res) => {
     try {
         const { items, delivery, promotion } = req.body;
-        const { email, firstName, lastName, street, buildingNumber, flatNumber, zipCode, city, provider } = delivery;
+        const { email, firstName, lastName, street, buildingNumber, flatNumber, zipCode, city, provider, inpostPoint } = delivery;
         
         const deliveryCost = provider === 'pocztex' ? 15.99 : 13.99
         const totalAmount = parseInt(calculateTotalPrice(items, promotion), 10) + (deliveryCost * 100)
@@ -45,6 +45,7 @@ router.post('/', async (req, res) => {
             product: itemsNames,
             amount: totalAmount / 100,
             invoice: {
+                email,
                 firstName,
                 lastName,
                 street,
@@ -53,7 +54,8 @@ router.post('/', async (req, res) => {
                 zipCode,
                 city,
                 items: itemsInvoice,
-                deliveryCost
+                deliveryCost,
+                inpostPoint
             }
         });
 
@@ -78,7 +80,8 @@ router.post('/', async (req, res) => {
         invoicePdf.end();
 
         res.status(200).send({
-             clientSecret: paymentIntent.client_secret
+             clientSecret: paymentIntent.client_secret,
+             orderNo
         });
     } catch {
         const message = 'Server Error';

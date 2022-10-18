@@ -11,7 +11,7 @@ const DeliveryForm = ({ promotion }) => {
     const { width } = useWindowDimensions();
     const [formInputs, setFormInputs] = useState({
         confirmation: 'receipt',
-        provider: 'pocztex',
+        provider: 'inpost',
         inpostPoint: ''
     });
     const [points, setPoints] = useState({
@@ -109,7 +109,7 @@ const DeliveryForm = ({ promotion }) => {
             confirmation: 'receipt',
             nip: '',
             companyName: '',
-            provider: 'pocztex',
+            provider: 'inpost',
             inpostPoint: ''
         })
 
@@ -300,7 +300,7 @@ const DeliveryForm = ({ promotion }) => {
                         <SectionTitle title='Sposób dostawy' />
                     }
                 </div>
-                <div className='delivery-form__provider__pocztex'>
+                {/* <div className='delivery-form__provider__pocztex'>
                     <input
                         type='radio'
                         id='pocztex'
@@ -309,7 +309,7 @@ const DeliveryForm = ({ promotion }) => {
                         checked={formInputs.provider === 'pocztex'}
                         onChange={handleChange} />
                     <label htmlFor='pocztex'>Kurier Pocztex - <strong>15,99zł</strong></label>
-                </div>
+                </div> */}
                 <div className='delivery-form__provider__inpost'>
                     <input
                         type='radio'

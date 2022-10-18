@@ -6,6 +6,7 @@ const orderSchema = new mongoose.Schema({
     product: [String],
     amount: Number,
     invoice: {
+        email: String,
         firstName: String,
         lastName: String,
         street: String,
@@ -20,7 +21,8 @@ const orderSchema = new mongoose.Schema({
                 quantity: Number
             }
         ],
-        deliveryCost: Number
+        deliveryCost: Number,
+        inpostPoint: String
     },
     
 }, { collection: 'orders' });

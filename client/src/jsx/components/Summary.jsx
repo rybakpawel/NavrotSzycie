@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../redux/actions/cartActions';
 import ok from '../../assets/icons/ok.png';
 
 const Summary = () => {
+    const { orderNo } = useParams();
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cartReducer.cartProducts);
 
@@ -25,8 +27,14 @@ const Summary = () => {
     }, []);
 
     useEffect(() => {
-        
-    })
+        fetch(`${process.env.REACT_APP_SERVER_ADRESS}orders/sendinvoice/${orderNo}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+    }, []);
 
     return (
         <div className='summary'>

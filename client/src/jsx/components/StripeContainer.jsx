@@ -11,6 +11,7 @@ const stripePromise = loadStripe(PUBLIC_KEY);
 const StripeContainer = ({ delivery, promotion }) => {
     const cart = useSelector((state) => state.cartReducer.cartProducts);
 
+    const [orderNo, setOrderNo] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
@@ -26,7 +27,10 @@ const StripeContainer = ({ delivery, promotion }) => {
             }),
         })
             .then((res) => res.json())
-            .then((data) => setClientSecret(data.clientSecret));
+            .then((data) => {
+                setOrderNo(data.orderNo)
+                setClientSecret(data.clientSecret)
+            });
     }, []);
 
     const options = {
@@ -46,7 +50,7 @@ const StripeContainer = ({ delivery, promotion }) => {
         <>
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
-                    <PaymentForm promotion={promotion} delivery={delivery} />
+                    <PaymentForm promotion={promotion} delivery={delivery} orderNo={orderNo}/>
                 </Elements>
             )}
         </>
