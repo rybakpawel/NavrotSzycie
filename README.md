@@ -2,10 +2,6 @@
 
 E-commerce application.
 
-## Links
-
--   [Live](https://www.navrot-szycie.pl/)
-
 ## Technologies
 
 -   React
@@ -14,7 +10,6 @@ E-commerce application.
 -   Express
 -   MongoDB
 -   Stripe
--   GridFS
 -   Webpack
 
 ## Screenshots
